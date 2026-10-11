@@ -1,7 +1,7 @@
 [{
   "modid": "ravenxd",
   "name": "Raven XD",
-  "description": "Raven XD, based on OpenB4.",
+  "description": "Raven XD client for Minecraft Forge 1.8.9.",
   "version": "${version}",
   "mcversion": "1.8.9",
   "authorList": []

@@ -2,11 +2,8 @@
 
 ---
 
-Raven XD is a branding-only fork of OpenB4, maintained at
+Raven XD is a Minecraft Forge 1.8.9 client, maintained at
 [Open-Raven/RavenXD](https://github.com/Open-Raven/RavenXD).
-It keeps OpenB4's modules and behavior, with Raven XD names in the GUI, watermark,
-chat, Forge mod list, and output JAR. The older
-[Raven XD archive](https://github.com/Open-Raven/Raven-XD-archived) is the naming reference.
 
 ## Changes
 
@@ -28,7 +25,7 @@ The installable mod is `RavenXD/build/libs/RavenXD.jar`. Place it in your
 Minecraft Forge 1.8.9 `mods` directory. Open the GUI with Right Shift.
 
 Internal package names, resource paths, script APIs, and the existing `keystrokes`
-configuration directory are preserved for compatibility with OpenB4.
+configuration directory are preserved for compatibility.
 
 ## Decrypting Scripts - u20
 
@@ -43,7 +40,6 @@ user's UID: `size * 0.05506` becomes `size * 0.05` + the UID.
 
 ## Credits
 
-- OpenB4: Upstream source for this Raven XD rebrand
 - Sande: Finding an undetected way to dump and providing the dump
 - Abusez: Deobfuscating/Recovering
 - Mega: Deobfuscating/Recovering
