@@ -7,6 +7,8 @@ plugins {
 group = "xyz.daikirai"
 version = "3.1"
 
+base { archivesName.set("RavenXD") }
+
 java { toolchain.languageVersion.set(JavaLanguageVersion.of(8)) }
 
 loom {
