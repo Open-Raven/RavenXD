@@ -2,7 +2,8 @@
 
 ---
 
-Raven XD is a branding-only fork of [OpenB4](https://codeberg.org/abusez/OpenB4).
+Raven XD is a branding-only fork of OpenB4, maintained at
+[Open-Raven/RavenXD](https://github.com/Open-Raven/RavenXD).
 It keeps OpenB4's modules and behavior, with Raven XD names in the GUI, watermark,
 chat, Forge mod list, and output JAR. The older
 [Raven XD archive](https://github.com/Open-Raven/Raven-XD-archived) is the naming reference.
