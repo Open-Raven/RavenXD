@@ -24,9 +24,6 @@ cd RavenXD
 The installable mod is `RavenXD/build/libs/RavenXD-3.1.jar`. Place it in your
 Minecraft Forge 1.8.9 `mods` directory. Open the GUI with Right Shift.
 
-Internal package names, resource paths, script APIs, and the existing `keystrokes`
-configuration directory are preserved for compatibility.
-
 ## Decrypting Scripts - u20
 
 Raven's protected scripts carry two recovered layers:
