@@ -36,8 +36,8 @@ public final class ChatCommands {
     public static String tracking;
     public static final HashMap<String, Double> speedBuilderScores = new HashMap<String, Double>();
     public static String fakeChatMessage = "&eThis is a fake chat message.";
-    public static String nameHiderRaw = "Raven XD";
-    public static String nameHider = Chat.color("Raven XD");
+    public static String nameHiderRaw = Account.NAME;
+    public static String nameHider = Chat.color(Account.NAME);
     public static String ravenUser = "";
 
     private ChatCommands() {
@@ -151,7 +151,7 @@ public final class ChatCommands {
                 break;
             }
             case "stats": {
-                Chat.print("&b" + ravenUser + "&7's Raven XD stats");
+                Chat.print("&b" + ravenUser + "&7's " + Account.NAME + " stats");
                 Chat.print("&7 IRC Messages: &b" + commas(Irc.messages));
                 Chat.print("&7 KillAura Hits: &b" + commas(Irc.killAuraHits));
                 Chat.print("&7 Scaffold Blocks: &b" + commas(Irc.scaffoldBlocks));
@@ -786,7 +786,7 @@ public final class ChatCommands {
 
     private static void help(String cmd) {
         reply(cmd, "&7Commands - &dGeneral");
-        line(" &b.ask [msg] &7Talk to Raven XD AI.");
+        line(" &b.ask [msg] &7Talk to " + Account.NAME + " AI.");
         line(" &b.clear &7Clears the chat.");
         line(" &b.ign/name &7Copy your username.");
         line(" &b.enemy/e (name/-) &7Manage enemies.");
@@ -796,7 +796,7 @@ public final class ChatCommands {
         line(" &b.ping &7Estimate your ping.");
         line(" &b.play/p (mode) &7Quick play Hypixel games.");
         line(" &b.requeue/rq &7Requeue last Hypixel gamemode.");
-        line(" &b.stats &7View your Raven XD stats.");
+        line(" &b.stats &7View your " + Account.NAME + " stats.");
         line(" &b.time [time] &7Set world time.");
         line(" &b.track [name] &7Highlight a player.");
         line(" &b.rotate [yaw] [pitch] &7Set rotations.");

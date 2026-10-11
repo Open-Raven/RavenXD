@@ -26,8 +26,8 @@ public final class Watermark {
         fr.drawStringWithShadow("welcome, ", (float) cx, (float) (y - 20), color);
         int end = rainbowText(user, cx += 45, y - 20, fr);
         fr.drawStringWithShadow(" #" + userId, (float) end, (float) (y - 20), color);
-        fr.drawStringWithShadow("Raven XD " + xyz.daikirai.client.Account.VERSION, (float) x, (float) (y - 10), color);
-        scramble("dev. ", "blowsy", x, y, animate, fr);
+        fr.drawStringWithShadow(xyz.daikirai.client.Account.NAME, (float) x, (float) (y - 10), color);
+        scramble("dev. ", xyz.daikirai.client.Account.DEVELOPER, x, y, animate, fr);
     }
 
     private static int rainbowText(String s, int x, int y, FontRenderer fr) {

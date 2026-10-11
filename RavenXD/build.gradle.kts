@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "xyz.daikirai"
-version = "1.0.0"
+version = "3.1"
 
 java { toolchain.languageVersion.set(JavaLanguageVersion.of(8)) }
 
@@ -58,4 +58,4 @@ tasks.jar {
     )
 }
 
-tasks.named<org.gradle.jvm.tasks.Jar>("remapJar") { archiveFileName.set("RavenXD.jar") }
+tasks.named<org.gradle.jvm.tasks.Jar>("remapJar") { archiveFileName.set("RavenXD-${project.version}.jar") }

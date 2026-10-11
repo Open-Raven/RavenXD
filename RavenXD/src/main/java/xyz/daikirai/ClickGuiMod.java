@@ -29,7 +29,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-@Mod(modid = "ravenxd", name = "Raven XD", version = "1.0.0", clientSideOnly = true, acceptedMinecraftVersions = "[1.8.9]")
+@Mod(modid = "ravenxd", name = xyz.daikirai.client.Account.NAME, version = xyz.daikirai.client.Account.VERSION, clientSideOnly = true, acceptedMinecraftVersions = "[1.8.9]")
 public class ClickGuiMod {
     private static final Minecraft mc = Minecraft.getMinecraft();
 

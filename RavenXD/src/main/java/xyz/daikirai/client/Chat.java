@@ -6,7 +6,7 @@ import net.minecraft.util.ChatComponentText;
 public final class Chat {
     private static final Minecraft mc = Minecraft.getMinecraft();
     public static final String COLOR = "§";
-    public static final String PREFIX = "&7[&dRaven XD&7]&r ";
+    public static final String PREFIX = "&7[&d" + Account.NAME + "&7]&r ";
     public static final char SECTION = '§';
 
     private Chat() {

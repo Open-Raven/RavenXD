@@ -140,7 +140,7 @@ public class ClickGui extends GuiScreen {
         long now = System.currentTimeMillis();
         float since = now - openedAt;
         String title = "Raven";
-        String tag = "XD";
+        String tag = "XD " + xyz.daikirai.client.Account.VERSION;
         float intro = this.clamp(since / 950.0f);
         float base = 2.5f;
         float pulse = 1.0f + (float) Math.sin((double) now * 0.0017) * 0.012f;

@@ -12,4 +12,4 @@ pluginManagement {
         }
     }
 }
-rootProject.name = "RavenXD"
+rootProject.name = "RavenXD-3.1"

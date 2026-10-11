@@ -1,9 +1,9 @@
-## Raven XD
+## Raven XD 3.1
 
 ---
 
-Raven XD is a Minecraft Forge 1.8.9 client, maintained at
-[Open-Raven/RavenXD](https://github.com/Open-Raven/RavenXD).
+Raven XD 3.1 is a Minecraft Forge 1.8.9 client, maintained at
+[Raven XD 3.1](https://github.com/Open-Raven/RavenXD).
 
 ## Changes
 
@@ -21,7 +21,7 @@ cd RavenXD
 .\gradlew.bat build
 ```
 
-The installable mod is `RavenXD/build/libs/RavenXD.jar`. Place it in your
+The installable mod is `RavenXD/build/libs/RavenXD-3.1.jar`. Place it in your
 Minecraft Forge 1.8.9 `mods` directory. Open the GUI with Right Shift.
 
 Internal package names, resource paths, script APIs, and the existing `keystrokes`
