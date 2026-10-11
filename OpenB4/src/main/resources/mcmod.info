@@ -1,8 +1,0 @@
-[{
-  "modid": "clickgui",
-  "name": "ClickGUI",
-  "description": "Raven B4 click GUI, recovered from the client classes.",
-  "version": "${version}",
-  "mcversion": "1.8.9",
-  "authorList": []
-}]

@@ -12,4 +12,4 @@ pluginManagement {
         }
     }
 }
-rootProject.name = "clickgui"
+rootProject.name = "RavenXD"

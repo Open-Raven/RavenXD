@@ -139,8 +139,8 @@ public class ClickGui extends GuiScreen {
     public void drawTitle(float cx, float cy) {
         long now = System.currentTimeMillis();
         float since = now - openedAt;
-        String title = "raven";
-        String tag = "b4";
+        String title = "Raven";
+        String tag = "XD";
         float intro = this.clamp(since / 950.0f);
         float base = 2.5f;
         float pulse = 1.0f + (float) Math.sin((double) now * 0.0017) * 0.012f;
