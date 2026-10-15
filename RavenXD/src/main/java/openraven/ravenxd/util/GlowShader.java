@@ -1,6 +1,5 @@
 package openraven.ravenxd.util;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.shader.Framebuffer;
 import org.lwjgl.opengl.GL11;
@@ -8,8 +7,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GlowShader {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public class GlowShader implements IMinecraft {
     private static GlowShader instance;
 
     private int iterations;

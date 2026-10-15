@@ -3,7 +3,6 @@ package openraven.ravenxd.util;
 import openraven.ravenxd.module.SettingsModule;
 import openraven.ravenxd.module.render.NametagsModule;
 import openraven.ravenxd.module.setting.SliderSetting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -18,8 +17,7 @@ import net.minecraft.scoreboard.ScorePlayerTeam;
 
 import java.util.Map;
 
-public final class Strings {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class Strings implements IMinecraft {
     public static final char SECTION = '§';
     public static final char HEART = '❤';
     public static final String RED = "§c", GOLD = "§6", YELLOW = "§e", GREEN = "§a", DARK_GREEN = "§2";

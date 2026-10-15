@@ -1,7 +1,6 @@
 package openraven.ravenxd.util;
 
 import openraven.ravenxd.module.SettingsModule;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.AxisAlignedBB;
@@ -14,8 +13,7 @@ import net.minecraft.util.Vec3;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class RotationUtils {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class RotationUtils implements IMinecraft {
 
     public static float lastYawStep, lastPitchStep;
 

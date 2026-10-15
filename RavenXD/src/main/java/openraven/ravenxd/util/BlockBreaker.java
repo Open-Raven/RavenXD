@@ -5,14 +5,12 @@ import openraven.ravenxd.module.ModuleManager;
 import openraven.ravenxd.module.setting.ButtonSetting;
 import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.play.client.C07PacketPlayerDigging;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 
-public final class BlockBreaker {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class BlockBreaker implements IMinecraft {
 
     public static boolean sending;
     public static C07PacketPlayerDigging.Action lastAction;

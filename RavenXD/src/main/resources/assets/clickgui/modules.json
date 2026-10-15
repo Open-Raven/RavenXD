@@ -1276,7 +1276,7 @@
     "suffix": "",
     "value": 0.0,
     "min": 0.0,
-    "max": 16.0,
+    "max": 17.0,
     "step": 1.0,
     "options": [
      "Normal",
@@ -1295,7 +1295,8 @@
      "S32",
      "Reverse",
      "Intave",
-     "AntiKnockback"
+     "AntiKnockback",
+     "Airpush"
     ],
     "labels": null
    },
@@ -1706,6 +1707,22 @@
     "t": "toggle",
     "name": "Disable attack while delay",
     "value": false
+   },
+   {
+    "t": "desc",
+    "name": "Airpush"
+   },
+   {
+    "t": "slider",
+    "name": "Reduce ticks",
+    "prefix": "",
+    "suffix": "",
+    "value": 2.0,
+    "min": 1.0,
+    "max": 3.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
    }
   ]
  },
@@ -6264,6 +6281,31 @@
     "t": "toggle",
     "name": "Spawner",
     "value": true
+   }
+  ]
+ },
+ {
+  "cls": "MotionBlur",
+  "name": "Motion Blur",
+  "category": "render",
+  "enabled": false,
+  "noToggle": false,
+  "hidden": false,
+  "key": 0,
+  "lite": false,
+  "failed": null,
+  "settings": [
+   {
+    "t": "slider",
+    "name": "Blur amount",
+    "prefix": "",
+    "suffix": "",
+    "value": 7.0,
+    "min": 0.0,
+    "max": 10.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
    }
   ]
  },

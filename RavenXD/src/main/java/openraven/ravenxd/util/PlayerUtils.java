@@ -13,7 +13,6 @@ import openraven.ravenxd.module.ModuleManager;
 import openraven.ravenxd.module.setting.ButtonSetting;
 import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenBook;
@@ -49,8 +48,7 @@ import org.lwjgl.input.Mouse;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class PlayerUtils {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class PlayerUtils implements openraven.ravenxd.util.IMinecraft {
 
     public static boolean attacking;
     public static boolean sendingSlot;

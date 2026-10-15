@@ -2,7 +2,6 @@ package openraven.ravenxd.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -10,8 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
-public final class WorldUtils {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class WorldUtils implements IMinecraft {
 
     private static final BlockPos.MutableBlockPos scratch = new BlockPos.MutableBlockPos();
 

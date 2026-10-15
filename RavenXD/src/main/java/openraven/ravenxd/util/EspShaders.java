@@ -1,13 +1,11 @@
 package openraven.ravenxd.util;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.shader.Framebuffer;
 import org.lwjgl.opengl.GL11;
 
-public final class EspShaders {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class EspShaders implements IMinecraft {
     private static Shader fill;
     private static Shader roundRect;
     private static Shader outline;

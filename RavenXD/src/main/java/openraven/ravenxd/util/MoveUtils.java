@@ -1,11 +1,9 @@
 package openraven.ravenxd.util;
 
 import openraven.ravenxd.mixin.IMinecraft;
-import net.minecraft.client.Minecraft;
 import net.minecraft.util.Timer;
 
-public final class MoveUtils {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class MoveUtils implements openraven.ravenxd.util.IMinecraft {
 
     private MoveUtils() {
     }

@@ -2,7 +2,6 @@ package openraven.ravenxd.util;
 
 import openraven.ravenxd.module.render.ExtendCameraModule;
 import openraven.ravenxd.module.render.NametagsModule;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -29,8 +28,7 @@ import java.lang.reflect.Method;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-public final class Render3D {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class Render3D implements IMinecraft {
 
     public static final Frustum frustum = new Frustum();
     public static final double[] cameraPos = new double[3];

@@ -1,5 +1,6 @@
 package openraven.ravenxd.hook;
 
+import openraven.ravenxd.util.Rots;
 import openraven.ravenxd.module.combat.VelocityModule;
 import openraven.ravenxd.client.ChatCommands;
 import openraven.ravenxd.client.Hypixel;
@@ -103,6 +104,7 @@ public final class Hooks {
         float[] rotations = RotationManager.request(RotationManager.lastYaw, RotationManager.lastPitch);
         if (rotations == null) {
             RotationManager.rotating = false;
+            Rots.stop();
         } else {
             RotationManager.set(rotations);
             RotationManager.rotating = true;
@@ -556,6 +558,9 @@ public final class Hooks {
             return false;
         }
         if ((m = on("Disabler")) != null && !m.onSendPacket(packet)) {
+            return false;
+        }
+        if ((m = on("Velocity")) != null && !m.onSendPacket(packet)) {
             return false;
         }
         if (packet instanceof C03PacketPlayer) {

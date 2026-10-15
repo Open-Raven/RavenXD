@@ -2,6 +2,18 @@ package openraven.ravenxd.module.combat;
 
 
 //creds to miau minus
+import openraven.ravenxd.client.Friends;
+import openraven.ravenxd.client.BotCheck;
+import openraven.ravenxd.util.Rots;
+import openraven.ravenxd.util.rots.stuff.RiseRotationUtil;
+import org.lwjgl.util.vector.Vector2f;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.network.play.client.C02PacketUseEntity;
+import net.minecraft.network.play.client.C07PacketPlayerDigging;
+import net.minecraft.network.play.client.C0APacketAnimation;
+import net.minecraft.util.MathHelper;
 import openraven.ravenxd.util.PlayerUtils;
 import openraven.ravenxd.client.Chat;
 import openraven.ravenxd.module.Category;
@@ -60,7 +72,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class VelocityModule extends Module {
     public enum Mode {
-        Normal, Standard, Jump, AAC5, AACZero, Buffer, Cancel, GhostBlock, Glitch, Karhu, Matrix1, Matrix2, Matrix3, S32, Reverse, Intave, AntiKnockback
+        Normal, Standard, Jump, AAC5, AACZero, Buffer, Cancel, GhostBlock, Glitch, Karhu, Matrix1, Matrix2, Matrix3, S32, Reverse, Intave, AntiKnockback, Airpush
     }
 
     public static Mode current = Mode.Normal;
@@ -76,7 +88,7 @@ public class VelocityModule extends Module {
     public static SliderSetting boostFactor, boostCooldown;
     public static SliderSetting reverseStrength, reverseRange, maxAngleDifference;
     public static ButtonSetting reverseOnLook;
-    public static SliderSetting duration;
+    public static SliderSetting duration, reduceTicks;
 
     private volatile boolean received;
     private volatile long receivedAt;
@@ -119,6 +131,7 @@ public class VelocityModule extends Module {
         reverseRange = (SliderSetting) ModuleManager.setting(this, "Reverse range");
         maxAngleDifference = (SliderSetting) ModuleManager.setting(this, "Max angle difference");
         duration = (SliderSetting) ModuleManager.setting(this, "Duration");
+        reduceTicks = (SliderSetting) ModuleManager.setting(this, "Reduce ticks");
         this.antiKnockback = new AntiKnockback(this);
         this.antiKnockback.link();
     }
@@ -175,13 +188,19 @@ public class VelocityModule extends Module {
         this.bufferAmount = 0;
         this.limitUntilJump = 0;
         this.boostTimer = 0L;
+        this.reduceTicksCounter = -1;
+        this.lastAttackTick = -1;
+        this.shouldJump = false;
+        this.cancellingAction = false;
+        this.pendingAttack = null;
+        this.useItemTicks = 0;
+        this.rotateTarget = null;
         EntityPlayerSP p = Minecraft.getMinecraft().thePlayer;
         if (p != null) {
             p.noClip = false;
         }
     }
 
-    // Chance, targeting and holding-S checks, used by Normal and Standard.
     private static boolean gated() {
         Minecraft mc = Minecraft.getMinecraft();
         if (onlyWhileTargeting.enabled && !PlayerUtils.targetMatches(1)) {
@@ -306,6 +325,14 @@ public class VelocityModule extends Module {
                 });
                 this.suppressUntil = System.currentTimeMillis() + (long) duration.getInput();
                 return false;
+            case Airpush:
+                if (p.getMotionY() > 0) {
+                    this.reduceTicksCounter = 0;
+                    if (player.onGround && player.isSprinting()) {
+                        this.shouldJump = true;
+                    }
+                }
+                return true;
             case AACZero:
             case GhostBlock:
             case Karhu:
@@ -424,7 +451,119 @@ public class VelocityModule extends Module {
             case Reverse:
                 this.reverse(player);
                 break;
+            case Airpush:
+                this.airpush(player);
+                break;
         }
+    }
+
+    // yuri "legit" as airpush (airpush port to 1.8 + jump reset)
+    private volatile int reduceTicksCounter = -1;
+    private volatile boolean shouldJump;
+    private int lastAttackTick = -1;
+    private boolean cancellingAction;
+    private Entity pendingAttack;
+    private int useItemTicks;
+    private Entity rotateTarget;
+    private int rotateTick;
+
+    private void airpush(EntityPlayerSP player) {
+        Minecraft mc = Minecraft.getMinecraft();
+        this.useItemTicks = player.isUsingItem() ? 0 : this.useItemTicks + 1;
+        if (this.pendingAttack != null && this.useItemTicks >= 1) {
+            Entity target = this.pendingAttack;
+            this.pendingAttack = null;
+            if (mc.currentScreen == null && validTarget(target) && player.getDistanceToEntity(target) <= 3.0f) {
+                this.rotateTo(target);
+                this.attack(target);
+            }
+        } else if (mc.currentScreen == null && this.reduceTicksCounter >= 0 && this.reduceTicksCounter < (int) reduceTicks.getInput()) {
+            ++this.reduceTicksCounter;
+            if (this.lastAttackTick != player.ticksExisted) {
+                EntityLivingBase target = furthestTarget(player, 3.0);
+                if (target != null) {
+                    this.rotateTo(target);
+                    if (player.isUsingItem()) {
+                        this.pendingAttack = target;
+                    } else {
+                        this.attack(target);
+                    }
+                }
+            }
+        }
+        if (this.shouldJump) {
+            this.shouldJump = false;
+            if (player.onGround && player.isSprinting() && !GameSettings.isKeyDown(mc.gameSettings.keyBindJump)) {
+                player.jump();
+            }
+        }
+    }
+
+    private void rotateTo(Entity target) {
+        this.rotateTarget = target;
+        this.rotateTick = Minecraft.getMinecraft().thePlayer.ticksExisted;
+    }
+
+    @Override
+    public float[] getRotations(float yaw, float pitch) {
+        EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+        if (current != Mode.Airpush || this.rotateTarget == null || this.rotateTarget.isDead || player.ticksExisted - this.rotateTick > 1) {
+            return null;
+        }
+        Rots.speed = 18.0;
+        Vector2f r = RiseRotationUtil.calculate(this.rotateTarget);
+        return new float[]{r.x, r.y};
+    }
+
+    private void attack(Entity target) {
+        Minecraft mc = Minecraft.getMinecraft();
+        if (KillAuraModule.target != null || ModuleManager.enabled("Scaffold") != null || ModuleManager.enabled("BedAura") != null) {
+            return;
+        }
+        this.cancellingAction = true;
+        PacketUtils.send(new C0APacketAnimation());
+        mc.playerController.attackEntity(mc.thePlayer, target);
+        this.cancellingAction = false;
+    }
+
+    private static EntityLivingBase furthestTarget(EntityPlayerSP player, double range) {
+        EntityLivingBase best = null;
+        double bestDistance = 0.0;
+        for (Entity e : Minecraft.getMinecraft().theWorld.loadedEntityList) {
+            if (!validTarget(e)) continue;
+            double d = player.getDistanceToEntity(e);
+            if (d <= range && (best == null || d > bestDistance)) {
+                best = (EntityLivingBase) e;
+                bestDistance = d;
+            }
+        }
+        return best;
+    }
+
+    private static boolean validTarget(Entity e) {
+        EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+        if (e == player || e.isDead || !(e instanceof EntityLivingBase) || e instanceof EntityArmorStand) {
+            return false;
+        }
+        EntityLivingBase living = (EntityLivingBase) e;
+        if (living.getHealth() <= 0.0f) {
+            return false;
+        }
+        if (e instanceof EntityPlayer && (Friends.isFriend(e.getName()) || BotCheck.isBot(e) || Hypixel.sameTeam(living))) {
+            return false;
+        }
+        return player.canEntityBeSeen(e);
+    }
+
+    @Override
+    public boolean onSendPacket(Packet<?> packet) {
+        if (current != Mode.Airpush) {
+            return true;
+        }
+        if (packet instanceof C02PacketUseEntity && ((C02PacketUseEntity) packet).getAction() == C02PacketUseEntity.Action.ATTACK) {
+            this.lastAttackTick = Minecraft.getMinecraft().thePlayer.ticksExisted;
+        }
+        return !(this.cancellingAction && packet instanceof C07PacketPlayerDigging);
     }
 
     private void reverse(EntityPlayerSP player) {

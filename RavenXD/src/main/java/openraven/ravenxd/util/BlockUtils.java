@@ -14,7 +14,6 @@ import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,8 +32,7 @@ import net.minecraft.util.Vec3i;
 import java.util.List;
 import java.util.Set;
 
-public final class BlockUtils {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class BlockUtils implements IMinecraft {
 
     private BlockUtils() {
     }

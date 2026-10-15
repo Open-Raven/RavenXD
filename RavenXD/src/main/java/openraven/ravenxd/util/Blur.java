@@ -1,6 +1,5 @@
 package openraven.ravenxd.util;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.shader.Framebuffer;
 import org.lwjgl.opengl.GL11;
@@ -9,8 +8,7 @@ import org.lwjgl.opengl.GL13;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Blur {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public class Blur implements IMinecraft {
     private static Blur instance;
 
     public Framebuffer first = new Framebuffer(1, 1, false);

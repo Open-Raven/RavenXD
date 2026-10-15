@@ -19,7 +19,8 @@ public enum RotationSource {
     INVMANAGER(true),
     AUTOROD(true),
     DISPLACE(true),
-    JUMP45(true);
+    JUMP45(true),
+    VELOCITY(true);
 
     public final boolean movementFix;
 

@@ -18,7 +18,6 @@ import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.C03PacketPlayer;
 import net.minecraft.util.BlockPos;
@@ -27,8 +26,7 @@ import net.minecraft.util.Vec3;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public final class TeleportPath {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class TeleportPath implements IMinecraft {
 
     private TeleportPath() {
     }

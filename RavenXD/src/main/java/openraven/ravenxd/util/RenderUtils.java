@@ -1,6 +1,5 @@
 package openraven.ravenxd.util;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -17,8 +16,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.Color;
 
-public final class RenderUtils {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class RenderUtils implements IMinecraft {
 
     public static int scaledWidth, scaledWidthD, scaledHeight, scaledHeightD, scaleFactor = 1;
 

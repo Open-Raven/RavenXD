@@ -2,7 +2,6 @@ package openraven.ravenxd.util;
 
 import openraven.ravenxd.module.SettingsModule;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -26,8 +25,7 @@ import net.minecraft.util.DamageSource;
 
 import java.util.Map;
 
-public final class ItemUtils {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class ItemUtils implements IMinecraft {
 
     private ItemUtils() {
     }

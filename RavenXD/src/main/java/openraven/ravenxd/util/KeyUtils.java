@@ -1,6 +1,5 @@
 package openraven.ravenxd.util;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.MouseEvent;
@@ -12,8 +11,7 @@ import org.lwjgl.input.Mouse;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 
-public final class KeyUtils {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class KeyUtils implements IMinecraft {
 
     public static boolean simulatingMouse;
 

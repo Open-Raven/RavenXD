@@ -136,6 +136,7 @@ public final class ModuleManager {
             case "NoHurtCam": return new openraven.ravenxd.module.render.NoHurtCamModule(key);
             case "PlayerESP": return new openraven.ravenxd.module.render.PlayerESPModule(key);
             case "Radar": return new openraven.ravenxd.module.render.RadarModule(key);
+            case "Motion Blur": return new openraven.ravenxd.module.render.MotionBlurModule(key);
             case "TargetHUD": return new openraven.ravenxd.module.render.TargetHudModule(key);
             case "Tracers": return new openraven.ravenxd.module.render.TracersModule(key);
             case "Trajectories": return new openraven.ravenxd.module.render.TrajectoriesModule(key);

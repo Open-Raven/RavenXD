@@ -2,15 +2,13 @@ package openraven.ravenxd.util;
 
 import openraven.ravenxd.module.Module;
 import openraven.ravenxd.module.ModuleManager;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGameOver;
 import net.minecraft.network.Packet;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class PacketQueue {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class PacketQueue implements IMinecraft {
 
     public static boolean active;
     private static int holders;

@@ -1,7 +1,6 @@
 package openraven.ravenxd.util;
 
 import openraven.ravenxd.hook.Hooks;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.C02PacketUseEntity;
 import net.minecraft.network.play.client.C03PacketPlayer;
@@ -16,8 +15,7 @@ import net.minecraft.network.play.server.S09PacketHeldItemChange;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.network.play.server.S27PacketExplosion;
 
-public final class PacketUtils {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public final class PacketUtils implements IMinecraft {
 
     public static Packet<?> sending;
     public static Packet<?> sendingNoEvent;
