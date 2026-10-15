@@ -5,8 +5,6 @@ package openraven.ravenxd.module.combat;
 import openraven.ravenxd.client.Friends;
 import openraven.ravenxd.client.BotCheck;
 import openraven.ravenxd.util.Rots;
-import openraven.ravenxd.util.rots.stuff.RiseRotationUtil;
-import org.lwjgl.util.vector.Vector2f;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
@@ -510,9 +508,7 @@ public class VelocityModule extends Module {
         if (current != Mode.Airpush || this.rotateTarget == null || this.rotateTarget.isDead || player.ticksExisted - this.rotateTick > 1) {
             return null;
         }
-        Rots.speed = 18.0;
-        Vector2f r = RiseRotationUtil.calculate(this.rotateTarget);
-        return new float[]{r.x, r.y};
+        return Rots.aim(Rots.toEntity(this.rotateTarget), 18.0);
     }
 
     private void attack(Entity target) {
