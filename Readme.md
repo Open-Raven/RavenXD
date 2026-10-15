@@ -36,7 +36,7 @@ The plaintext keeps a 32-character trailer, and the client stamps the formula it
 user's UID: `size * 0.05506` becomes `size * 0.05` + the UID.
 
 ## Credits
-
+- [SRT Client](https://github.com/egor14m11/Minecraft-Cheat-Sources/tree/a1a69f9955705dcea793b7159c7638a34fa6aae1/SRT): some speed modes
 - [MiauMinus](https://github.com/SPEEDBOY19/OpenMiau-Minus): most velocity modes
 - [OpenRise](https://github.com/fmcpe/OpenRise): most disablers
 - [Rise-6.9.5](https://github.com/AnShanArchive/Rise-6.9.5): fixing openrise skids
