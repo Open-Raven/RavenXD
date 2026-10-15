@@ -1,0 +1,241 @@
+package xyz.daikirai.gui.nplus;
+
+import xyz.daikirai.client.Account;
+import xyz.daikirai.client.Chat;
+import xyz.daikirai.client.Profiles;
+import xyz.daikirai.client.Sounds;
+import xyz.daikirai.gui.BindComponent;
+import xyz.daikirai.module.Category;
+import xyz.daikirai.module.GuiModule;
+import xyz.daikirai.module.HudModule;
+import xyz.daikirai.module.Module;
+import xyz.daikirai.module.ModuleManager;
+import xyz.daikirai.module.NPlusThemeModule;
+import xyz.daikirai.util.Animation;
+import xyz.daikirai.util.Blur;
+import xyz.daikirai.util.RenderUtils;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiInventory;
+import org.lwjgl.input.Mouse;
+
+import java.awt.Color;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+public class NPlusGui extends GuiScreen {
+    private static final DateTimeFormatter DATE = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    public static NPlusGui instance;
+
+    public final ArrayList<NPlusCategory> categories = new ArrayList<NPlusCategory>();
+    public final NPlusConsole console = new NPlusConsole();
+    private Animation backgroundAnimation;
+
+    public NPlusGui() {
+        int y = 5;
+        for (Category c : Category.values()) {
+            NPlusCategory cat = new NPlusCategory(c);
+            cat.load(5, y, false);
+            this.categories.add(cat);
+            y += 20;
+        }
+        this.console.y = y;
+    }
+
+    public NPlusCategory get(String name) {
+        for (NPlusCategory c : this.categories) {
+            if (c.category.name().equals(name)) return c;
+        }
+        return null;
+    }
+
+    public void resetPositions() {
+        int y = 5;
+        for (NPlusCategory c : this.categories) {
+            c.load(5, y, false);
+            c.setOpened(false);
+            for (NPlusModule m : c.modules) {
+                m.expanded = false;
+            }
+            c.layout();
+            y += 20;
+        }
+        this.console.x = 5;
+        this.console.y = y;
+    }
+
+    public void initMain() {
+        (this.backgroundAnimation = new Animation(500.0f)).start();
+        for (NPlusCategory c : this.categories) {
+            c.rebuild();
+        }
+    }
+
+    @Override
+    public void drawScreen(int x, int y, float p) {
+        if (ModuleManager.hud != null && ModuleManager.hud.isEnabled()) {
+            HudModule.render();
+        }
+        float fade = this.backgroundAnimation.getValue(0.0f, 0.7f, 2);
+        if (NPlusThemeModule.blur.isToggled()) {
+            Blur.get().startStencil();
+            Gui.drawRect(0, 0, RenderUtils.scaledWidth, RenderUtils.scaledHeight, -1);
+            Blur.get().render(2, 1.7f * fade / 0.7f);
+        }
+        if (NPlusThemeModule.background.isToggled()) {
+            drawRect(0, 0, this.width, this.height, (int) (fade * 255.0f) << 24);
+        }
+        String info = "[ " + Account.NAME + (Profiles.current != null ? " | Profile: " + Profiles.current.name : "") + " ]";
+        NPlusRender.text(info, 4, this.height - 3 - this.fontRendererObj.FONT_HEIGHT, NPlusRender.astolfo(10, 14, 4890.0f), !NPlusThemeModule.font());
+        int rainbow = NPlusRender.rainbow(2L, 1350L);
+        if (NPlusThemeModule.logo.isToggled()) {
+            int sw = this.width / 2, sh = this.height / 4;
+            NPlusRender.icon("logo", sw - 95, sh + 35, 200, 60, Color.white.darker());
+            NPlusRender.icon("feather", sw + 80, sh + 70, 35, 35, new Color(rainbow).darker());
+        }
+        for (NPlusCategory c : this.categories) {
+            c.draw();
+            c.update(x, y);
+        }
+        String time = time();
+        if (NPlusThemeModule.clock.isToggled()) {
+            NPlusRender.text(time, 8, 5, rainbow, true);
+        }
+        if (NPlusThemeModule.date.isToggled()) {
+            boolean clock = NPlusThemeModule.clock.isToggled();
+            String date = (clock ? " | " : "") + DATE.format(LocalDateTime.now());
+            NPlusRender.text(date, clock ? 8 + NPlusRender.width(time) : 5, 5, rainbow, true);
+        }
+        RenderUtils.resetColor();
+        if (NPlusThemeModule.player.isToggled() && this.mc.thePlayer != null) {
+            GuiInventory.drawEntityOnScreen(this.width + 15 - this.backgroundAnimation.getValueInt(0, 40, 2), this.height - 19 - this.fontRendererObj.FONT_HEIGHT, 40,
+                    (float) (this.width - 25 - x), (float) (this.height - 50 - y), this.mc.thePlayer);
+        }
+        if (NPlusThemeModule.commandPrompt.isToggled()) {
+            this.console.update(x, y);
+            this.console.draw();
+        }
+    }
+
+    private static String time() {
+        Calendar c = Calendar.getInstance();
+        return c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
+    }
+
+    private static void playSound(boolean opened) {
+        if (!NPlusThemeModule.sounds.isToggled() || !Chat.inWorld()) {
+            return;
+        }
+        int mode = (int) NPlusThemeModule.soundMode.getInput();
+        String s = NPlusThemeModule.SOUNDS[mode];
+        if (mode == 3 && !opened) {
+            s = "random.chestclosed";
+        }
+        Sounds.play(s, (float) NPlusThemeModule.soundVolume.getInput(), (float) NPlusThemeModule.soundPitch.getInput());
+    }
+
+    @Override
+    public void mouseClicked(int x, int y, int b) throws IOException {
+        if (NPlusThemeModule.commandPrompt.isToggled()) {
+            this.console.mouseDown(x, y, b);
+            if (this.console.over(x, y)) {
+                return;
+            }
+        }
+        for (NPlusCategory c : this.categories) {
+            if (b == 0) {
+                if (c.overArrow(x, y)) {
+                    c.setOpened(!c.isOpened());
+                    playSound(c.isOpened());
+                    return;
+                }
+                if (c.overPin(x, y)) {
+                    c.setPinned(!c.isPinned());
+                    return;
+                }
+                if (c.overTitle(x, y)) {
+                    c.dragging = true;
+                    c.dragX = x - c.getX();
+                    c.dragY = y - c.getY();
+                    return;
+                }
+            }
+            if (!c.isOpened()) continue;
+            for (NPlusModule m : c.modules) {
+                m.mouseDown(x, y, b);
+            }
+        }
+    }
+
+    @Override
+    public void mouseReleased(int x, int y, int b) {
+        this.console.mouseReleased();
+        if (b != 0) {
+            return;
+        }
+        for (NPlusCategory c : this.categories) {
+            c.dragging = false;
+            if (!c.isOpened()) continue;
+            for (NPlusModule m : c.modules) {
+                m.mouseReleased(x, y, b);
+            }
+        }
+    }
+
+    @Override
+    public void keyTyped(char t, int k) {
+        if (k == 1 && !BindComponent.binding) {
+            this.mc.displayGuiScreen(null);
+            return;
+        }
+        if (NPlusThemeModule.commandPrompt.isToggled() && this.console.keyTyped(t, k)) {
+            return;
+        }
+        if (k == ModuleManager.gui.getKeycode() && !BindComponent.binding) {
+            this.mc.displayGuiScreen(null);
+            return;
+        }
+        for (NPlusCategory c : this.categories) {
+            if (!c.isOpened()) continue;
+            for (NPlusModule m : c.modules) {
+                m.keyTyped(t, k);
+            }
+        }
+    }
+
+    @Override
+    public void handleMouseInput() throws IOException {
+        super.handleMouseInput();
+        float amount = (float) Mouse.getEventDWheel() * 0.2f;
+        if (amount != 0.0f) {
+            for (NPlusCategory c : this.categories) {
+                c.scroll(amount);
+            }
+        }
+    }
+
+    @Override
+    public void onGuiClosed() {
+        GuiModule.restoreScale();
+        BindComponent.binding = false;
+        for (NPlusCategory c : this.categories) {
+            c.dragging = false;
+        }
+        this.console.mouseReleased();
+        for (Module m : ModuleManager.modules) {
+            m.guiUpdate();
+        }
+        if (GuiModule.saveCategoryPositions.isToggled()) {
+            xyz.daikirai.client.ClientConfig.save();
+        }
+    }
+
+    @Override
+    public boolean doesGuiPauseGame() {
+        return false;
+    }
+}

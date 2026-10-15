@@ -370,159 +370,6 @@
   ]
  },
  {
-  "cls": "R284",
-  "name": "AntiKnockback",
-  "category": "combat",
-  "enabled": false,
-  "noToggle": false,
-  "hidden": false,
-  "key": 0,
-  "lite": true,
-  "failed": null,
-  "settings": [
-   {
-    "t": "desc",
-    "name": "Overrides Velocity."
-   },
-   {
-    "t": "slider",
-    "name": "Horizontal",
-    "prefix": "",
-    "suffix": "%",
-    "value": 100.0,
-    "min": 0.0,
-    "max": 100.0,
-    "step": 1.0,
-    "options": null,
-    "labels": null
-   },
-   {
-    "t": "slider",
-    "name": "Vertical",
-    "prefix": "",
-    "suffix": "%",
-    "value": 100.0,
-    "min": 0.0,
-    "max": 100.0,
-    "step": 1.0,
-    "options": null,
-    "labels": null
-   },
-   {
-    "t": "toggle",
-    "name": "Disable in lobby",
-    "value": true
-   },
-   {
-    "t": "toggle",
-    "name": "Only while moving",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Cancel burning",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Cancel explosion",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Cancel ground",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Cancel off ground",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Cancel while falling",
-    "value": false
-   },
-   {
-    "t": "slider",
-    "name": "Cancel interval",
-    "prefix": "",
-    "suffix": "",
-    "value": 1.0,
-    "min": 1.0,
-    "max": 5.0,
-    "step": 1.0,
-    "options": null,
-    "labels": {
-     "1.0": "§cDisabled"
-    }
-   },
-   {
-    "t": "slider",
-    "name": "Damage boost",
-    "prefix": "",
-    "suffix": "x",
-    "value": 0.8,
-    "min": 0.8,
-    "max": 1.6,
-    "step": 0.01,
-    "options": null,
-    "labels": {
-     "0.8": "§cDisabled"
-    }
-   },
-   {
-    "t": "toggle",
-    "name": "Boost with LMB",
-    "value": false
-   },
-   {
-    "t": "slider",
-    "name": "Delay",
-    "prefix": "",
-    "suffix": "ms",
-    "value": 0.0,
-    "min": 0.0,
-    "max": 2000.0,
-    "step": 50.0,
-    "options": null,
-    "labels": {
-     "0.0": "§cDisabled"
-    }
-   },
-   {
-    "t": "toggle",
-    "name": "Delay if landing",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Delay only midair",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Delay only targeting",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Delay simultaneously",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Delay until ground",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Disable attack while delay",
-    "value": false
-   }
-  ]
- },
- {
   "cls": "R310",
   "name": "Backtrack",
   "category": "network",
@@ -1423,6 +1270,36 @@
   "failed": null,
   "settings": [
    {
+    "t": "mode",
+    "name": "Mode",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 16.0,
+    "step": 1.0,
+    "options": [
+     "Normal",
+     "Standard",
+     "Jump",
+     "AAC5",
+     "AACZero",
+     "Buffer",
+     "Cancel",
+     "GhostBlock",
+     "Glitch",
+     "Karhu",
+     "Matrix1",
+     "Matrix2",
+     "Matrix3",
+     "S32",
+     "Reverse",
+     "Intave",
+     "AntiKnockback"
+    ],
+    "labels": null
+   },
+   {
     "t": "slider",
     "name": "Horizontal",
     "prefix": "",
@@ -1466,6 +1343,368 @@
    {
     "t": "toggle",
     "name": "Disable while holding S",
+    "value": false
+   },
+   {
+    "t": "desc",
+    "name": "Jump"
+   },
+   {
+    "t": "slider",
+    "name": "Jump chance",
+    "prefix": "",
+    "suffix": "%",
+    "value": 100.0,
+    "min": 0.0,
+    "max": 100.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "mode",
+    "name": "Jump cooldown",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 1.0,
+    "options": [
+     "Ticks",
+     "Received hits"
+    ],
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Ticks until jump",
+    "prefix": "",
+    "suffix": "",
+    "value": 4.0,
+    "min": 0.0,
+    "max": 20.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Hits until jump",
+    "prefix": "",
+    "suffix": "",
+    "value": 2.0,
+    "min": 0.0,
+    "max": 5.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "toggle",
+    "name": "Jump only on swing",
+    "value": false
+   },
+   {
+    "t": "desc",
+    "name": "Buffer"
+   },
+   {
+    "t": "slider",
+    "name": "Buffer packets",
+    "prefix": "",
+    "suffix": "",
+    "value": 3.0,
+    "min": 1.0,
+    "max": 5.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Buffer horizontal",
+    "prefix": "",
+    "suffix": "%",
+    "value": 100.0,
+    "min": 0.0,
+    "max": 100.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Buffer vertical",
+    "prefix": "",
+    "suffix": "%",
+    "value": 100.0,
+    "min": 0.0,
+    "max": 100.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "toggle",
+    "name": "Buffer debug",
+    "value": false
+   },
+   {
+    "t": "desc",
+    "name": "Cancel"
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel horizontal",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel vertical",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel vertical only in air",
+    "value": false
+   },
+   {
+    "t": "desc",
+    "name": "GhostBlock"
+   },
+   {
+    "t": "slider",
+    "name": "Min hurt time",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": 1.0,
+    "max": 10.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Max hurt time",
+    "prefix": "",
+    "suffix": "",
+    "value": 9.0,
+    "min": 1.0,
+    "max": 10.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "desc",
+    "name": "Matrix3"
+   },
+   {
+    "t": "toggle",
+    "name": "Boost after reduce",
+    "value": false
+   },
+   {
+    "t": "slider",
+    "name": "Boost factor",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.33,
+    "min": 0.0,
+    "max": 5.0,
+    "step": 0.01,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Boost cooldown",
+    "prefix": "",
+    "suffix": "ms",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 2000.0,
+    "step": 50.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "desc",
+    "name": "Reverse"
+   },
+   {
+    "t": "slider",
+    "name": "Reverse strength",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": 0.1,
+    "max": 1.0,
+    "step": 0.05,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "toggle",
+    "name": "Reverse on look",
+    "value": false
+   },
+   {
+    "t": "slider",
+    "name": "Reverse range",
+    "prefix": "",
+    "suffix": "",
+    "value": 3.0,
+    "min": 1.0,
+    "max": 5.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Max angle difference",
+    "prefix": "",
+    "suffix": "",
+    "value": 45.0,
+    "min": 5.0,
+    "max": 90.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "desc",
+    "name": "Intave"
+   },
+   {
+    "t": "slider",
+    "name": "Duration",
+    "prefix": "",
+    "suffix": "ms",
+    "value": 300.0,
+    "min": 0.0,
+    "max": 1000.0,
+    "step": 10.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "desc",
+    "name": "AntiKnockback"
+   },
+   {
+    "t": "toggle",
+    "name": "Disable in lobby",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Only while moving",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel burning",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel explosion",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel ground",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel off ground",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel while falling",
+    "value": false
+   },
+   {
+    "t": "slider",
+    "name": "Cancel interval",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": 1.0,
+    "max": 5.0,
+    "step": 1.0,
+    "options": null,
+    "labels": {
+     "1.0": "§cDisabled"
+    }
+   },
+   {
+    "t": "slider",
+    "name": "Damage boost",
+    "prefix": "",
+    "suffix": "x",
+    "value": 0.8,
+    "min": 0.8,
+    "max": 1.6,
+    "step": 0.01,
+    "options": null,
+    "labels": {
+     "0.8": "§cDisabled"
+    }
+   },
+   {
+    "t": "toggle",
+    "name": "Boost with LMB",
+    "value": false
+   },
+   {
+    "t": "slider",
+    "name": "Delay",
+    "prefix": "",
+    "suffix": "ms",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 2000.0,
+    "step": 50.0,
+    "options": null,
+    "labels": {
+     "0.0": "§cDisabled"
+    }
+   },
+   {
+    "t": "toggle",
+    "name": "Delay if landing",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Delay only midair",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Delay only targeting",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Delay simultaneously",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Delay until ground",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Disable attack while delay",
     "value": false
    }
   ]
@@ -1777,11 +2016,17 @@
     "suffix": "",
     "value": 0.0,
     "min": 0.0,
-    "max": 1.0,
+    "max": 7.0,
     "step": 1.0,
     "options": [
      "Vanilla",
-     "Fast"
+     "Fast",
+     "Motion",
+     "MatrixJump",
+     "MatrixGlide",
+     "MatrixUp",
+     "AAC",
+     "NCP"
     ],
     "labels": null
    },
@@ -1817,6 +2062,39 @@
    {
     "t": "toggle",
     "name": "Stop motion",
+    "value": false
+   },
+   {
+    "t": "desc",
+    "name": "Motion / Matrix"
+   },
+   {
+    "t": "slider",
+    "name": "Motion horizontal",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": 0.0,
+    "max": 5.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Motion vertical",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.5,
+    "min": 0.0,
+    "max": 5.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "toggle",
+    "name": "Y bob",
     "value": false
    }
   ]
@@ -2166,11 +2444,16 @@
     "suffix": "",
     "value": 0.0,
     "min": 0.0,
-    "max": 1.0,
+    "max": 6.0,
     "step": 1.0,
     "options": [
      "Vanilla",
-     "Float"
+     "Float",
+     "Hop",
+     "Verus",
+     "Matrix",
+     "AGC",
+     "Verus Flag"
     ],
     "labels": null
    },
@@ -2183,6 +2466,30 @@
     "min": 1.0,
     "max": 1.8,
     "step": 0.01,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Hop speed",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.5,
+    "min": 0.15,
+    "max": 5.0,
+    "step": 0.05,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Timer",
+    "prefix": "",
+    "suffix": "x",
+    "value": 1.0,
+    "min": 0.05,
+    "max": 10.0,
+    "step": 0.05,
     "options": null,
     "labels": null
    },
@@ -5059,6 +5366,39 @@
     "labels": null
    },
    {
+    "t": "mode",
+    "name": "Style",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 2.0,
+    "step": 1.0,
+    "options": [
+     "Raven XD",
+     "N+",
+     "ZeroDay"
+    ],
+    "labels": null
+   },
+   {
+    "t": "mode",
+    "name": "N+ colors",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 3.0,
+    "step": 1.0,
+    "options": [
+     "RavenB",
+     "Astolfo",
+     "Astolfo2",
+     "ZeroDay"
+    ],
+    "labels": null
+   },
+   {
     "t": "button",
     "name": "Edit position",
     "value": false
@@ -7006,6 +7346,264 @@
   ]
  },
  {
+  "cls": "Disabler",
+  "name": "Disabler",
+  "category": "other",
+  "enabled": false,
+  "noToggle": false,
+  "hidden": false,
+  "key": 0,
+  "lite": false,
+  "failed": null,
+  "settings": [
+   {
+    "t": "mode",
+    "name": "Mode",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 2.0,
+    "step": 1.0,
+    "options": [
+     "Verus",
+     "Vulcan",
+     "OldMatrix"
+    ],
+    "labels": null
+   },
+   {
+    "t": "desc",
+    "name": "Verus"
+   },
+   {
+    "t": "toggle",
+    "name": "Movement",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Sprint",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Damage",
+    "value": false
+   },
+   {
+    "t": "desc",
+    "name": "Vulcan"
+   },
+   {
+    "t": "toggle",
+    "name": "Omni-Sprint",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Auto clicker",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Reach",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Strafe and jump",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Fast use",
+    "value": true
+   },
+   {
+    "t": "desc",
+    "name": "OldMatrix"
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel C17 custom payload",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel C05 look",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel C06 pos look",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel C04 position",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel C18 spectate",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel all C03",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Cancel S08 setbacks",
+    "value": true
+   }
+  ]
+ },
+ {
+  "cls": "CustomDisabler",
+  "name": "Custom Disabler",
+  "category": "other",
+  "enabled": false,
+  "noToggle": false,
+  "hidden": false,
+  "key": 0,
+  "lite": false,
+  "failed": null,
+  "settings": [
+   {
+    "t": "desc",
+    "name": "Cancels the selected outgoing packets."
+   },
+   {
+    "t": "toggle",
+    "name": "C00PacketKeepAlive",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C02PacketUseEntity",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C03PacketPlayer",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C04PacketPlayerPosition",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C05PacketPlayerLook",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C06PacketPlayerPosLook",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C07PacketPlayerDigging",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C08PlayerBlockPlacement",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C09PacketHeldItemChange",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C0APacketAnimation",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C0BPacketEntityAction",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C0CPacketInput",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C0DPacketCloseWindow",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C0EPacketClickWindow",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C0FConfirmTransaction",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C10PCreativeInventory",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C11PacketEnchantItem",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C12PacketUpdateSign",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C13PacketPlayerAbilities",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C14PacketTabComplete",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C15PacketClientSettings",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C16PacketClientStatus",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C17PacketCustomPayload",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C18PacketSpectate",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "C19PacketPackStatus",
+    "value": false
+   }
+  ]
+ },
+ {
   "cls": "R271",
   "name": "Chat Bypass",
   "category": "other",
@@ -7359,6 +7957,21 @@
   "settings": [
    {
     "t": "mode",
+    "name": "Style",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 1.0,
+    "options": [
+     "Raven XD",
+     "N+"
+    ],
+    "labels": null
+   },
+   {
+    "t": "mode",
     "name": "Scale",
     "prefix": "",
     "suffix": "",
@@ -7441,6 +8054,206 @@
     "t": "toggle",
     "name": "Save category positions",
     "value": false
+   }
+  ]
+ },
+ {
+  "cls": "NPlus",
+  "name": "N+ Theme",
+  "category": "client",
+  "enabled": false,
+  "noToggle": true,
+  "hidden": false,
+  "key": 0,
+  "lite": true,
+  "failed": null,
+  "settings": [
+   {
+    "t": "desc",
+    "name": "Settings for the N+ Gui style."
+   },
+   {
+    "t": "toggle",
+    "name": "Custom font",
+    "value": true
+   },
+   {
+    "t": "mode",
+    "name": "Theme",
+    "prefix": "",
+    "suffix": "",
+    "value": 4.0,
+    "min": 0.0,
+    "max": 6.0,
+    "step": 1.0,
+    "options": [
+     "b1",
+     "b2",
+     "b3",
+     "b+",
+     "N+",
+     "Vape",
+     "NoModulesFake"
+    ],
+    "labels": null
+   },
+   {
+    "t": "toggle",
+    "name": "Background",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Player",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Logo",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Blur",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Clock",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Date",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Command prompt",
+    "value": true
+   },
+   {
+    "t": "button",
+    "name": "Clean",
+    "value": false
+   },
+   {
+    "t": "desc",
+    "name": "Category"
+   },
+   {
+    "t": "slider",
+    "name": "Category BG offset",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": -5.0,
+    "max": 5.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "toggle",
+    "name": "Sounds",
+    "value": true
+   },
+   {
+    "t": "slider",
+    "name": "Sound volume",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.4,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Sound pitch",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.8,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "mode",
+    "name": "Sound mode",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 4.0,
+    "step": 1.0,
+    "options": [
+     "Click",
+     "Bow hit",
+     "Player hurt",
+     "Chest",
+     "TNT explosion"
+    ],
+    "labels": null
+   },
+   {
+    "t": "desc",
+    "name": "Module"
+   },
+   {
+    "t": "toggle",
+    "name": "Lowercase",
+    "value": true
+   },
+   {
+    "t": "toggle",
+    "name": "Underline",
+    "value": false
+   },
+   {
+    "t": "slider",
+    "name": "Underline expand",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.4,
+    "min": -10.0,
+    "max": 10.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "mode",
+    "name": "Slider style",
+    "prefix": "",
+    "suffix": "",
+    "value": 3.0,
+    "min": 0.0,
+    "max": 3.0,
+    "step": 1.0,
+    "options": [
+     "Normal",
+     "Round",
+     "Outlines",
+     "Vape"
+    ],
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Slider round range",
+    "prefix": "",
+    "suffix": "",
+    "value": 2.0,
+    "min": -10.0,
+    "max": 10.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
    }
   ]
  },

@@ -37,7 +37,12 @@ user's UID: `size * 0.05506` becomes `size * 0.05` + the UID.
 
 ## Credits
 
+- MiauMinus: most velocity modes
+- OpenRise: most disablers
+- Raven N+: relevant clickgui theme
+- Raven B+++: customdisabler
+- sunsuke - intave full velocity
 - Sande: Finding an undetected way to dump and providing the dump
-- Abusez: Deobfuscating/Recovering
-- Mega: Deobfuscating/Recovering
+- Abusez: Recovering
+- Mega: Recovering
 - Chef: Making Raven B4

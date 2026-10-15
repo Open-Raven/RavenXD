@@ -24,10 +24,6 @@ bin/
 *.dmp
 hs_err_pid*
 
-# Leftover scratch
-chararrays.json
-deob/
-
 # OS
 Thumbs.db
 desktop.ini
