@@ -1,13 +1,13 @@
-package xyz.daikirai.module.render;
+package openraven.ravenxd.module.render;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.Render3D;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.Render3D;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityEnderChest;

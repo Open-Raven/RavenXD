@@ -1,4 +1,4 @@
-package xyz.daikirai.module.render;
+package openraven.ravenxd.module.render;
 
 public final class CameraModules {
     private CameraModules() {

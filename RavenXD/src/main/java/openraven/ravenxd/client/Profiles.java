@@ -1,12 +1,12 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.gui.CategoryComponent;
-import xyz.daikirai.gui.ClickGui;
-import xyz.daikirai.gui.Component;
-import xyz.daikirai.gui.Console;
-import xyz.daikirai.gui.ModuleComponent;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
+import openraven.ravenxd.gui.CategoryComponent;
+import openraven.ravenxd.gui.ClickGui;
+import openraven.ravenxd.gui.Component;
+import openraven.ravenxd.gui.Console;
+import openraven.ravenxd.gui.ModuleComponent;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
 
 import java.io.File;
 import java.util.HashMap;
@@ -100,7 +100,7 @@ public final class Profiles {
     }
 
     public static void add(Profile p, int keybind) {
-        Module m = new xyz.daikirai.module.ProfileModule(p, keybind);
+        Module m = new openraven.ravenxd.module.ProfileModule(p, keybind);
         profiles.put(p, m);
         component().addModule(m);
     }

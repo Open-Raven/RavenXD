@@ -1,4 +1,4 @@
-package xyz.daikirai.module.setting;
+package openraven.ravenxd.module.setting;
 
 import java.util.HashMap;
 
@@ -71,7 +71,7 @@ public class SliderSetting extends Setting {
         d = (double) Math.round(d * (1.0 / this.interval)) / (1.0 / this.interval);
         if (this.value != d) {
             this.value = d;
-            xyz.daikirai.client.Profiles.markModified();
+            openraven.ravenxd.client.Profiles.markModified();
         }
         this.setVisualInput(d);
     }
@@ -87,7 +87,7 @@ public class SliderSetting extends Setting {
     public void setValueRaw(double d) {
         this.value = d;
         this.setVisualInput(d);
-        xyz.daikirai.client.Profiles.markModified();
+        openraven.ravenxd.client.Profiles.markModified();
     }
 
     public String getDisplay(boolean colored) {

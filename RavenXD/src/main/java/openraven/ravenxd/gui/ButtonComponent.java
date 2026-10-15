@@ -1,8 +1,8 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.util.RenderUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.Color;

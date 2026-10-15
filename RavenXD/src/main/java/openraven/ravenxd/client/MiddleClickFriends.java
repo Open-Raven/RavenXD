@@ -1,6 +1,6 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.module.SettingsModule;
+import openraven.ravenxd.module.SettingsModule;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.client.event.MouseEvent;
 
@@ -10,7 +10,7 @@ public final class MiddleClickFriends {
 
     public static void onMouse(MouseEvent event) {
         if (!event.buttonstate || event.button != 2 || !SettingsModule.middleClickFriends.isToggled()
-                || xyz.daikirai.module.ModuleManager.enabled("TargetStrafe") != null && xyz.daikirai.module.movement.TargetStrafeModule.active()) {
+                || openraven.ravenxd.module.ModuleManager.enabled("TargetStrafe") != null && openraven.ravenxd.module.movement.TargetStrafeModule.active()) {
             return;
         }
         EntityLivingBase e = BotCheck.lookingAt(100.0);

@@ -1,16 +1,16 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.gui.CategoryComponent;
-import xyz.daikirai.gui.ClickGui;
-import xyz.daikirai.gui.Component;
-import xyz.daikirai.gui.ModuleComponent;
-import xyz.daikirai.gui.nplus.NPlusGui;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.GuiColor;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.gui.CategoryComponent;
+import openraven.ravenxd.gui.ClickGui;
+import openraven.ravenxd.gui.Component;
+import openraven.ravenxd.gui.ModuleComponent;
+import openraven.ravenxd.gui.nplus.NPlusGui;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.GuiColor;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.MathHelper;
@@ -89,7 +89,7 @@ public class GuiModule extends Module {
         } else if (b == resetPositions) {
             resetPositions();
         } else if (b == saveCategoryPositions) {
-            xyz.daikirai.client.ClientConfig.save();
+            openraven.ravenxd.client.ClientConfig.save();
         }
     }
 
@@ -107,7 +107,7 @@ public class GuiModule extends Module {
         if (ClickGui.isOpen(mc.currentScreen)) {
             return false;
         }
-        if (xyz.daikirai.module.movement.TimerModule.slowed() && xyz.daikirai.module.movement.TimerModule.instance.getKeycode() != 0) {
+        if (openraven.ravenxd.module.movement.TimerModule.slowed() && openraven.ravenxd.module.movement.TimerModule.instance.getKeycode() != 0) {
             Chat.moduleMessage(this, "&cDisable timer to open GUI!");
             return false;
         }
@@ -132,7 +132,7 @@ public class GuiModule extends Module {
         if (move) {
             setMoveKeys(false);
             if (ModuleManager.enabled("AntiAFK") != null) {
-                xyz.daikirai.module.player.AntiAFKModule.pressKeys();
+                openraven.ravenxd.module.player.AntiAFKModule.pressKeys();
             }
         } else if (movementActive) {
             setMoveKeys(true);
@@ -194,7 +194,7 @@ public class GuiModule extends Module {
     @Override
     public void onEnable() {
         if (mc.thePlayer != null && mc.theWorld != null && !ClickGui.isOpen(mc.currentScreen)) {
-            if (xyz.daikirai.module.movement.TimerModule.speed > 0.0f) {
+            if (openraven.ravenxd.module.movement.TimerModule.speed > 0.0f) {
                 MoveUtils.resetTimer();
             }
             applyScale();

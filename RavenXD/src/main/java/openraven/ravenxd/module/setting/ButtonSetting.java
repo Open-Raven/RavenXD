@@ -1,4 +1,4 @@
-package xyz.daikirai.module.setting;
+package openraven.ravenxd.module.setting;
 
 public class ButtonSetting extends Setting {
     public String label;
@@ -55,7 +55,7 @@ public class ButtonSetting extends Setting {
                 this.disabledAt = System.currentTimeMillis();
             }
             this.updateLabel();
-            xyz.daikirai.client.Profiles.markModified();
+            openraven.ravenxd.client.Profiles.markModified();
         }
     }
 

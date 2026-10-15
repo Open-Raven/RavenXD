@@ -1,4 +1,4 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
@@ -70,7 +70,7 @@ public final class Hypixel {
     }
 
     public static net.minecraft.scoreboard.ScorePlayerTeam ownTeam() {
-        String nick = xyz.daikirai.gui.Console.nick;
+        String nick = openraven.ravenxd.gui.Console.nick;
         if (!nick.isEmpty() && mc.getNetHandler() != null) {
             for (NetworkPlayerInfo info : mc.getNetHandler().getPlayerInfoMap()) {
                 if (!info.getGameProfile().getName().equalsIgnoreCase(nick)) continue;
@@ -169,7 +169,7 @@ public final class Hypixel {
     }
 
     public static boolean isFakeEntity(Entity e) {
-        return e.getEntityId() == -170 || e == xyz.daikirai.module.player.FreecamModule.camera || e == xyz.daikirai.module.player.FreecamModule.body;
+        return e.getEntityId() == -170 || e == openraven.ravenxd.module.player.FreecamModule.camera || e == openraven.ravenxd.module.player.FreecamModule.body;
     }
 
     public static NetworkPlayerInfo info(EntityPlayer p) {
@@ -303,7 +303,7 @@ public final class Hypixel {
             Irc.trackFps();
             NetworkPlayerInfo info = info(mc.thePlayer);
             String name;
-            xyz.daikirai.gui.Console.nick = info == null ? "" : ((name = info.getGameProfile().getName()).equals(mc.thePlayer.getName()) ? "" : name);
+            openraven.ravenxd.gui.Console.nick = info == null ? "" : ((name = info.getGameProfile().getName()).equals(mc.thePlayer.getName()) ? "" : name);
         }
     }
 
@@ -318,8 +318,8 @@ public final class Hypixel {
                     lastMode = mode;
                 }
             }
-            if (xyz.daikirai.script.ScriptManager.events != null) {
-                xyz.daikirai.script.ScriptEvents.locraw(s);
+            if (openraven.ravenxd.script.ScriptManager.events != null) {
+                openraven.ravenxd.script.ScriptEvents.locraw(s);
             }
             awaitingLocraw = false;
             return true;

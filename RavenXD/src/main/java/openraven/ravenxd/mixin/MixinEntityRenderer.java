@@ -1,6 +1,6 @@
-package xyz.daikirai.mixin;
+package openraven.ravenxd.mixin;
 
-import xyz.daikirai.module.render.CameraModules;
+import openraven.ravenxd.module.render.CameraModules;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.util.MovingObjectPosition;

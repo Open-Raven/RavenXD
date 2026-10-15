@@ -1,6 +1,6 @@
-package xyz.daikirai.gui.nplus;
+package openraven.ravenxd.gui.nplus;
 
-import xyz.daikirai.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.ButtonSetting;
 import org.lwjgl.opengl.GL11;
 
 public class NPlusTick extends NPlusComp {

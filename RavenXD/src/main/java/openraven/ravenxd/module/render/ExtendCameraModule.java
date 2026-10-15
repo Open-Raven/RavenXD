@@ -1,9 +1,9 @@
-package xyz.daikirai.module.render;
+package openraven.ravenxd.module.render;
 
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 

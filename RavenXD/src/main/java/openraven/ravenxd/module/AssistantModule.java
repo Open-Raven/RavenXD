@@ -1,6 +1,6 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 
 public class AssistantModule extends Module {
     public enum Assistant {

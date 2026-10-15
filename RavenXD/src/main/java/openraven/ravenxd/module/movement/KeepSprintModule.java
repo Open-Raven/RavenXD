@@ -1,10 +1,10 @@
-package xyz.daikirai.module.movement;
+package openraven.ravenxd.module.movement;
 
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
@@ -35,9 +35,9 @@ public class KeepSprintModule extends Module {
         } else if (onlyReduceReachHits.enabled && !mc.thePlayer.capabilities.isCreativeMode) {
             double d = -1.0;
             Vec3 eyes = mc.thePlayer.getPositionEyes(1.0f);
-            if (xyz.daikirai.module.ModuleManager.enabled("KillAura") != null && xyz.daikirai.module.combat.KillAuraModule.hasTarget()) {
-                d = eyes.distanceTo(xyz.daikirai.module.combat.KillAuraModule.target.entity.getPositionEyes(1.0f));
-            } else if (xyz.daikirai.module.combat.ReachModule.instance != null && xyz.daikirai.module.combat.ReachModule.instance.isEnabled() && mc.objectMouseOver != null) {
+            if (openraven.ravenxd.module.ModuleManager.enabled("KillAura") != null && openraven.ravenxd.module.combat.KillAuraModule.hasTarget()) {
+                d = eyes.distanceTo(openraven.ravenxd.module.combat.KillAuraModule.target.entity.getPositionEyes(1.0f));
+            } else if (openraven.ravenxd.module.combat.ReachModule.instance != null && openraven.ravenxd.module.combat.ReachModule.instance.isEnabled() && mc.objectMouseOver != null) {
                 d = eyes.distanceTo(mc.objectMouseOver.hitVec);
             }
             if (d != -1.0 && d <= 3.0) {

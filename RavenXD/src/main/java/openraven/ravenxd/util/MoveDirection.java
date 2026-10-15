@@ -1,4 +1,4 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
 public enum MoveDirection {
     NONE(false, false, false),

@@ -1,20 +1,20 @@
-package xyz.daikirai.module.movement;
+package openraven.ravenxd.module.movement;
 
-import xyz.daikirai.client.Overlay;
-import xyz.daikirai.event.MotionEvent;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.player.BedAuraModule;
-import xyz.daikirai.module.player.NoRotateModule;
-import xyz.daikirai.module.player.ScaffoldModule;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.MathUtils;
-import xyz.daikirai.util.MoveDirection;
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.PlayerUtils;
+import openraven.ravenxd.client.Overlay;
+import openraven.ravenxd.event.MotionEvent;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.player.BedAuraModule;
+import openraven.ravenxd.module.player.NoRotateModule;
+import openraven.ravenxd.module.player.ScaffoldModule;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.MathUtils;
+import openraven.ravenxd.util.MoveDirection;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.PlayerUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Potion;
 

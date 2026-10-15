@@ -1,10 +1,10 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.ClientConfig;
-import xyz.daikirai.client.Profile;
-import xyz.daikirai.client.Profiles;
-import xyz.daikirai.module.setting.ButtonSetting;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.ClientConfig;
+import openraven.ravenxd.client.Profile;
+import openraven.ravenxd.client.Profiles;
+import openraven.ravenxd.module.setting.ButtonSetting;
 
 import java.util.Iterator;
 import java.util.Map;

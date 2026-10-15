@@ -1,15 +1,15 @@
-package xyz.daikirai.module.player;
+package openraven.ravenxd.module.player;
 
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.script.ScriptProtected;
-import xyz.daikirai.util.BlockUtils;
-import xyz.daikirai.util.ItemUtils;
-import xyz.daikirai.util.PacketUtils;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.script.ScriptProtected;
+import openraven.ravenxd.util.BlockUtils;
+import openraven.ravenxd.util.ItemUtils;
+import openraven.ravenxd.util.PacketUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.client.gui.inventory.GuiInventory;
@@ -249,7 +249,7 @@ public class InvManagerModule extends Module {
             return;
         }
         if (PacketUtils.sentClickWindow || PacketUtils.sentOpenInventory && (ModuleManager.enabled("InvMove") == null
-                || xyz.daikirai.module.movement.InvMoveModule.inventory != xyz.daikirai.module.movement.InvMoveModule.Inventory.Close)) {
+                || openraven.ravenxd.module.movement.InvMoveModule.inventory != openraven.ravenxd.module.movement.InvMoveModule.Inventory.Close)) {
             return;
         }
         if (++waited < delay) {

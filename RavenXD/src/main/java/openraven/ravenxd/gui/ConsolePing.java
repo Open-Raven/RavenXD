@@ -1,6 +1,6 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.client.Chat;
+import openraven.ravenxd.client.Chat;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.MinecraftForge;

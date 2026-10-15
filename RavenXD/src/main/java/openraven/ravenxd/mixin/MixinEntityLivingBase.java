@@ -1,6 +1,6 @@
-package xyz.daikirai.mixin;
+package openraven.ravenxd.mixin;
 
-import xyz.daikirai.hook.Hooks;
+import openraven.ravenxd.hook.Hooks;
 import net.minecraft.entity.EntityLivingBase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

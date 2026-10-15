@@ -1,11 +1,11 @@
-package xyz.daikirai.gui.nplus;
+package openraven.ravenxd.gui.nplus;
 
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.NPlusThemeModule;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.DescriptionSetting;
-import xyz.daikirai.module.setting.Setting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.NPlusThemeModule;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.DescriptionSetting;
+import openraven.ravenxd.module.setting.Setting;
+import openraven.ravenxd.module.setting.SliderSetting;
 
 import java.util.ArrayList;
 

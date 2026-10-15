@@ -1,6 +1,6 @@
-package xyz.daikirai.gui.nplus;
+package openraven.ravenxd.gui.nplus;
 
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import org.lwjgl.opengl.GL11;
 
 // left click back, right click next

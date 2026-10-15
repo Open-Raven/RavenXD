@@ -1,6 +1,6 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
-import xyz.daikirai.module.Module;
+import openraven.ravenxd.module.Module;
 
 import java.lang.invoke.CallSite;
 import java.lang.invoke.LambdaMetafactory;

@@ -1,7 +1,7 @@
-package xyz.daikirai.gui.nplus;
+package openraven.ravenxd.gui.nplus;
 
-import xyz.daikirai.gui.BindComponent;
-import xyz.daikirai.module.GuiModule;
+import openraven.ravenxd.gui.BindComponent;
+import openraven.ravenxd.module.GuiModule;
 import org.lwjgl.opengl.GL11;
 
 public class NPlusBind extends NPlusComp {

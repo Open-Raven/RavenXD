@@ -1,6 +1,6 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 
 import java.awt.Color;
 import java.util.Arrays;

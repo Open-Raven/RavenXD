@@ -1,4 +1,4 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
 public class Animation {
     public long start;

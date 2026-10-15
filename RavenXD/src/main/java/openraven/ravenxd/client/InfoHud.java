@@ -1,8 +1,8 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.gui.InfoHudEditor;
-import xyz.daikirai.module.SettingsModule;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.gui.InfoHudEditor;
+import openraven.ravenxd.module.SettingsModule;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;

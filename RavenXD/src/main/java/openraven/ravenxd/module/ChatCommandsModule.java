@@ -1,10 +1,10 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.ChatCommands;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.DescriptionSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.ChatCommands;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.DescriptionSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 
 public class ChatCommandsModule extends Module {
     public enum Prefix {

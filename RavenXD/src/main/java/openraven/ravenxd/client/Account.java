@@ -1,4 +1,4 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
 public final class Account {
     public static final String UID = "1";

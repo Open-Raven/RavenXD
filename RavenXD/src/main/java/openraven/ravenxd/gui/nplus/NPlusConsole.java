@@ -1,6 +1,6 @@
-package xyz.daikirai.gui.nplus;
+package openraven.ravenxd.gui.nplus;
 
-import xyz.daikirai.gui.Console;
+import openraven.ravenxd.gui.Console;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;

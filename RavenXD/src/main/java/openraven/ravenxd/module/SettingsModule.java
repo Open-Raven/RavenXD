@@ -1,9 +1,9 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.gui.InfoHudEditor;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.gui.InfoHudEditor;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.Theme;
 import net.minecraft.util.ResourceLocation;
 
 public class SettingsModule extends Module {

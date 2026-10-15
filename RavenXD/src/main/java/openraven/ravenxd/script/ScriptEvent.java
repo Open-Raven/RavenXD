@@ -1,4 +1,4 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
 import java.util.HashMap;
 import java.util.Map;

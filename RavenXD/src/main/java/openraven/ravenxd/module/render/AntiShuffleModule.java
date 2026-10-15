@@ -1,7 +1,7 @@
-package xyz.daikirai.module.render;
+package openraven.ravenxd.module.render;
 
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
 
 public class AntiShuffleModule extends Module {
     public static AntiShuffleModule instance;

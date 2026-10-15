@@ -1,7 +1,7 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.GuiModule;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.GuiModule;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.MathHelper;
@@ -13,7 +13,7 @@ public final class Watermark {
         return mc.getSession().getUsername();
     }
 
-    public static String userId = xyz.daikirai.client.Account.UID;
+    public static String userId = openraven.ravenxd.client.Account.UID;
 
     private Watermark() {
     }
@@ -26,8 +26,8 @@ public final class Watermark {
         fr.drawStringWithShadow("welcome, ", (float) cx, (float) (y - 20), color);
         int end = rainbowText(user, cx += 45, y - 20, fr);
         fr.drawStringWithShadow(" #" + userId, (float) end, (float) (y - 20), color);
-        fr.drawStringWithShadow(xyz.daikirai.client.Account.NAME, (float) x, (float) (y - 10), color);
-        scramble("dev. ", xyz.daikirai.client.Account.DEVELOPER, x, y, animate, fr);
+        fr.drawStringWithShadow(openraven.ravenxd.client.Account.NAME, (float) x, (float) (y - 10), color);
+        scramble("dev. ", openraven.ravenxd.client.Account.DEVELOPER, x, y, animate, fr);
     }
 
     private static int rainbowText(String s, int x, int y, FontRenderer fr) {

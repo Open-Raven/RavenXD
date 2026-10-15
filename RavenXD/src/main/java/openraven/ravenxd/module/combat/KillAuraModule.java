@@ -1,32 +1,32 @@
-package xyz.daikirai.module.combat;
+package openraven.ravenxd.module.combat;
 
-import xyz.daikirai.client.BotCheck;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.client.Irc;
-import xyz.daikirai.client.Overlay;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.player.AutoBlockinModule;
-import xyz.daikirai.module.player.AutoLadderModule;
-import xyz.daikirai.module.player.BedAuraModule;
-import xyz.daikirai.module.player.ScaffoldModule;
-import xyz.daikirai.module.render.DamageTagsModule;
-import xyz.daikirai.module.render.TargetHudModule;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.module.world.AntiBotModule;
-import xyz.daikirai.util.Animation;
-import xyz.daikirai.util.BlockUtils;
-import xyz.daikirai.util.ClickUtils;
-import xyz.daikirai.util.ItemUtils;
-import xyz.daikirai.util.KeyUtils;
-import xyz.daikirai.util.MathUtils;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.util.RotationManager;
-import xyz.daikirai.util.RotationUtils;
-import xyz.daikirai.util.Strings;
+import openraven.ravenxd.client.BotCheck;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.client.Irc;
+import openraven.ravenxd.client.Overlay;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.player.AutoBlockinModule;
+import openraven.ravenxd.module.player.AutoLadderModule;
+import openraven.ravenxd.module.player.BedAuraModule;
+import openraven.ravenxd.module.player.ScaffoldModule;
+import openraven.ravenxd.module.render.DamageTagsModule;
+import openraven.ravenxd.module.render.TargetHudModule;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.module.world.AntiBotModule;
+import openraven.ravenxd.util.Animation;
+import openraven.ravenxd.util.BlockUtils;
+import openraven.ravenxd.util.ClickUtils;
+import openraven.ravenxd.util.ItemUtils;
+import openraven.ravenxd.util.KeyUtils;
+import openraven.ravenxd.util.MathUtils;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.util.RotationManager;
+import openraven.ravenxd.util.RotationUtils;
+import openraven.ravenxd.util.Strings;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
@@ -385,7 +385,7 @@ public class KillAuraModule extends Module {
                 slow = false;
             }
             if (slow) {
-                xyz.daikirai.module.movement.NoSlowModule.slowdown();
+                openraven.ravenxd.module.movement.NoSlowModule.slowdown();
             }
         }
         if (slowedThisTick) {

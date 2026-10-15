@@ -1,4 +1,4 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;

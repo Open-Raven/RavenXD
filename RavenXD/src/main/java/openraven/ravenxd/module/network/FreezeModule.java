@@ -1,20 +1,20 @@
-package xyz.daikirai.module.network;
+package openraven.ravenxd.module.network;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.hook.Hooks;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.combat.VelocityModule;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.BlockUtils;
-import xyz.daikirai.util.MathUtils;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.Render3D;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.hook.Hooks;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.combat.VelocityModule;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.BlockUtils;
+import openraven.ravenxd.util.MathUtils;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.Render3D;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.Theme;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.Blocks;
@@ -134,7 +134,7 @@ public class FreezeModule extends Module {
         if (showKnockbackDirection.isToggled() && knockback) {
             renderArrow();
         }
-        if (!showFreezeTicks.isToggled() || text == null || xyz.daikirai.module.network.BlinkModule.text != null) {
+        if (!showFreezeTicks.isToggled() || text == null || openraven.ravenxd.module.network.BlinkModule.text != null) {
             return;
         }
         long now = System.currentTimeMillis();

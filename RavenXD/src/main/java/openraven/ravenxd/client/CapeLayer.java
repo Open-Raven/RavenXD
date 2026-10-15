@@ -1,6 +1,6 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.module.SettingsModule;
+import openraven.ravenxd.module.SettingsModule;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -43,7 +43,7 @@ public final class CapeLayer {
         double d = p.prevChasingPosX + (p.chasingPosX - p.prevChasingPosX) * (double) f - (p.prevPosX + (p.posX - p.prevPosX) * (double) f);
         double d2 = p.prevChasingPosY + (p.chasingPosY - p.prevChasingPosY) * (double) f - (p.prevPosY + (p.posY - p.prevPosY) * (double) f);
         double d3 = p.prevChasingPosZ + (p.chasingPosZ - p.prevChasingPosZ) * (double) f - (p.prevPosZ + (p.posZ - p.prevPosZ) * (double) f);
-        float yaw = xyz.daikirai.util.RotationManager.rotating ? p.renderYawOffset : p.prevRenderYawOffset + (p.renderYawOffset - p.prevRenderYawOffset) * f;
+        float yaw = openraven.ravenxd.util.RotationManager.rotating ? p.renderYawOffset : p.prevRenderYawOffset + (p.renderYawOffset - p.prevRenderYawOffset) * f;
         double d4 = MathHelper.sin(yaw *= (float) Math.PI / 180);
         double d5 = -MathHelper.cos(yaw);
         float f3 = MathHelper.clamp_float((float) d2 * 10.0f, -6.0f, 32.0f);

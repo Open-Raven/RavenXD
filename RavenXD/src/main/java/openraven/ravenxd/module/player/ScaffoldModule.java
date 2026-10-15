@@ -1,30 +1,30 @@
-package xyz.daikirai.module.player;
+package openraven.ravenxd.module.player;
 
-import xyz.daikirai.module.combat.KillAuraModule;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.client.Irc;
-import xyz.daikirai.client.Overlay;
-import xyz.daikirai.event.MotionEvent;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.SettingsModule;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.BlockUtils;
-import xyz.daikirai.util.FakeRotation;
-import xyz.daikirai.util.ItemUtils;
-import xyz.daikirai.util.KeyUtils;
-import xyz.daikirai.util.MathUtils;
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.util.Render3D;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.RotationManager;
-import xyz.daikirai.util.RotationUtils;
-import xyz.daikirai.util.SwapSlot;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.module.combat.KillAuraModule;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.client.Irc;
+import openraven.ravenxd.client.Overlay;
+import openraven.ravenxd.event.MotionEvent;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.SettingsModule;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.BlockUtils;
+import openraven.ravenxd.util.FakeRotation;
+import openraven.ravenxd.util.ItemUtils;
+import openraven.ravenxd.util.KeyUtils;
+import openraven.ravenxd.util.MathUtils;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.util.Render3D;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.RotationManager;
+import openraven.ravenxd.util.RotationUtils;
+import openraven.ravenxd.util.SwapSlot;
+import openraven.ravenxd.util.Theme;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
@@ -551,12 +551,12 @@ public class ScaffoldModule extends Module {
             y2 -= 1.0;
         }
         final double fy = y2;
-        Comparator<Vec3> comparator = Comparator.comparingDouble(p -> xyz.daikirai.util.WorldUtils.distanceSq(x, fy, z, p));
+        Comparator<Vec3> comparator = Comparator.comparingDouble(p -> openraven.ravenxd.util.WorldUtils.distanceSq(x, fy, z, p));
         if (mc.thePlayer.ticksExisted - startTick <= 3) {
             double yaw = mc.thePlayer.rotationYaw * ((float) Math.PI / 180);
             final double dirX = -Math.sin(yaw);
             final double dirZ = Math.cos(yaw);
-            comparator = comparator.thenComparingDouble(p -> xyz.daikirai.util.WorldUtils.behind(x, z, dirX, dirZ, p));
+            comparator = comparator.thenComparingDouble(p -> openraven.ravenxd.util.WorldUtils.behind(x, z, dirX, dirZ, p));
         }
         list.sort(comparator);
         return true;
@@ -1192,7 +1192,7 @@ public class ScaffoldModule extends Module {
         }
         active = true;
         fastScaffoldTick();
-        if (xyz.daikirai.module.movement.LongJumpModule.throwTicks > 0) {
+        if (openraven.ravenxd.module.movement.LongJumpModule.throwTicks > 0) {
             delay = 0;
         } else if (delay > 0) {
             --delay;

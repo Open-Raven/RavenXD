@@ -1,30 +1,30 @@
-package xyz.daikirai.hook;
+package openraven.ravenxd.hook;
 
-import xyz.daikirai.module.combat.VelocityModule;
-import xyz.daikirai.client.ChatCommands;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.client.Irc;
-import xyz.daikirai.event.MotionEvent;
-import xyz.daikirai.gui.Console;
-import xyz.daikirai.mixin.IEntityPlayerSP;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.client.Account;
-import xyz.daikirai.script.ScriptEvents;
-import xyz.daikirai.script.ScriptManager;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.SettingsModule;
-import xyz.daikirai.module.render.AntiShuffleModule;
-import xyz.daikirai.module.dev.DebugAcModule;
-import xyz.daikirai.module.dev.TestModule;
-import xyz.daikirai.module.dev.ViewPacketsModule;
-import xyz.daikirai.module.render.CameraModules;
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.util.PacketQueue;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.RotationManager;
-import xyz.daikirai.util.SwapSlot;
+import openraven.ravenxd.module.combat.VelocityModule;
+import openraven.ravenxd.client.ChatCommands;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.client.Irc;
+import openraven.ravenxd.event.MotionEvent;
+import openraven.ravenxd.gui.Console;
+import openraven.ravenxd.mixin.IEntityPlayerSP;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.client.Account;
+import openraven.ravenxd.script.ScriptEvents;
+import openraven.ravenxd.script.ScriptManager;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.SettingsModule;
+import openraven.ravenxd.module.render.AntiShuffleModule;
+import openraven.ravenxd.module.dev.DebugAcModule;
+import openraven.ravenxd.module.dev.TestModule;
+import openraven.ravenxd.module.dev.ViewPacketsModule;
+import openraven.ravenxd.module.render.CameraModules;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.util.PacketQueue;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.RotationManager;
+import openraven.ravenxd.util.SwapSlot;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -423,7 +423,7 @@ public final class Hooks {
 
     public static <E extends EntityLivingBase> void doRenderLayer(RendererLivingEntity<E> renderer, LayerRenderer<E> layer, E e, float f, float f2, float f3, float f4, float f5, float f6, float f7) {
         if (e instanceof AbstractClientPlayer && layer instanceof LayerCape) {
-            xyz.daikirai.client.CapeLayer.render((RenderPlayer) (Object) renderer, (AbstractClientPlayer) e, f3);
+            openraven.ravenxd.client.CapeLayer.render((RenderPlayer) (Object) renderer, (AbstractClientPlayer) e, f3);
             return;
         }
         layer.doRenderLayer(e, f, f2, f3, f4, f5, f6, f7);
@@ -489,7 +489,7 @@ public final class Hooks {
     }
 
     private static boolean toggled(Module m, String setting) {
-        return ((xyz.daikirai.module.setting.ButtonSetting) ModuleManager.setting(m, setting)).isToggled();
+        return ((openraven.ravenxd.module.setting.ButtonSetting) ModuleManager.setting(m, setting)).isToggled();
     }
 
     public static float setAnimationProgress(float f) {
@@ -740,7 +740,7 @@ public final class Hooks {
         } else if (packet instanceof S1DPacketEntityEffect) {
             if ((m = on("AntiDebuff")) != null) {
                 S1DPacketEntityEffect p = (S1DPacketEntityEffect) packet;
-                if (mc.thePlayer != null && p.getEntityId() == mc.thePlayer.getEntityId() && xyz.daikirai.module.render.AntiDebuffModule.onEffect(p)) {
+                if (mc.thePlayer != null && p.getEntityId() == mc.thePlayer.getEntityId() && openraven.ravenxd.module.render.AntiDebuffModule.onEffect(p)) {
                     return;
                 }
             }

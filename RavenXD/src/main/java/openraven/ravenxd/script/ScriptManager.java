@@ -1,15 +1,15 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.ClientConfig;
-import xyz.daikirai.gui.Component;
-import xyz.daikirai.gui.ModuleComponent;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.DescriptionSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.ClientConfig;
+import openraven.ravenxd.gui.Component;
+import openraven.ravenxd.gui.ModuleComponent;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.DescriptionSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraftforge.common.MinecraftForge;
 
 import javax.tools.JavaCompiler;

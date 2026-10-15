@@ -1,10 +1,10 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.gui.Component;
-import xyz.daikirai.gui.ModuleComponent;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.gui.Component;
+import openraven.ravenxd.gui.ModuleComponent;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.event.HoverEvent;
 import net.minecraft.launchwrapper.Launch;

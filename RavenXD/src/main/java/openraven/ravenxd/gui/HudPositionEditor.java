@@ -1,9 +1,9 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.HudModule;
-import xyz.daikirai.module.SettingsModule;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.module.HudModule;
+import openraven.ravenxd.module.SettingsModule;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.Theme;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;

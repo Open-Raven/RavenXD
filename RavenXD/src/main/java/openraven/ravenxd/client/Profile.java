@@ -1,22 +1,22 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonWriter;
-import xyz.daikirai.gui.InfoHudEditor;
-import xyz.daikirai.module.HudModule;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.ProfileManagerModule;
-import xyz.daikirai.module.ScriptManagerModule;
-import xyz.daikirai.module.SettingsModule;
-import xyz.daikirai.module.movement.SprintModule;
-import xyz.daikirai.module.render.TargetHudModule;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.Setting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.gui.InfoHudEditor;
+import openraven.ravenxd.module.HudModule;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.ProfileManagerModule;
+import openraven.ravenxd.module.ScriptManagerModule;
+import openraven.ravenxd.module.SettingsModule;
+import openraven.ravenxd.module.movement.SprintModule;
+import openraven.ravenxd.module.render.TargetHudModule;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.Setting;
+import openraven.ravenxd.module.setting.SliderSetting;
 
 import java.io.File;
 import java.io.FileReader;

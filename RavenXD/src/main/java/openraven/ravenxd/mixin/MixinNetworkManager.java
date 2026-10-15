@@ -1,6 +1,6 @@
-package xyz.daikirai.mixin;
+package openraven.ravenxd.mixin;
 
-import xyz.daikirai.hook.Hooks;
+import openraven.ravenxd.hook.Hooks;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;

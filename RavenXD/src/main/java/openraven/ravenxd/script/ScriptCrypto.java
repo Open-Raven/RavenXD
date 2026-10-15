@@ -1,6 +1,6 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
-import xyz.daikirai.client.Account;
+import openraven.ravenxd.client.Account;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;

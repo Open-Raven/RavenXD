@@ -1,6 +1,6 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.util.ClickUtils;
+import openraven.ravenxd.util.ClickUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.command.CommandBase;

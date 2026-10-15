@@ -1,10 +1,10 @@
-package xyz.daikirai.module.render;
+package openraven.ravenxd.module.render;
 
-import xyz.daikirai.client.BotCheck;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
+import openraven.ravenxd.client.BotCheck;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

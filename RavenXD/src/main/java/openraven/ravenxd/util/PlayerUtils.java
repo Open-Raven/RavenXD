@@ -1,17 +1,17 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.client.BotCheck;
-import xyz.daikirai.client.Friends;
-import xyz.daikirai.client.Sounds;
-import xyz.daikirai.event.MotionEvent;
-import xyz.daikirai.gui.Console;
-import xyz.daikirai.mixin.IEntityPlayerSP;
-import xyz.daikirai.mixin.IMinecraft;
-import xyz.daikirai.mixin.IPlayerControllerMP;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.client.BotCheck;
+import openraven.ravenxd.client.Friends;
+import openraven.ravenxd.client.Sounds;
+import openraven.ravenxd.event.MotionEvent;
+import openraven.ravenxd.gui.Console;
+import openraven.ravenxd.mixin.IEntityPlayerSP;
+import openraven.ravenxd.mixin.IMinecraft;
+import openraven.ravenxd.mixin.IPlayerControllerMP;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -761,7 +761,7 @@ public final class PlayerUtils {
                 case 0:
                     return entity instanceof EntityPlayer;
                 case 1:
-                    return entity instanceof EntityPlayer || xyz.daikirai.module.render.DamageTagsModule.isMob(entity);
+                    return entity instanceof EntityPlayer || openraven.ravenxd.module.render.DamageTagsModule.isMob(entity);
                 case 2:
                     return true;
             }
@@ -844,10 +844,10 @@ public final class PlayerUtils {
         if (screen == null) {
             return "";
         }
-        if (xyz.daikirai.gui.ClickGui.isOpen(screen)) {
+        if (openraven.ravenxd.gui.ClickGui.isOpen(screen)) {
             return "GuiRaven";
         }
-        if (screen instanceof xyz.daikirai.gui.HudEditor) {
+        if (screen instanceof openraven.ravenxd.gui.HudEditor) {
             return "GuiRavenEdit";
         }
         return screen.getClass().getSimpleName();

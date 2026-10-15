@@ -1,12 +1,12 @@
-package xyz.daikirai.module.minigames;
+package openraven.ravenxd.module.minigames;
 
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.init.Items;

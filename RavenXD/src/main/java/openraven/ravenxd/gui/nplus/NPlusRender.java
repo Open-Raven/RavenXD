@@ -1,6 +1,6 @@
-package xyz.daikirai.gui.nplus;
+package openraven.ravenxd.gui.nplus;
 
-import xyz.daikirai.module.NPlusThemeModule;
+import openraven.ravenxd.module.NPlusThemeModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -155,7 +155,7 @@ public final class NPlusRender {
     }
 
     public static void rect(float x, float y, float xEnd, float yEnd, int c) {
-        xyz.daikirai.util.RenderUtils.rect(x, y, xEnd, yEnd, c);
+        openraven.ravenxd.util.RenderUtils.rect(x, y, xEnd, yEnd, c);
     }
 
     // gui theme gradient

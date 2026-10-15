@@ -1,8 +1,8 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.gui.ClickGui;
-import xyz.daikirai.gui.HudEditor;
-import xyz.daikirai.module.SettingsModule;
+import openraven.ravenxd.gui.ClickGui;
+import openraven.ravenxd.gui.HudEditor;
+import openraven.ravenxd.module.SettingsModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 

@@ -1,12 +1,12 @@
-package xyz.daikirai.module.network;
+package openraven.ravenxd.module.network;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
 import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement;
 
 public class LimboModule extends Module {

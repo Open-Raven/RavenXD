@@ -1,14 +1,14 @@
-package xyz.daikirai.module.minigames;
+package openraven.ravenxd.module.minigames;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.client.Overlay;
-import xyz.daikirai.gui.BridgeInfoEditor;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.util.Strings;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.client.Overlay;
+import openraven.ravenxd.gui.BridgeInfoEditor;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.util.Strings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;

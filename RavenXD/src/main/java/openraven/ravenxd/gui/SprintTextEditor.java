@@ -1,6 +1,6 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.movement.SprintModule;
+import openraven.ravenxd.module.movement.SprintModule;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.fml.client.config.GuiButtonExt;

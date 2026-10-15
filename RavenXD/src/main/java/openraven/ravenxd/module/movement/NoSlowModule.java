@@ -1,20 +1,20 @@
-package xyz.daikirai.module.movement;
+package openraven.ravenxd.module.movement;
 
-import xyz.daikirai.client.BotCheck;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.event.MotionEvent;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.player.NoRotateModule;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.BlockUtils;
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.util.PacketQueue;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.PlayerUtils;
+import openraven.ravenxd.client.BotCheck;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.event.MotionEvent;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.player.NoRotateModule;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.BlockUtils;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.util.PacketQueue;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.PlayerUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityIronGolem;
@@ -175,11 +175,11 @@ public class NoSlowModule extends Module {
     public static boolean slowdown() {
         Minecraft mc = mc();
         int n = mc.thePlayer.ticksExisted;
-        if (xyz.daikirai.module.combat.KillAuraModule.slowedThisTick && lastSlowTick == n) {
+        if (openraven.ravenxd.module.combat.KillAuraModule.slowedThisTick && lastSlowTick == n) {
             return false;
         }
         if (lastSlowTick == n) {
-            Chat.print(xyz.daikirai.util.MathUtils.timeDigits() + " &cnoslow e1");
+            Chat.print(openraven.ravenxd.util.MathUtils.timeDigits() + " &cnoslow e1");
         }
         lastSlowTick = n;
         boolean vanilla = ModuleManager.enabled("NoSlow") == null;
@@ -375,7 +375,7 @@ public class NoSlowModule extends Module {
                     if (sinceUse > 3L) {
                         PlayerUtils.jump();
                         if (PlayerUtils.isMoving() && !mc.thePlayer.isSneaking() && !NoRotateModule.sinceSetback(3000L) && PlayerUtils.direction().forward) {
-                            MoveUtils.strafe(0.48 + xyz.daikirai.util.MathUtils.randomTimes(0.001));
+                            MoveUtils.strafe(0.48 + openraven.ravenxd.util.MathUtils.randomTimes(0.001));
                         }
                         jumped = true;
                         current.state = 1;

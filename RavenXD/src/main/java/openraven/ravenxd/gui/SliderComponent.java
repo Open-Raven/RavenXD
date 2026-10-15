@@ -1,7 +1,7 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.RenderUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.Color;

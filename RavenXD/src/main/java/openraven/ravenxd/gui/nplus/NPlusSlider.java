@@ -1,7 +1,7 @@
-package xyz.daikirai.gui.nplus;
+package openraven.ravenxd.gui.nplus;
 
-import xyz.daikirai.module.NPlusThemeModule;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.NPlusThemeModule;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.opengl.GL11;
 

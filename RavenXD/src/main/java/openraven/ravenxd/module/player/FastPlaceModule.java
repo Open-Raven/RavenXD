@@ -1,12 +1,12 @@
-package xyz.daikirai.module.player;
+package openraven.ravenxd.module.player;
 
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.Blocks;
@@ -144,7 +144,7 @@ public class FastPlaceModule extends Module {
         boolean blocks = PlayerUtils.holdingScaffoldBlock();
         if (autoSwapBlocks.enabled && (!blocks || (double) mc.thePlayer.getHeldItem().stackSize <= AutoSwapModule.switchAt.getInput())
                 && lastHeldBlocks && slot == lastSlot) {
-            AutoSwapModule.swap(xyz.daikirai.util.SwapSlot.FastPlace);
+            AutoSwapModule.swap(openraven.ravenxd.util.SwapSlot.FastPlace);
             blocks = PlayerUtils.holdingScaffoldBlock();
         }
         lastSlot = slot;

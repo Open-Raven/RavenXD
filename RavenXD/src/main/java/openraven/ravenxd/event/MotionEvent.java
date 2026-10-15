@@ -1,4 +1,4 @@
-package xyz.daikirai.event;
+package openraven.ravenxd.event;
 
 public class MotionEvent {
     public double x;

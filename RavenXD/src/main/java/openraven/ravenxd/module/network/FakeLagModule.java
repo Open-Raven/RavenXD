@@ -1,17 +1,17 @@
-package xyz.daikirai.module.network;
+package openraven.ravenxd.module.network;
 
-import xyz.daikirai.util.PacketQueue;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.SettingsModule;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.Render3D;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.util.PacketQueue;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.SettingsModule;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.Render3D;
+import openraven.ravenxd.util.Theme;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.network.Packet;
@@ -202,7 +202,7 @@ public class FakeLagModule extends Module {
         if (!Chat.inWorld() || mc.isSingleplayer()) {
             return true;
         }
-        if (!xyz.daikirai.hook.Hooks.finalSendCheck(p)) {
+        if (!openraven.ravenxd.hook.Hooks.finalSendCheck(p)) {
             return false;
         }
         long l = System.currentTimeMillis();

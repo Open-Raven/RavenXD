@@ -1,9 +1,9 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.gui.nplus.NPlusCategory;
-import xyz.daikirai.gui.nplus.NPlusGui;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.gui.nplus.NPlusCategory;
+import openraven.ravenxd.gui.nplus.NPlusGui;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 
 public class NPlusThemeModule extends Module {
     public enum SliderStyle {

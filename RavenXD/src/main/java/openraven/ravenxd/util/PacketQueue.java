@@ -1,7 +1,7 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGameOver;
 import net.minecraft.network.Packet;
@@ -86,7 +86,7 @@ public final class PacketQueue {
         if (mc.thePlayer == null || mc.theWorld == null || mc.isSingleplayer()) {
             return true;
         }
-        if (!xyz.daikirai.hook.Hooks.finalSendCheck(packet)) {
+        if (!openraven.ravenxd.hook.Hooks.finalSendCheck(packet)) {
             return false;
         }
         held.add(packet);

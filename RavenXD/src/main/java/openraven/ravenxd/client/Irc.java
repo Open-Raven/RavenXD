@@ -1,6 +1,6 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.module.IrcModule;
+import openraven.ravenxd.module.IrcModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import org.lwjgl.input.Keyboard;
@@ -61,7 +61,7 @@ public final class Irc {
 
     private static boolean playing() {
         return Hypixel.state != Hypixel.State.NOT_HYPIXEL && Hypixel.state != Hypixel.State.LOBBY && Hypixel.state != Hypixel.State.LIMBO
-                && System.currentTimeMillis() - Math.max(xyz.daikirai.util.ClickUtils.lastLeftClick, xyz.daikirai.util.ClickUtils.lastRightClick) < 180000L;
+                && System.currentTimeMillis() - Math.max(openraven.ravenxd.util.ClickUtils.lastLeftClick, openraven.ravenxd.util.ClickUtils.lastRightClick) < 180000L;
     }
 
     public static void system(String s) {

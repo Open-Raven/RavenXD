@@ -1,8 +1,8 @@
-package xyz.daikirai.gui.nplus;
+package openraven.ravenxd.gui.nplus;
 
-import xyz.daikirai.module.HudModule;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.HudModule;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;

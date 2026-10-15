@@ -1,8 +1,8 @@
-package xyz.daikirai.module.network;
+package openraven.ravenxd.module.network;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
 
 public class VpnStatusModule extends Module {
     public VpnStatusModule(int key) {

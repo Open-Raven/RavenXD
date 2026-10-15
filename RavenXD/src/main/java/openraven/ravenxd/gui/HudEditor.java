@@ -1,9 +1,9 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.GuiModule;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.util.Blur;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.GuiModule;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.util.Blur;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 
@@ -15,7 +15,7 @@ public class HudEditor extends GuiScreen {
 
     public void closed(int x, int y) {
         if (x != this.startX || y != this.startY) {
-            xyz.daikirai.client.Profiles.markModified();
+            openraven.ravenxd.client.Profiles.markModified();
         }
     }
 

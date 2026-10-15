@@ -1,15 +1,15 @@
-package xyz.daikirai.module.movement;
+package openraven.ravenxd.module.movement;
 
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.client.Overlay;
-import xyz.daikirai.client.RenderDispatcher;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.client.Overlay;
+import openraven.ravenxd.client.RenderDispatcher;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -82,7 +82,7 @@ public class FlyModule extends Module {
 
     public static void drawBps() {
         Minecraft mc = Minecraft.getMinecraft();
-        double d = RenderDispatcher.bps(xyz.daikirai.module.player.FreecamModule.camera == null ? mc.thePlayer : xyz.daikirai.module.player.FreecamModule.camera, 2);
+        double d = RenderDispatcher.bps(openraven.ravenxd.module.player.FreecamModule.camera == null ? mc.thePlayer : openraven.ravenxd.module.player.FreecamModule.camera, 2);
         int color;
         if (d < 10.0) {
             color = Color.green.getRGB();
@@ -103,8 +103,8 @@ public class FlyModule extends Module {
 
     @Override
     public void onEnable() {
-        if (xyz.daikirai.module.player.FreecamModule.camera != null) {
-            xyz.daikirai.client.Chat.print("&cCannot enable while using Freecam!");
+        if (openraven.ravenxd.module.player.FreecamModule.camera != null) {
+            openraven.ravenxd.client.Chat.print("&cCannot enable while using Freecam!");
             this.disable();
             return;
         }
@@ -140,7 +140,7 @@ public class FlyModule extends Module {
                 mc.thePlayer.motionX = 0.0;
                 break;
             default:
-                if (xyz.daikirai.module.player.FreecamModule.camera == null) {
+                if (openraven.ravenxd.module.player.FreecamModule.camera == null) {
                     this.hynix(mc);
                 }
         }

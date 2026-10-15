@@ -1,13 +1,13 @@
-package xyz.daikirai.module.dev;
+package openraven.ravenxd.module.dev;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.util.ItemUtils;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.Strings;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.util.ItemUtils;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.Strings;
 import net.minecraft.entity.Entity;
 import net.minecraft.event.HoverEvent;
 import net.minecraft.network.Packet;

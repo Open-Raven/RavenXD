@@ -1,12 +1,12 @@
-package xyz.daikirai.module.movement;
+package openraven.ravenxd.module.movement;
 
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 

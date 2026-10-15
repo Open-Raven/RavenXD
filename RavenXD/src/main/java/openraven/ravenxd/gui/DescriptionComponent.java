@@ -1,7 +1,7 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.setting.DescriptionSetting;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.module.setting.DescriptionSetting;
+import openraven.ravenxd.util.Theme;
 import org.lwjgl.opengl.GL11;
 
 public class DescriptionComponent extends Component {

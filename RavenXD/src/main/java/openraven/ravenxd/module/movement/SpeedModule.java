@@ -1,17 +1,17 @@
-package xyz.daikirai.module.movement;
+package openraven.ravenxd.module.movement;
 
-import xyz.daikirai.util.MoveDirection;
-import xyz.daikirai.event.MotionEvent;
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.client.Overlay;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.player.NoRotateModule;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.util.MoveDirection;
+import openraven.ravenxd.event.MotionEvent;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.client.Overlay;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.player.NoRotateModule;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockStairs;
@@ -126,7 +126,7 @@ public class SpeedModule extends Module {
         if (current == Mode.VANILLA) {
             boost(e);
         } else if (current == Mode.FLOAT) {
-            if (xyz.daikirai.module.player.ScaffoldModule.active) {
+            if (openraven.ravenxd.module.player.ScaffoldModule.active) {
                 waiting = true;
                 return;
             }

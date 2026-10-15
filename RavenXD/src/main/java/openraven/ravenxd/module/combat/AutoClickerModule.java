@@ -1,14 +1,14 @@
-package xyz.daikirai.module.combat;
+package openraven.ravenxd.module.combat;
 
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.MathUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.MathUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.Minecraft;
@@ -229,8 +229,8 @@ public class AutoClickerModule extends Module {
     }
 
     private static int mode() {
-        if (xyz.daikirai.module.combat.KillAuraModule.target != null || xyz.daikirai.module.player.ScaffoldModule.active
-                || xyz.daikirai.module.player.AutoBlockinModule.active) {
+        if (openraven.ravenxd.module.combat.KillAuraModule.target != null || openraven.ravenxd.module.player.ScaffoldModule.active
+                || openraven.ravenxd.module.player.AutoBlockinModule.active) {
             return -1;
         }
         if (VelocityModule.AntiKnockback.disableAttackWhileDelay.isToggled() && VelocityModule.AntiKnockback.delayUntil.get() != 0L) {

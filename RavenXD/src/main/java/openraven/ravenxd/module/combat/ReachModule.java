@@ -1,14 +1,14 @@
-package xyz.daikirai.module.combat;
+package openraven.ravenxd.module.combat;
 
-import xyz.daikirai.util.MathUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.client.BotCheck;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.util.MathUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.client.BotCheck;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

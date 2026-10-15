@@ -1,13 +1,13 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.CommandLineModule;
-import xyz.daikirai.module.GuiModule;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.util.Animation;
-import xyz.daikirai.util.Blur;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.CommandLineModule;
+import openraven.ravenxd.module.GuiModule;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.util.Animation;
+import openraven.ravenxd.util.Blur;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -82,7 +82,7 @@ public class ClickGui extends GuiScreen {
         int bg;
         Module hud = ModuleManager.get("HUD");
         if (hud != null && hud.isEnabled()) {
-            xyz.daikirai.module.HudModule.render();
+            openraven.ravenxd.module.HudModule.render();
         }
         int alpha = (int) (this.backgroundAnimation.getValue(0.0f, 0.75f, 2) * 255.0f);
         if (GuiModule.darkBackground.isToggled()) {
@@ -140,7 +140,7 @@ public class ClickGui extends GuiScreen {
         long now = System.currentTimeMillis();
         float since = now - openedAt;
         String title = "Raven";
-        String tag = "XD " + xyz.daikirai.client.Account.VERSION;
+        String tag = "XD " + openraven.ravenxd.client.Account.VERSION;
         float intro = this.clamp(since / 950.0f);
         float base = 2.5f;
         float pulse = 1.0f + (float) Math.sin((double) now * 0.0017) * 0.012f;
@@ -400,12 +400,12 @@ public class ClickGui extends GuiScreen {
         for (Module m : ModuleManager.modules) {
             m.guiUpdate();
         }
-        if (xyz.daikirai.module.GuiModule.saveCategoryPositions.isToggled()) {
-            xyz.daikirai.client.ClientConfig.save();
+        if (openraven.ravenxd.module.GuiModule.saveCategoryPositions.isToggled()) {
+            openraven.ravenxd.client.ClientConfig.save();
         }
     }
     public static boolean isOpen(GuiScreen s) {
-        return s instanceof ClickGui || s instanceof xyz.daikirai.gui.nplus.NPlusGui;
+        return s instanceof ClickGui || s instanceof openraven.ravenxd.gui.nplus.NPlusGui;
     }
 
     @Override

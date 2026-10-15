@@ -1,15 +1,15 @@
-package xyz.daikirai.module.render;
+package openraven.ravenxd.module.render;
 
-import xyz.daikirai.client.Friends;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.Render3D;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.Strings;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.client.Friends;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.Render3D;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.Strings;
+import openraven.ravenxd.util.Theme;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityLivingBase;

@@ -1,7 +1,7 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.minigames.BridgeInfoModule;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.minigames.BridgeInfoModule;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraftforge.fml.client.config.GuiButtonExt;

@@ -1,7 +1,7 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
-import xyz.daikirai.event.MotionEvent;
-import xyz.daikirai.util.PlayerUtils;
+import openraven.ravenxd.event.MotionEvent;
+import openraven.ravenxd.util.PlayerUtils;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,12 +1,12 @@
-package xyz.daikirai.module.other;
+package openraven.ravenxd.module.other;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.Minecraft;
 
 public class LatencyAlertsModule extends Module {

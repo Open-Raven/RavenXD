@@ -1,18 +1,18 @@
-package xyz.daikirai.module.combat;
+package openraven.ravenxd.module.combat;
 
-import xyz.daikirai.client.BotCheck;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.ItemUtils;
-import xyz.daikirai.util.KeyUtils;
-import xyz.daikirai.util.MathUtils;
-import xyz.daikirai.util.PacketQueue;
-import xyz.daikirai.util.PlayerUtils;
+import openraven.ravenxd.client.BotCheck;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.ItemUtils;
+import openraven.ravenxd.util.KeyUtils;
+import openraven.ravenxd.util.MathUtils;
+import openraven.ravenxd.util.PacketQueue;
+import openraven.ravenxd.util.PlayerUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -221,12 +221,12 @@ public class AutoBlockModule extends Module {
             if (!(entity instanceof EntityLivingBase)) continue;
             EntityLivingBase e = (EntityLivingBase) entity;
             if (e == mc.thePlayer || e.deathTime != 0) continue;
-            if (xyz.daikirai.module.world.AntiBotModule.ignored(e)) continue;
+            if (openraven.ravenxd.module.world.AntiBotModule.ignored(e)) continue;
             if (mc.thePlayer.getDistanceSqToEntity(e) > rangeSq) continue;
             if (e instanceof EntityPlayer) {
                 if (PlayerUtils.isFriend((EntityPlayer) e)) continue;
                 if (BotCheck.isBot(e)) continue;
-            } else if (ignoreMobs.isToggled() || !xyz.daikirai.module.render.DamageTagsModule.isMob(e)) continue;
+            } else if (ignoreMobs.isToggled() || !openraven.ravenxd.module.render.DamageTagsModule.isMob(e)) continue;
             if (disableWhileChasing.isToggled() && PlayerUtils.awayFromPlayer(e)) continue;
             if (!PlayerUtils.rayHits(e, rangeValue)) continue;
             if (ignoreTeammates.isToggled() && Hypixel.sameTeam(e)) continue;

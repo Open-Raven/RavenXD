@@ -1,17 +1,17 @@
-package xyz.daikirai.module.render;
+package openraven.ravenxd.module.render;
 
-import xyz.daikirai.gui.TargetHudEditor;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.Blur;
-import xyz.daikirai.util.EspShaders;
-import xyz.daikirai.util.GlowShader;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.Strings;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.gui.TargetHudEditor;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.Blur;
+import openraven.ravenxd.util.EspShaders;
+import openraven.ravenxd.util.GlowShader;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.Strings;
+import openraven.ravenxd.util.Theme;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
@@ -25,7 +25,7 @@ public class TargetHudModule extends Module {
             render(null, s, d);
         }
 
-        public void render(xyz.daikirai.util.Animation fade, String s, double d) {
+        public void render(openraven.ravenxd.util.Animation fade, String s, double d) {
             if (this == Legacy) {
                 legacy(fade, s, d);
             } else {
@@ -103,11 +103,11 @@ public class TargetHudModule extends Module {
         return s;
     }
 
-    public static void render(xyz.daikirai.util.Animation fade, String name, float health, double ratio) {
+    public static void render(openraven.ravenxd.util.Animation fade, String name, float health, double ratio) {
         mode.render(fade, text(name, health, ratio), ratio);
     }
 
-    public static void legacy(xyz.daikirai.util.Animation fade, String s, double d) {
+    public static void legacy(openraven.ravenxd.util.Animation fade, String s, double d) {
         int w = mc.fontRendererObj.getStringWidth(s) + 8;
         int x = RenderUtils.scaledWidth / 2 - w / 2 + offsetX;
         int y = RenderUtils.scaledHeight / 2 + offsetY;
@@ -164,7 +164,7 @@ public class TargetHudModule extends Module {
         RenderUtils.resetColor();
     }
 
-    public static void modern(xyz.daikirai.util.Animation fade, String s, double d) {
+    public static void modern(openraven.ravenxd.util.Animation fade, String s, double d) {
         int w = mc.fontRendererObj.getStringWidth(s) + 8;
         int x = RenderUtils.scaledWidth / 2 - w / 2 + offsetX;
         int y = RenderUtils.scaledHeight / 2 + offsetY;
@@ -249,11 +249,11 @@ public class TargetHudModule extends Module {
     @net.minecraftforge.fml.common.eventhandler.SubscribeEvent
     public void onRenderWorld(net.minecraftforge.client.event.RenderWorldLastEvent e) {
         net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getMinecraft();
-        if (!renderEsp.isToggled() || mc.thePlayer == null || mc.theWorld == null || xyz.daikirai.module.network.BacktrackModule.ghost != null) {
+        if (!renderEsp.isToggled() || mc.thePlayer == null || mc.theWorld == null || openraven.ravenxd.module.network.BacktrackModule.ghost != null) {
             return;
         }
-        if (xyz.daikirai.module.combat.KillAuraModule.target != null) {
-            xyz.daikirai.util.Render3D.entityBox(xyz.daikirai.module.combat.KillAuraModule.target.entity, 2, theme.getRGB(0.0), e.partialTicks);
+        if (openraven.ravenxd.module.combat.KillAuraModule.target != null) {
+            openraven.ravenxd.util.Render3D.entityBox(openraven.ravenxd.module.combat.KillAuraModule.target.entity, 2, theme.getRGB(0.0), e.partialTicks);
         }
     }
 }

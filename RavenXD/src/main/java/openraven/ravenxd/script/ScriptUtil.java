@@ -1,4 +1,4 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
 import com.google.gson.JsonObject;
 import net.minecraft.util.MathHelper;

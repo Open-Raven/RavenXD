@@ -1,7 +1,7 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.Strings;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.Strings;
 
 public final class InfoSuffix {
     private InfoSuffix() {
@@ -36,7 +36,7 @@ public final class InfoSuffix {
             case "WTap":
                 return display(m, "Chance");
             case "Velocity": {
-                if (slider(m, "Mode").getInput() != xyz.daikirai.module.combat.VelocityModule.Mode.AntiKnockback.ordinal()) {
+                if (slider(m, "Mode").getInput() != openraven.ravenxd.module.combat.VelocityModule.Mode.AntiKnockback.ordinal()) {
                     return display(m, "Horizontal") + " " + display(m, "Vertical");
                 }
                 SliderSetting delay = slider(m, "Delay");

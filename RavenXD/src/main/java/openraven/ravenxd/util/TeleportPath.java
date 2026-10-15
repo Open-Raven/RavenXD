@@ -1,6 +1,6 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.client.Chat;
+import openraven.ravenxd.client.Chat;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockChest;

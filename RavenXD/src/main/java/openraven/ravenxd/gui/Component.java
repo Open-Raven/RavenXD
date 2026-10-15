@@ -1,4 +1,4 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
 import net.minecraft.client.Minecraft;
 

@@ -1,14 +1,14 @@
-package xyz.daikirai.module.player;
+package openraven.ravenxd.module.player;
 
-import xyz.daikirai.util.BlockUtils;
-import xyz.daikirai.util.ItemUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.util.RotationUtils;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.util.BlockUtils;
+import openraven.ravenxd.util.ItemUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.util.RotationUtils;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;

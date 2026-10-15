@@ -1,4 +1,4 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
 import com.google.common.collect.Iterables;
 import com.google.gson.JsonElement;

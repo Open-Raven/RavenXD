@@ -1,9 +1,9 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.play.client.C07PacketPlayerDigging;

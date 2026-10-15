@@ -1,14 +1,14 @@
-package xyz.daikirai.module.render;
+package openraven.ravenxd.module.render;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.BlockUtils;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.Strings;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.BlockUtils;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.Strings;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -75,9 +75,9 @@ public class BreakProgressModule extends Module {
             this.reset();
             return;
         }
-        if (showBedAura.isToggled() && xyz.daikirai.module.player.BedAuraModule.progress != 0.0f && xyz.daikirai.module.player.BedAuraModule.target != null) {
-            this.progress = Math.min(1.0f, xyz.daikirai.module.player.BedAuraModule.progress);
-            this.pos = xyz.daikirai.module.player.BedAuraModule.target;
+        if (showBedAura.isToggled() && openraven.ravenxd.module.player.BedAuraModule.progress != 0.0f && openraven.ravenxd.module.player.BedAuraModule.target != null) {
+            this.progress = Math.min(1.0f, openraven.ravenxd.module.player.BedAuraModule.progress);
+            this.pos = openraven.ravenxd.module.player.BedAuraModule.target;
             this.updateText();
             return;
         }

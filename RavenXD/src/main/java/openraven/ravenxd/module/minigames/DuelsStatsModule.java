@@ -1,13 +1,13 @@
-package xyz.daikirai.module.minigames;
+package openraven.ravenxd.module.minigames;
 
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.Strings;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.Strings;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -57,7 +57,7 @@ public class DuelsStatsModule extends Module {
     }
 
     @Override
-    public void onPreMotion(xyz.daikirai.event.MotionEvent e) {
+    public void onPreMotion(openraven.ravenxd.event.MotionEvent e) {
         if (partyMessage != null) {
             PlayerUtils.sendChatMessage("/pc " + partyMessage);
             partyMessage = null;

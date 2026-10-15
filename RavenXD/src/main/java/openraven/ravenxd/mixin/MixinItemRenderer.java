@@ -1,6 +1,6 @@
-package xyz.daikirai.mixin;
+package openraven.ravenxd.mixin;
 
-import xyz.daikirai.hook.Hooks;
+import openraven.ravenxd.hook.Hooks;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;

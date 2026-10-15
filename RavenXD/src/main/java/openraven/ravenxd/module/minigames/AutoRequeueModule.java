@@ -1,11 +1,11 @@
-package xyz.daikirai.module.minigames;
+package openraven.ravenxd.module.minigames;
 
-import xyz.daikirai.util.MathUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.util.MathUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;

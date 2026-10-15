@@ -1,6 +1,6 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.gui.CategoryComponent;
+import openraven.ravenxd.gui.CategoryComponent;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

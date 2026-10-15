@@ -1,8 +1,8 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.module.SettingsModule;
-import xyz.daikirai.module.render.NametagsModule;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.SettingsModule;
+import openraven.ravenxd.module.render.NametagsModule;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.enchantment.Enchantment;
@@ -145,8 +145,8 @@ public final class Strings {
         StringBuilder sb = new StringBuilder();
         EntityPlayer p = (EntityPlayer) e;
         Long l;
-        if (xyz.daikirai.module.ModuleManager.enabled("Sky Wars") != null && xyz.daikirai.module.minigames.SkyWarsModule.strengthIndicator.isToggled()
-                && (l = xyz.daikirai.module.minigames.SkyWarsModule.strength.get(e.getName())) != null && (l = l - System.currentTimeMillis()) > 0L) {
+        if (openraven.ravenxd.module.ModuleManager.enabled("Sky Wars") != null && openraven.ravenxd.module.minigames.SkyWarsModule.strengthIndicator.isToggled()
+                && (l = openraven.ravenxd.module.minigames.SkyWarsModule.strength.get(e.getName())) != null && (l = l - System.currentTimeMillis()) > 0L) {
             double d = round((double) l / 1000.0, 1);
             sb.append(SECTION).append('4').append(d).append('s');
         }

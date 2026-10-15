@@ -1,4 +1,4 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
@@ -52,7 +52,7 @@ public final class Chat {
         mc.thePlayer.addChatMessage(new ChatComponentText(color(PREFIX + s)));
     }
 
-    public static void moduleMessage(xyz.daikirai.module.Module m, String s) {
+    public static void moduleMessage(openraven.ravenxd.module.Module m, String s) {
         print("&b" + m.getName() + "&7: &r" + s);
     }
 

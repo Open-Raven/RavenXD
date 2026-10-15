@@ -1,14 +1,14 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.gui.CategoryComponent;
-import xyz.daikirai.gui.ClickGui;
-import xyz.daikirai.gui.Component;
-import xyz.daikirai.gui.ModuleComponent;
-import xyz.daikirai.module.ChatCommandsModule;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.gui.CategoryComponent;
+import openraven.ravenxd.gui.ClickGui;
+import openraven.ravenxd.gui.Component;
+import openraven.ravenxd.gui.ModuleComponent;
+import openraven.ravenxd.module.ChatCommandsModule;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
@@ -301,7 +301,7 @@ public final class ChatCommands {
             return;
         }
         current.set(name, to.getAbsolutePath());
-        xyz.daikirai.module.Module m = Profiles.profiles.get(current);
+        openraven.ravenxd.module.Module m = Profiles.profiles.get(current);
         if (m != null) {
             m.name = name;
         }
@@ -627,7 +627,7 @@ public final class ChatCommands {
             c.setOpened(false);
             y += 20.0f;
         }
-        xyz.daikirai.gui.nplus.NPlusGui.instance.resetPositions();
+        openraven.ravenxd.gui.nplus.NPlusGui.instance.resetPositions();
     }
 
     private static void play(String cmd, String[] args) {

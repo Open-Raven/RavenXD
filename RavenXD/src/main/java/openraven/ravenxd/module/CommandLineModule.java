@@ -1,8 +1,8 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.gui.Console;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.util.Animation;
+import openraven.ravenxd.gui.Console;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.util.Animation;
 
 public class CommandLineModule extends Module {
     public static boolean open;

@@ -1,10 +1,10 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.gui.CategoryComponent;
-import xyz.daikirai.gui.ClickGui;
-import xyz.daikirai.gui.nplus.NPlusCategory;
-import xyz.daikirai.gui.nplus.NPlusGui;
-import xyz.daikirai.module.GuiModule;
+import openraven.ravenxd.gui.CategoryComponent;
+import openraven.ravenxd.gui.ClickGui;
+import openraven.ravenxd.gui.nplus.NPlusCategory;
+import openraven.ravenxd.gui.nplus.NPlusGui;
+import openraven.ravenxd.module.GuiModule;
 import net.minecraft.client.Minecraft;
 
 import java.io.BufferedReader;
@@ -111,6 +111,6 @@ public final class ClientConfig {
             save();
         }
         Profiles.loadAll();
-        xyz.daikirai.module.minigames.SpeedBuildersModule.loadTimes();
+        openraven.ravenxd.module.minigames.SpeedBuildersModule.loadTimes();
     }
 }

@@ -1,9 +1,9 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.GuiModule;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.module.GuiModule;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.Theme;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 

@@ -1,4 +1,4 @@
-package xyz.daikirai.mixin;
+package openraven.ravenxd.mixin;
 
 import net.minecraft.client.entity.EntityPlayerSP;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,8 +1,8 @@
-package xyz.daikirai.module.player;
+package openraven.ravenxd.module.player;
 
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.play.client.C03PacketPlayer;
@@ -29,22 +29,22 @@ public class NoRotateModule extends Module {
 
     private static void onS08(S08PacketPlayerPosLook p) {
         lastS08 = System.currentTimeMillis();
-        if (xyz.daikirai.module.movement.StasisModule.frozen) {
-            xyz.daikirai.module.movement.StasisModule.onS08();
+        if (openraven.ravenxd.module.movement.StasisModule.frozen) {
+            openraven.ravenxd.module.movement.StasisModule.onS08();
         }
-        if (xyz.daikirai.module.movement.TimerModule.instance != null) {
-            xyz.daikirai.module.movement.TimerModule.onS08();
+        if (openraven.ravenxd.module.movement.TimerModule.instance != null) {
+            openraven.ravenxd.module.movement.TimerModule.onS08();
         }
-        if (xyz.daikirai.module.minigames.SkyWarsModule.pearlAt > 0L) {
-            xyz.daikirai.module.minigames.SkyWarsModule.onSetback();
+        if (openraven.ravenxd.module.minigames.SkyWarsModule.pearlAt > 0L) {
+            openraven.ravenxd.module.minigames.SkyWarsModule.onSetback();
         }
     }
 
     private static void onSetback(S08PacketPlayerPosLook p) {
         lastSetback = lastS08;
-        xyz.daikirai.module.Module longJump = xyz.daikirai.module.ModuleManager.enabled("Long Jump");
+        openraven.ravenxd.module.Module longJump = openraven.ravenxd.module.ModuleManager.enabled("Long Jump");
         if (longJump != null) {
-            xyz.daikirai.client.Chat.moduleMessage(longJump, "&cReceived setback, disabling.");
+            openraven.ravenxd.client.Chat.moduleMessage(longJump, "&cReceived setback, disabling.");
             longJump.disable();
         }
     }

@@ -1,9 +1,9 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.entity.Entity;
@@ -159,7 +159,7 @@ public final class BotCheck {
             watchdogId = 0;
             return;
         }
-        xyz.daikirai.util.Render3D.entityBox(e, 2, java.awt.Color.red.getRGB(), pt);
+        openraven.ravenxd.util.Render3D.entityBox(e, 2, java.awt.Color.red.getRGB(), pt);
     }
 
     public static MovingObjectPosition rayTraceBlocks(double d) {

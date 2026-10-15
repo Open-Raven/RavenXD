@@ -1,22 +1,22 @@
-package xyz.daikirai.module.combat;
+package openraven.ravenxd.module.combat;
 
 
 //creds to miau minus
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.hook.Hooks;
-import xyz.daikirai.module.movement.LongJumpModule;
-import xyz.daikirai.module.network.BacktrackModule;
-import xyz.daikirai.module.player.NoRotateModule;
-import xyz.daikirai.util.MathUtils;
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.util.PacketUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.hook.Hooks;
+import openraven.ravenxd.module.movement.LongJumpModule;
+import openraven.ravenxd.module.network.BacktrackModule;
+import openraven.ravenxd.module.player.NoRotateModule;
+import openraven.ravenxd.util.MathUtils;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.util.PacketUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.settings.GameSettings;

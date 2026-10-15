@@ -1,17 +1,17 @@
-package xyz.daikirai.module.render;
+package openraven.ravenxd.module.render;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.BlockUtils;
-import xyz.daikirai.util.Render3D;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.Theme;
-import xyz.daikirai.util.Zoom;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.BlockUtils;
+import openraven.ravenxd.util.Render3D;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.Theme;
+import openraven.ravenxd.util.Zoom;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.state.IBlockState;
@@ -84,7 +84,7 @@ public class BedESPModule extends Module {
         if (bb == null) {
             return;
         }
-        boolean own = xyz.daikirai.module.minigames.BedWarsModule.isOwnBed(bed[0]);
+        boolean own = openraven.ravenxd.module.minigames.BedWarsModule.isOwnBed(bed[0]);
         if (drawBeam.isToggled() && !own) {
             BlockPos a = bed[0];
             BlockPos b = bed[1];
@@ -200,8 +200,8 @@ public class BedESPModule extends Module {
             int n3 = n2;
             int px = MathHelper.floor_double(mc.thePlayer.posX);
             int pz = MathHelper.floor_double(mc.thePlayer.posZ);
-            if (optimizeForBedWars.isToggled() && inBedWars && xyz.daikirai.module.minigames.BedWarsModule.ownBed != null) {
-                py = xyz.daikirai.module.minigames.BedWarsModule.ownBed.getY();
+            if (optimizeForBedWars.isToggled() && inBedWars && openraven.ravenxd.module.minigames.BedWarsModule.ownBed != null) {
+                py = openraven.ravenxd.module.minigames.BedWarsModule.ownBed.getY();
                 n2 = (int) range.getMax();
                 n3 = 4;
             } else {

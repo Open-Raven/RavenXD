@@ -1,11 +1,11 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.ClientConfig;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.script.ScriptManager;
-import xyz.daikirai.util.Strings;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.ClientConfig;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.script.ScriptManager;
+import openraven.ravenxd.util.Strings;
 
 import java.awt.Desktop;
 import java.io.File;

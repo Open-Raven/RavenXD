@@ -1,7 +1,7 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.Setting;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -24,7 +24,7 @@ public class Module {
     public boolean queueAfterDisable;
     public ArrayList<Setting> settings = new ArrayList<Setting>();
 
-    public xyz.daikirai.script.Script script;
+    public openraven.ravenxd.script.Script script;
 
     public Module(String name, Category category, int keycode) {
         this.name = name;
@@ -32,7 +32,7 @@ public class Module {
         this.keycode = keycode;
     }
 
-    public Module(xyz.daikirai.script.Script script, int keycode) {
+    public Module(openraven.ravenxd.script.Script script, int keycode) {
         this.script = script;
         this.name = script.name;
         this.category = Category.scripts;
@@ -40,9 +40,9 @@ public class Module {
         this.lite = true;
     }
 
-    public xyz.daikirai.client.Profile profile;
+    public openraven.ravenxd.client.Profile profile;
 
-    public Module(xyz.daikirai.client.Profile profile, int keycode) {
+    public Module(openraven.ravenxd.client.Profile profile, int keycode) {
         this.profile = profile;
         this.name = profile.name;
         this.category = Category.profiles;
@@ -94,13 +94,13 @@ public class Module {
             if (this.script.failed) {
                 return;
             }
-            if (xyz.daikirai.script.ScriptManager.loading) {
-                xyz.daikirai.client.Chat.print("&cScripts are still loading...");
+            if (openraven.ravenxd.script.ScriptManager.loading) {
+                openraven.ravenxd.client.Chat.print("&cScripts are still loading...");
                 return;
             }
         }
         if (this.isProfile()) {
-            xyz.daikirai.client.Profiles.enable(this.profile, false);
+            openraven.ravenxd.client.Profiles.enable(this.profile, false);
             return;
         }
         long now = System.currentTimeMillis();
@@ -126,7 +126,7 @@ public class Module {
             MinecraftForge.EVENT_BUS.register(this);
             this.onEnable();
         } else {
-            xyz.daikirai.script.ScriptManager.onEnable(this.script);
+            openraven.ravenxd.script.ScriptManager.onEnable(this.script);
         }
     }
 
@@ -161,7 +161,7 @@ public class Module {
                 ModuleManager.afterDisableQueue.add(this);
             }
         } else {
-            xyz.daikirai.script.ScriptManager.onDisable(this.script);
+            openraven.ravenxd.script.ScriptManager.onDisable(this.script);
         }
     }
 
@@ -249,7 +249,7 @@ public class Module {
         }
         this.keycode = n;
         if (this.category != Category.profiles) {
-            xyz.daikirai.client.Profiles.markModified();
+            openraven.ravenxd.client.Profiles.markModified();
         }
     }
 
@@ -262,7 +262,7 @@ public class Module {
             return;
         }
         this.hidden = !this.hidden;
-        xyz.daikirai.client.Profiles.markModified();
+        openraven.ravenxd.client.Profiles.markModified();
     }
 
     public void onPreUpdate() {
@@ -271,10 +271,10 @@ public class Module {
     public void onPreUpdateAlways() {
     }
 
-    public void onPreMotion(xyz.daikirai.event.MotionEvent e) {
+    public void onPreMotion(openraven.ravenxd.event.MotionEvent e) {
     }
 
-    public void onPreMotionAlways(xyz.daikirai.event.MotionEvent e) {
+    public void onPreMotionAlways(openraven.ravenxd.event.MotionEvent e) {
     }
 
     public void onPostMotion() {
@@ -373,8 +373,8 @@ public class Module {
         return false;
     }
 
-    public xyz.daikirai.util.FakeRotation fakeRotation() {
-        return xyz.daikirai.util.FakeRotation.None;
+    public openraven.ravenxd.util.FakeRotation fakeRotation() {
+        return openraven.ravenxd.util.FakeRotation.None;
     }
 
     public long fakeRotationStart() {

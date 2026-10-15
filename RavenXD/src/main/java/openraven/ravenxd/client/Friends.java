@@ -1,4 +1,4 @@
-package xyz.daikirai.client;
+package openraven.ravenxd.client;
 
 import java.util.HashSet;
 

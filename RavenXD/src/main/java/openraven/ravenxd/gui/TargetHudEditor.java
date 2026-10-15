@@ -1,7 +1,7 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.render.TargetHudModule;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.render.TargetHudModule;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.client.config.GuiButtonExt;
@@ -74,8 +74,8 @@ public class TargetHudEditor extends HudEditor {
 
     @Override
     public void updateScreen() {
-        EntityLivingBase e = xyz.daikirai.module.combat.KillAuraModule.hasTarget() && xyz.daikirai.module.combat.KillAuraModule.target.living
-                ? (EntityLivingBase) xyz.daikirai.module.combat.KillAuraModule.target.entity : this.mc.thePlayer;
+        EntityLivingBase e = openraven.ravenxd.module.combat.KillAuraModule.hasTarget() && openraven.ravenxd.module.combat.KillAuraModule.target.living
+                ? (EntityLivingBase) openraven.ravenxd.module.combat.KillAuraModule.target.entity : this.mc.thePlayer;
         this.ratio = Math.min(e.getHealth() / e.getMaxHealth(), 1.0f);
         this.text = TargetHudModule.text(e.getDisplayName().getUnformattedText(), e.getHealth(), this.ratio);
         super.updateScreen();

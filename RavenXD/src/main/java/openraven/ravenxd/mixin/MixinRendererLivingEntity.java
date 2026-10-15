@@ -1,6 +1,6 @@
-package xyz.daikirai.mixin;
+package openraven.ravenxd.mixin;
 
-import xyz.daikirai.hook.Hooks;
+import openraven.ravenxd.hook.Hooks;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;

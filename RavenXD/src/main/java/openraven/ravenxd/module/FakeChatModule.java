@@ -1,7 +1,7 @@
-package xyz.daikirai.module;
+package openraven.ravenxd.module;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.ChatCommands;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.ChatCommands;
 
 public class FakeChatModule extends Module {
     public FakeChatModule(Category category, int key) {

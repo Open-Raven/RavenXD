@@ -1,13 +1,13 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.GuiModule;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.DescriptionSetting;
-import xyz.daikirai.module.setting.Setting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.Animation;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.GuiModule;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.DescriptionSetting;
+import openraven.ravenxd.module.setting.Setting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.Animation;
+import openraven.ravenxd.util.RenderUtils;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -201,8 +201,8 @@ public class ModuleComponent extends Component {
             } else {
                 color = GuiModule.enabledColor.rgb;
             }
-        } else if (this.mod.isProfile() && this.mod.profile == xyz.daikirai.client.Profiles.current) {
-            color = xyz.daikirai.client.Profiles.modified ? GuiModule.scriptColor.rgb : GuiModule.enabledColor.rgb;
+        } else if (this.mod.isProfile() && this.mod.profile == openraven.ravenxd.client.Profiles.current) {
+            color = openraven.ravenxd.client.Profiles.modified ? GuiModule.scriptColor.rgb : GuiModule.enabledColor.rgb;
         } else if (this.mod.isScript() && this.mod.script.failed || this.mod.getName().equals("IRC")) {
             color = GuiModule.errorColor.rgb;
         } else if (this.mod.disabledAt > 0L) {

@@ -1,7 +1,7 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.module.SettingsModule;
-import xyz.daikirai.util.RenderUtils;
+import openraven.ravenxd.module.SettingsModule;
+import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraftforge.fml.client.config.GuiButtonExt;

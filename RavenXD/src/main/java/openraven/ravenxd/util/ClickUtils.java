@@ -1,6 +1,6 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.client.MiddleClickFriends;
+import openraven.ravenxd.client.MiddleClickFriends;
 import net.minecraftforge.client.event.MouseEvent;
 import org.lwjgl.input.Mouse;
 

@@ -1,6 +1,6 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.hook.Hooks;
+import openraven.ravenxd.hook.Hooks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.C02PacketUseEntity;
@@ -147,7 +147,7 @@ public final class PacketUtils {
             serverSlot = ((C09PacketHeldItemChange) packet).getSlotId();
             lastUse = 3;
             ++slotChanges;
-            xyz.daikirai.module.dev.DebugAcModule.updateHeldItem(serverSlot);
+            openraven.ravenxd.module.dev.DebugAcModule.updateHeldItem(serverSlot);
         } else if (packet instanceof C0DPacketCloseWindow) {
             sentCloseWindow = true;
         } else if (packet instanceof C0EPacketClickWindow) {

@@ -1,4 +1,4 @@
-package xyz.daikirai.module.setting;
+package openraven.ravenxd.module.setting;
 
 public class Setting {
     public String name;

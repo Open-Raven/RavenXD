@@ -1,28 +1,28 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
-import xyz.daikirai.client.Account;
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.ChatCommands;
-import xyz.daikirai.client.Friends;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.module.ChatCommandsModule;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.ButtonSetting;
-import xyz.daikirai.module.setting.Setting;
-import xyz.daikirai.module.setting.SliderSetting;
-import xyz.daikirai.util.Blur;
-import xyz.daikirai.util.BlockUtils;
-import xyz.daikirai.util.EspShaders;
-import xyz.daikirai.util.GlowShader;
-import xyz.daikirai.util.MoveUtils;
-import xyz.daikirai.util.PacketUtils;
-import xyz.daikirai.util.PlayerUtils;
-import xyz.daikirai.util.Render3D;
-import xyz.daikirai.util.RenderUtils;
-import xyz.daikirai.util.RotationManager;
-import xyz.daikirai.util.RotationUtils;
-import xyz.daikirai.util.Theme;
+import openraven.ravenxd.client.Account;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.ChatCommands;
+import openraven.ravenxd.client.Friends;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.module.ChatCommandsModule;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import openraven.ravenxd.module.setting.Setting;
+import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.util.Blur;
+import openraven.ravenxd.util.BlockUtils;
+import openraven.ravenxd.util.EspShaders;
+import openraven.ravenxd.util.GlowShader;
+import openraven.ravenxd.util.MoveUtils;
+import openraven.ravenxd.util.PacketUtils;
+import openraven.ravenxd.util.PlayerUtils;
+import openraven.ravenxd.util.Render3D;
+import openraven.ravenxd.util.RenderUtils;
+import openraven.ravenxd.util.RotationManager;
+import openraven.ravenxd.util.RotationUtils;
+import openraven.ravenxd.util.Theme;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -78,7 +78,7 @@ public class ScriptProtected implements Defaults {
     }
 
     public static BlockPos getWhitelistedBedPos() {
-        return xyz.daikirai.module.minigames.BedWarsModule.ownBed;
+        return openraven.ravenxd.module.minigames.BedWarsModule.ownBed;
     }
 
     public static Map<String, List<String>> getCategories() {
@@ -321,7 +321,7 @@ public class ScriptProtected implements Defaults {
     }
 
     public static BlockPos getBedAuraPosition() {
-        return xyz.daikirai.module.player.BedAuraModule.target;
+        return openraven.ravenxd.module.player.BedAuraModule.target;
     }
 
     public static void sendPacket(Packet packet) {
@@ -358,7 +358,7 @@ public class ScriptProtected implements Defaults {
     }
 
     public static float[] getBedAuraProgress() {
-        return new float[]{xyz.daikirai.module.player.BedAuraModule.progress, xyz.daikirai.module.player.BedAuraModule.vanillaProgress};
+        return new float[]{openraven.ravenxd.module.player.BedAuraModule.progress, openraven.ravenxd.module.player.BedAuraModule.vanillaProgress};
     }
 
     public static boolean isConsuming(EntityPlayer entityPlayer) {

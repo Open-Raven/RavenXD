@@ -1,6 +1,6 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.mixin.IMinecraft;
+import openraven.ravenxd.mixin.IMinecraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Timer;
 

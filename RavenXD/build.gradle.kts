@@ -4,7 +4,7 @@ plugins {
     id("dev.architectury.architectury-pack200") version "0.1.3"
 }
 
-group = "xyz.daikirai"
+group = "openraven.ravenxd"
 version = "3.1"
 
 base { archivesName.set("RavenXD") }

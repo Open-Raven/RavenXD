@@ -1,7 +1,7 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.module.render.ExtendCameraModule;
-import xyz.daikirai.module.render.NametagsModule;
+import openraven.ravenxd.module.render.ExtendCameraModule;
+import openraven.ravenxd.module.render.NametagsModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.EntityRenderer;

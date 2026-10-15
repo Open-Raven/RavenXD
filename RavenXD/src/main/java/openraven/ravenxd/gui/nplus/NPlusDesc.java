@@ -1,6 +1,6 @@
-package xyz.daikirai.gui.nplus;
+package openraven.ravenxd.gui.nplus;
 
-import xyz.daikirai.module.setting.DescriptionSetting;
+import openraven.ravenxd.module.setting.DescriptionSetting;
 import org.lwjgl.opengl.GL11;
 
 public class NPlusDesc extends NPlusComp {

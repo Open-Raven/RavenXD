@@ -1,11 +1,11 @@
-package xyz.daikirai.gui;
+package openraven.ravenxd.gui;
 
-import xyz.daikirai.client.ChatCommands;
-import xyz.daikirai.client.ClientConfig;
-import xyz.daikirai.client.Friends;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.setting.SliderSetting;
+import openraven.ravenxd.client.ChatCommands;
+import openraven.ravenxd.client.ClientConfig;
+import openraven.ravenxd.client.Friends;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -182,8 +182,8 @@ public final class Console {
                 print("&cInvalid message.", 1);
                 return;
             }
-            xyz.daikirai.client.Profiles.markModified();
-            xyz.daikirai.module.movement.SprintModule.setText(text);
+            openraven.ravenxd.client.Profiles.markModified();
+            openraven.ravenxd.module.movement.SprintModule.setText(text);
             print("&aSprint text updated!", 1);
             return;
         }
@@ -273,11 +273,11 @@ public final class Console {
         }
         if (args[0].equalsIgnoreCase("profiles") || args[0].equalsIgnoreCase("p")) {
             if (!hasArgs) {
-                xyz.daikirai.client.Profiles.list();
+                openraven.ravenxd.client.Profiles.list();
                 return;
             }
             if (args.length == 3) {
-                xyz.daikirai.client.Profiles.rename(args);
+                openraven.ravenxd.client.Profiles.rename(args);
                 return;
             }
             print("&cInvalid syntax.", 1);

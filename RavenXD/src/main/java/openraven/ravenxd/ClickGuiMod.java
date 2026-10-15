@@ -1,20 +1,20 @@
-package xyz.daikirai;
+package openraven.ravenxd;
 
-import xyz.daikirai.client.Chat;
-import xyz.daikirai.client.ChatCommands;
-import xyz.daikirai.client.ClientConfig;
-import xyz.daikirai.client.Hypixel;
-import xyz.daikirai.client.Irc;
-import xyz.daikirai.client.MiddleClickFriends;
-import xyz.daikirai.client.Sounds;
-import xyz.daikirai.gui.ClickGui;
-import xyz.daikirai.module.Category;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.client.RenderDispatcher;
-import xyz.daikirai.module.HudModule;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.util.Zoom;
-import xyz.daikirai.util.RotationManager;
+import openraven.ravenxd.client.Chat;
+import openraven.ravenxd.client.ChatCommands;
+import openraven.ravenxd.client.ClientConfig;
+import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.client.Irc;
+import openraven.ravenxd.client.MiddleClickFriends;
+import openraven.ravenxd.client.Sounds;
+import openraven.ravenxd.gui.ClickGui;
+import openraven.ravenxd.module.Category;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.client.RenderDispatcher;
+import openraven.ravenxd.module.HudModule;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.util.Zoom;
+import openraven.ravenxd.util.RotationManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.MouseEvent;
@@ -29,24 +29,24 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-@Mod(modid = "ravenxd", name = xyz.daikirai.client.Account.NAME, version = xyz.daikirai.client.Account.VERSION, clientSideOnly = true, acceptedMinecraftVersions = "[1.8.9]")
+@Mod(modid = "ravenxd", name = openraven.ravenxd.client.Account.NAME, version = openraven.ravenxd.client.Account.VERSION, clientSideOnly = true, acceptedMinecraftVersions = "[1.8.9]")
 public class ClickGuiMod {
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
         ModuleManager.init();
-        xyz.daikirai.script.ScriptReflection.init();
-        xyz.daikirai.script.ScriptEvents.bind(xyz.daikirai.script.ScriptDelegated.class);
+        openraven.ravenxd.script.ScriptReflection.init();
+        openraven.ravenxd.script.ScriptEvents.bind(openraven.ravenxd.script.ScriptDelegated.class);
         ClickGui.instance = new ClickGui();
-        xyz.daikirai.gui.nplus.NPlusGui.instance = new xyz.daikirai.gui.nplus.NPlusGui();
+        openraven.ravenxd.gui.nplus.NPlusGui.instance = new openraven.ravenxd.gui.nplus.NPlusGui();
         ClientConfig.load();
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new RenderDispatcher());
-        net.minecraftforge.client.ClientCommandHandler.instance.registerCommand(new xyz.daikirai.client.KeystrokesGui.Command());
-        MinecraftForge.EVENT_BUS.register(new xyz.daikirai.client.Keystrokes());
-        xyz.daikirai.client.Keystrokes.instance = new xyz.daikirai.client.Keystrokes();
-        xyz.daikirai.client.Keystrokes.load();
+        net.minecraftforge.client.ClientCommandHandler.instance.registerCommand(new openraven.ravenxd.client.KeystrokesGui.Command());
+        MinecraftForge.EVENT_BUS.register(new openraven.ravenxd.client.Keystrokes());
+        openraven.ravenxd.client.Keystrokes.instance = new openraven.ravenxd.client.Keystrokes();
+        openraven.ravenxd.client.Keystrokes.load();
     }
 
     private static boolean isDown(int key) {
@@ -79,16 +79,16 @@ public class ClickGuiMod {
         if (e.phase != TickEvent.Phase.END) {
             return;
         }
-        if (xyz.daikirai.util.PacketQueue.active) {
-            xyz.daikirai.util.PacketQueue.tick();
+        if (openraven.ravenxd.util.PacketQueue.active) {
+            openraven.ravenxd.util.PacketQueue.tick();
         }
         if (mc.thePlayer == null || mc.theWorld == null) {
             return;
         }
         if (firstTick) {
             firstTick = false;
-            xyz.daikirai.script.ScriptManager.reload();
-            xyz.daikirai.client.Profiles.loadDefault();
+            openraven.ravenxd.script.ScriptManager.reload();
+            openraven.ravenxd.client.Profiles.loadDefault();
             Zoom.find();
         }
         boolean profileHandled = false;
@@ -111,9 +111,9 @@ public class ClickGuiMod {
         }
         Irc.tick();
         Sounds.flush();
-        if (xyz.daikirai.client.KeystrokesGui.open) {
-            xyz.daikirai.client.KeystrokesGui.open = false;
-            mc.displayGuiScreen(new xyz.daikirai.client.KeystrokesGui());
+        if (openraven.ravenxd.client.KeystrokesGui.open) {
+            openraven.ravenxd.client.KeystrokesGui.open = false;
+            mc.displayGuiScreen(new openraven.ravenxd.client.KeystrokesGui());
         }
         if (mc.thePlayer.isRiding()) {
             if (RotationManager.rotating) {
@@ -144,10 +144,10 @@ public class ClickGuiMod {
         }
         if (s.charAt(0) == ' ') {
             boolean bedWars = ModuleManager.enabled("Bed Wars") != null;
-            boolean bedEsp = ModuleManager.enabled("BedESP") != null && xyz.daikirai.module.render.BedESPModule.optimizeForBedWars.isToggled();
-            boolean autoWho = ModuleManager.enabled("AutoWho") != null && xyz.daikirai.module.minigames.AutoWhoModule.runBedWarsInGame.isToggled();
+            boolean bedEsp = ModuleManager.enabled("BedESP") != null && openraven.ravenxd.module.render.BedESPModule.optimizeForBedWars.isToggled();
+            boolean autoWho = ModuleManager.enabled("AutoWho") != null && openraven.ravenxd.module.minigames.AutoWhoModule.runBedWarsInGame.isToggled();
             if (bedWars || bedEsp || autoWho) {
-                xyz.daikirai.module.minigames.BedWarsModule.onGameStartChat(e, s, bedWars, bedEsp, autoWho);
+                openraven.ravenxd.module.minigames.BedWarsModule.onGameStartChat(e, s, bedWars, bedEsp, autoWho);
             }
         }
                 if (Hypixel.onChat(s)) {
@@ -158,7 +158,7 @@ public class ClickGuiMod {
     @SubscribeEvent
     public void onJoinQueue(EntityJoinWorldEvent e) {
         if (e.entity == mc.thePlayer) {
-            xyz.daikirai.util.PacketQueue.onJoinWorld();
+            openraven.ravenxd.util.PacketQueue.onJoinWorld();
         }
     }
 
@@ -172,6 +172,6 @@ public class ClickGuiMod {
 
     @SubscribeEvent
     public void onMouse(MouseEvent e) {
-        xyz.daikirai.util.ClickUtils.onMouse(e);
+        openraven.ravenxd.util.ClickUtils.onMouse(e);
     }
 }

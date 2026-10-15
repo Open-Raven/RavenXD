@@ -1,4 +1,4 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.Packet;

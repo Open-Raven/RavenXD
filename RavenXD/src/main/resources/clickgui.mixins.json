@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "xyz.daikirai.mixin",
+  "package": "openraven.ravenxd.mixin",
   "refmap": "clickgui.refmap.json",
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",

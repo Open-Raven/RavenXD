@@ -1,11 +1,11 @@
-package xyz.daikirai.util;
+package openraven.ravenxd.util;
 
-import xyz.daikirai.script.ScriptEvents;
-import xyz.daikirai.script.ScriptManager;
-import xyz.daikirai.hook.Hooks;
-import xyz.daikirai.module.Module;
-import xyz.daikirai.module.ModuleManager;
-import xyz.daikirai.module.SettingsModule;
+import openraven.ravenxd.script.ScriptEvents;
+import openraven.ravenxd.script.ScriptManager;
+import openraven.ravenxd.hook.Hooks;
+import openraven.ravenxd.module.Module;
+import openraven.ravenxd.module.ModuleManager;
+import openraven.ravenxd.module.SettingsModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;

@@ -1,4 +1,4 @@
-package xyz.daikirai.script;
+package openraven.ravenxd.script;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
