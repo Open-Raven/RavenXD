@@ -37,12 +37,14 @@ user's UID: `size * 0.05506` becomes `size * 0.05` + the UID.
 
 ## Credits
 
-- MiauMinus: most velocity modes
-- OpenRise: most disablers
-- Raven N+: relevant clickgui theme
-- Raven B+++: customdisabler
-- sunsuke - intave full velocity
+- [MiauMinus](https://github.com/SPEEDBOY19/OpenMiau-Minus): most velocity modes
+- [OpenRise](https://github.com/fmcpe/OpenRise): most disablers
+- [Rise-6.9.5](https://github.com/AnShanArchive/Rise-6.9.5): fixing openrise skids
+- [Kayasaka](https://github.com/a1pl/kayasaka): Rots + raycast (wrappers around miauminus+openrise)
+- [Raven N+](https://docs.google.com/spreadsheets/d/1IulXTiz9TCiMn15w_uphqjQjGO6feudirLzRJTQV-To/edit?gid=1390828944#gid=1390828944): relevant clickgui theme
+- [Raven B+++](https://github.com/backfromhiatus/Raven-BPlusPlusPlus): customdisabler
+- [sunsuke](https://github.com/a1pl) - intave full velocity
 - Sande: Finding an undetected way to dump and providing the dump
 - Abusez: Recovering
 - Mega: Recovering
-- Chef: Making Raven B4
+- [Chef](https://github.com/blowsy/): Making Raven B4
