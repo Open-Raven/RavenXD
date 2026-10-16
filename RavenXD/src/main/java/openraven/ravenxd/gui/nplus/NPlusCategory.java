@@ -4,7 +4,7 @@ import openraven.ravenxd.module.Category;
 import openraven.ravenxd.module.GuiModule;
 import openraven.ravenxd.module.Module;
 import openraven.ravenxd.module.ModuleManager;
-import openraven.ravenxd.module.NPlusThemeModule;
+import openraven.ravenxd.module.GuiModule;
 import openraven.ravenxd.util.RenderUtils;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -61,7 +61,7 @@ public class NPlusCategory {
             for (NPlusModule m : this.modules) {
                 height += m.getHeight();
             }
-            int off = (int) NPlusThemeModule.categoryOffset.getInput();
+            int off = (int) GuiModule.categoryOffset.getInput();
             int bottom = y + TITLE_HEIGHT + height + off + 2;
             NPlusRender.roundedRect(x - off, y, x + WIDTH + off, bottom, 3.0f, NPlusRender.categoryFill);
             NPlusRender.roundedOutline(x - off, y, x + WIDTH + off, bottom, 0.0f, 2.62f, NPlusRender.clientIntDarker);

@@ -1,7 +1,7 @@
 package openraven.ravenxd.gui.nplus;
 
 import openraven.ravenxd.module.Module;
-import openraven.ravenxd.module.NPlusThemeModule;
+import openraven.ravenxd.module.GuiModule;
 import openraven.ravenxd.module.setting.ButtonSetting;
 import openraven.ravenxd.module.setting.DescriptionSetting;
 import openraven.ravenxd.module.setting.Setting;
@@ -68,10 +68,10 @@ public class NPlusModule {
         boolean on = this.mod.isEnabled();
         NPlusRender.moduleGradient(x, y, x + this.category.getWidth(), y + 15, on ? NPlusRender.purple : NPlusRender.modComp5, on ? NPlusRender.purple : NPlusRender.modComp4);
         int color = on ? NPlusRender.clientInt : NPlusRender.gray;
-        String name = NPlusThemeModule.lowercase.isToggled() ? this.mod.getName().toLowerCase() : this.mod.getName();
+        String name = GuiModule.lowercase.isToggled() ? this.mod.getName().toLowerCase() : this.mod.getName();
         int tx = x + this.category.getWidth() / 2 - NPlusRender.width(name) / 2;
-        if (NPlusThemeModule.underline.isToggled()) {
-            NPlusRender.underlined(name, tx, y + 4, (int) NPlusThemeModule.underlineExpand.getInput(), color);
+        if (GuiModule.underline.isToggled()) {
+            NPlusRender.underlined(name, tx, y + 4, (int) GuiModule.underlineExpand.getInput(), color);
         } else {
             NPlusRender.text(name, tx, y + 4, color, true);
         }

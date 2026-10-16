@@ -1,6 +1,6 @@
 package openraven.ravenxd.gui.nplus;
 
-import openraven.ravenxd.module.NPlusThemeModule;
+import openraven.ravenxd.module.GuiModule;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -37,7 +37,7 @@ public final class NPlusRender {
     }
 
     private static NPlusFont font() {
-        return NPlusThemeModule.font() ? NPlusFont.get(20) : null;
+        return GuiModule.font() ? NPlusFont.get(20) : null;
     }
 
     public static FontRenderer mcFont() {
@@ -160,7 +160,7 @@ public final class NPlusRender {
 
     // gui theme gradient
     public static void moduleGradient(float x, float y, float xEnd, float yEnd, int top, int bottom) {
-        int theme = (int) NPlusThemeModule.theme.getInput() + 1;
+        int theme = (int) GuiModule.nplusTheme.getInput() + 1;
         if (theme != 1 && theme != 2) {
             return;
         }

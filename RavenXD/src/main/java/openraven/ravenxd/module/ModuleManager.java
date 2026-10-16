@@ -28,7 +28,6 @@ public final class ModuleManager {
     public static SettingsModule settings;
     public static AssistantModule assistant;
     public static HudModule hud;
-    public static NPlusThemeModule nplus;
     public static final List<Module> enabledModules = new ArrayList<Module>();
     public static final List<Module> afterDisableQueue = new ArrayList<Module>();
     public static final List<Module> closet = new ArrayList<Module>();
@@ -65,8 +64,6 @@ public final class ModuleManager {
                     m = irc = new IrcModule(key);
                 } else if (name.equals("Settings")) {
                     m = settings = new SettingsModule(key);
-                } else if (name.equals("N+ Theme")) {
-                    m = nplus = new NPlusThemeModule(key);
                 } else if (name.equals("Assistant")) {
                     m = assistant = new AssistantModule(key);
                 } else if (name.equals(openraven.ravenxd.script.ScriptManager.MANAGER_NAME) && cat == Category.scripts) {
@@ -103,7 +100,6 @@ public final class ModuleManager {
         irc.link();
         settings.link();
         assistant.link();
-        nplus.link();
         for (Module m : linked) {
             m.link();
         }

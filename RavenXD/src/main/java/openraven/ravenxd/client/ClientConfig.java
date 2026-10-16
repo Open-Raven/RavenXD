@@ -39,6 +39,7 @@ public final class ClientConfig {
             for (NPlusCategory c : NPlusGui.instance.categories) {
                 write(w, "nplus-" + c.category.name(), c.getX() + "," + c.rawY() + "," + c.isPinned() + "," + c.isOpened());
             }
+            write(w, "waifu", openraven.ravenxd.gui.Waifu.x + "," + openraven.ravenxd.gui.Waifu.y);
             write(w, "friends", String.join(",", Friends.friends));
             write(w, "enemies", String.join(",", Friends.enemies));
             w.close();
@@ -89,6 +90,16 @@ public final class ClientConfig {
                             try {
                                 c.load(Integer.parseInt(v[0]), Integer.parseInt(v[1]), Boolean.parseBoolean(v[2]));
                                 c.setOpened(Boolean.parseBoolean(v[3]));
+                            } catch (NumberFormatException ignored) {
+                            }
+                        }
+                    } else if (key.equals("waifu")) {
+                        // ts so dumb
+                        String[] xy = value.split(",");
+                        if (xy.length == 2) {
+                            try {
+                                openraven.ravenxd.gui.Waifu.x = Integer.parseInt(xy[0].trim());
+                                openraven.ravenxd.gui.Waifu.y = Integer.parseInt(xy[1].trim());
                             } catch (NumberFormatException ignored) {
                             }
                         }

@@ -80,6 +80,7 @@ public class ClickGui extends GuiScreen {
     @Override
     public void drawScreen(int x, int y, float p) {
         int bg;
+        GuiModule.applyStyleColors();
         Module hud = ModuleManager.get("HUD");
         if (hud != null && hud.isEnabled()) {
             openraven.ravenxd.module.HudModule.render();
@@ -104,6 +105,8 @@ public class ClickGui extends GuiScreen {
                 m.updatePosition(x, y);
             }
         }
+        Waifu.render(x, y, this.width, this.height);
+        this.drawClock();
         GL11.glColor3f(1.0f, 1.0f, 1.0f);
         if (!GuiModule.hidePlayerModel.isToggled() && this.mc.thePlayer != null) {
             GuiInventory.drawEntityOnScreen(this.width + 15 - this.backgroundAnimation.getValueInt(0, 40, 2), this.height - 10, 40,
@@ -136,7 +139,30 @@ public class ClickGui extends GuiScreen {
         Watermark.render(4, wy, true);
     }
 
+    private void drawClock() {
+        if (!GuiModule.clock.isToggled() && !GuiModule.date.isToggled()) {
+            return;
+        }
+        java.util.Calendar c = java.util.Calendar.getInstance();
+        String s = "";
+        if (GuiModule.clock.isToggled()) {
+            s = String.format("%02d:%02d:%02d", c.get(java.util.Calendar.HOUR_OF_DAY), c.get(java.util.Calendar.MINUTE), c.get(java.util.Calendar.SECOND));
+        }
+        if (GuiModule.date.isToggled()) {
+            String d = java.time.LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            s = s.isEmpty() ? d : s + " | " + d;
+        }
+        this.fontRendererObj.drawStringWithShadow(s, this.width - 5 - this.fontRendererObj.getStringWidth(s), 5, RenderUtils.rainbow(2L, 1350L));
+    }
+
     public void drawTitle(float cx, float cy) {
+        this.drawTitle(this.fontRendererObj, cx, cy);
+    }
+
+    public void drawTitle(net.minecraft.client.gui.FontRenderer font, float cx, float cy) {
+        if (this.fontRendererObj == null) {
+            this.fontRendererObj = font;
+        }
         long now = System.currentTimeMillis();
         float since = now - openedAt;
         String title = "Raven";
@@ -287,10 +313,14 @@ public class ClickGui extends GuiScreen {
 
     @Override
     public void mouseClicked(int x, int y, int m) throws IOException {
+        if (Waifu.mouseClicked(x, y, m, this.width, this.height)) {
+            return;
+        }
         for (CategoryComponent c : categories) {
             if (m == 0) {
                 if (c.overCategoryIcon(x, y)) {
                     c.setOpened(!c.opened);
+                    GuiModule.playCategorySound(c.opened);
                     return;
                 }
                 if (c.overTitle(x, y)) {
@@ -301,6 +331,7 @@ public class ClickGui extends GuiScreen {
                 }
             } else if ((m == 1 || m == 2) && c.overTitle(x, y)) {
                 c.setOpened(!c.opened);
+                GuiModule.playCategorySound(c.opened);
                 return;
             }
             if (!c.opened || c.modules.isEmpty()) continue;
@@ -317,6 +348,7 @@ public class ClickGui extends GuiScreen {
 
     @Override
     public void mouseReleased(int x, int y, int s) {
+        Waifu.mouseReleased();
         if (s == 0) {
             for (CategoryComponent c : categories) {
                 c.overTitle(false);

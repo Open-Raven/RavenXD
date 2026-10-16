@@ -18,6 +18,8 @@ import java.awt.Color;
 
 public final class RenderUtils implements IMinecraft {
 
+    // useless
+    public static float renderDeltaTime;
     public static int scaledWidth, scaledWidthD, scaledHeight, scaledHeightD, scaleFactor = 1;
 
     public static final double[] SIN_0_90 = new double[31], COS_0_90 = new double[31];

@@ -168,7 +168,9 @@ public class CategoryComponent {
                     GuiModule.categoryFill, GuiModule.closedOutlineLeft, GuiModule.closedOutlineRight);
         }
         GL11.glPushMatrix();
-        float nameX = 13.5f;
+        // haru has no category icons
+        boolean icons = GuiModule.style() != GuiModule.Style.Haru;
+        float nameX = icons ? 13.5f : 4.0f;
         if (this.openAnimation != null) {
             float center = this.getWidth() / 2.0f - (float) mc.fontRendererObj.getStringWidth(this.categoryName.name()) / 2.0f;
             if (this.opening) {
@@ -181,9 +183,11 @@ public class CategoryComponent {
         }
         renderer.drawString(this.categoryName.name(), this.x + nameX, this.y + 4.0f, GuiModule.categoryNameColor.rgb, false);
         RenderUtils.resetColor();
-        GlStateManager.scale(this.iconScale, this.iconScale, this.iconScale);
-        ItemStack icon = active ? this.categoryName.activeIcon : this.categoryName.icon;
-        RenderUtils.drawItem(icon, (this.x + 2.0f) * this.iconInverse, (this.y + 4.0f) * this.iconInverse);
+        if (icons) {
+            GlStateManager.scale(this.iconScale, this.iconScale, this.iconScale);
+            ItemStack icon = active ? this.categoryName.activeIcon : this.categoryName.icon;
+            RenderUtils.drawItem(icon, (this.x + 2.0f) * this.iconInverse, (this.y + 4.0f) * this.iconInverse);
+        }
         GL11.glPopMatrix();
     }
 

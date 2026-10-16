@@ -33,6 +33,21 @@ public class GuiColor {
         this.af = alpha / 255.0f;
     }
 
+    // change color in place (animated rainbows and stufff ig)
+    public void set(int argb) {
+        this.rainbow = false;
+        this.a = argb >>> 24;
+        this.r = argb >> 16 & 0xFF;
+        this.g = argb >> 8 & 0xFF;
+        this.b = argb & 0xFF;
+        this.af = this.a / 255.0f;
+        this.rf = this.r / 255.0f;
+        this.gf = this.g / 255.0f;
+        this.bf = this.b / 255.0f;
+        this.color = new Color(this.r, this.g, this.b, this.a);
+        this.rgb = argb;
+    }
+
     public static void apply(GuiColor c) {
         if (c.rainbow) {
             float[] f = c.rainbowComponents();

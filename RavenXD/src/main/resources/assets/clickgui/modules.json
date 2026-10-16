@@ -8004,11 +8004,12 @@
     "suffix": "",
     "value": 0.0,
     "min": 0.0,
-    "max": 1.0,
+    "max": 2.0,
     "step": 1.0,
     "options": [
      "Raven XD",
-     "N+"
+     "N+",
+     "Haru"
     ],
     "labels": null
    },
@@ -8096,73 +8097,37 @@
     "t": "toggle",
     "name": "Save category positions",
     "value": false
-   }
-  ]
- },
- {
-  "cls": "NPlus",
-  "name": "N+ Theme",
-  "category": "client",
-  "enabled": false,
-  "noToggle": true,
-  "hidden": false,
-  "key": 0,
-  "lite": true,
-  "failed": null,
-  "settings": [
-   {
-    "t": "desc",
-    "name": "Settings for the N+ Gui style."
    },
    {
-    "t": "toggle",
-    "name": "Custom font",
-    "value": true
+    "t": "desc",
+    "name": "Extras (all styles)"
    },
    {
     "t": "mode",
-    "name": "Theme",
+    "name": "Waifu",
     "prefix": "",
     "suffix": "",
-    "value": 4.0,
+    "value": 0.0,
     "min": 0.0,
-    "max": 6.0,
+    "max": 8.0,
     "step": 1.0,
     "options": [
-     "b1",
-     "b2",
-     "b3",
-     "b+",
-     "N+",
-     "Vape",
-     "NoModulesFake"
+     "None",
+     "Astolfo",
+     "Kurumi",
+     "Uzaki",
+     "Megumin",
+     "Mai",
+     "Magic",
+     "Kiwi",
+     "Utena"
     ],
     "labels": null
    },
    {
     "t": "toggle",
-    "name": "Background",
-    "value": true
-   },
-   {
-    "t": "toggle",
-    "name": "Player",
-    "value": true
-   },
-   {
-    "t": "toggle",
-    "name": "Logo",
-    "value": false
-   },
-   {
-    "t": "toggle",
-    "name": "Blur",
-    "value": true
-   },
-   {
-    "t": "toggle",
     "name": "Clock",
-    "value": true
+    "value": false
    },
    {
     "t": "toggle",
@@ -8171,34 +8136,8 @@
    },
    {
     "t": "toggle",
-    "name": "Command prompt",
-    "value": true
-   },
-   {
-    "t": "button",
-    "name": "Clean",
-    "value": false
-   },
-   {
-    "t": "desc",
-    "name": "Category"
-   },
-   {
-    "t": "slider",
-    "name": "Category BG offset",
-    "prefix": "",
-    "suffix": "",
-    "value": 1.0,
-    "min": -5.0,
-    "max": 5.0,
-    "step": 1.0,
-    "options": null,
-    "labels": null
-   },
-   {
-    "t": "toggle",
     "name": "Sounds",
-    "value": true
+    "value": false
    },
    {
     "t": "slider",
@@ -8244,7 +8183,118 @@
    },
    {
     "t": "desc",
-    "name": "Module"
+    "name": "Haru"
+   },
+   {
+    "t": "mode",
+    "name": "Haru color",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 5.0,
+    "step": 1.0,
+    "options": [
+     "Pastel",
+     "Static",
+     "Rainbow",
+     "Memories",
+     "Lilith",
+     "Cantina"
+    ],
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Haru hue",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 350.0,
+    "step": 10.0,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Haru saturation",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Haru brightness",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "desc",
+    "name": "N+"
+   },
+   {
+    "t": "toggle",
+    "name": "Custom font",
+    "value": true
+   },
+   {
+    "t": "mode",
+    "name": "N+ theme",
+    "prefix": "",
+    "suffix": "",
+    "value": 4.0,
+    "min": 0.0,
+    "max": 6.0,
+    "step": 1.0,
+    "options": [
+     "b1",
+     "b2",
+     "b3",
+     "b+",
+     "N+",
+     "Vape",
+     "NoModulesFake"
+    ],
+    "labels": null
+   },
+   {
+    "t": "toggle",
+    "name": "N+ logo",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Command prompt",
+    "value": true
+   },
+   {
+    "t": "button",
+    "name": "Clean",
+    "value": false
+   },
+   {
+    "t": "slider",
+    "name": "Category BG offset",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": -5.0,
+    "max": 5.0,
+    "step": 1.0,
+    "options": null,
+    "labels": null
    },
    {
     "t": "toggle",

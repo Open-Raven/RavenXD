@@ -53,6 +53,27 @@ public class GuiModule extends Module {
     public static SliderSetting style, scale, backgroundBlur, scrollSpeed;
     public static ButtonSetting allowMovement, allowRotating, darkBackground, hidePlayerModel, hideWatermark, liteMode,
             rainbowOutlines, resetPositions, saveCategoryPositions;
+    // extras
+    public static SliderSetting waifu, soundVolume, soundPitch, soundMode;
+    public static ButtonSetting clock, date, sounds;
+    // haru
+    public static SliderSetting haruColorMode, haruHue, haruSaturation, haruBrightness;
+    // n+lite
+    public static SliderSetting nplusTheme, categoryOffset, underlineExpand, sliderStyle, sliderRound;
+    public static ButtonSetting customFont, nplusLogo, commandPrompt, clean, lowercase, underline;
+
+    public enum Style {
+        RavenXD, NPlus, Haru
+    }
+
+    public enum SliderStyle {
+        Normal, Round, Outlines, Vape
+    }
+
+    public static final String[] SOUNDS = {"random.click", "random.bowhit", "game.player.hurt", "random.chestopen", "random.explode"};
+    private static final GuiColor DEFAULT_CLOSED_LEFT = closedOutlineLeft, DEFAULT_CLOSED_RIGHT = closedOutlineRight,
+            DEFAULT_NAME = categoryNameColor, DEFAULT_ENABLED = enabledColor;
+    public static final GuiColor haruColor = new GuiColor(255, 190, 190, 255);
 
     public GuiModule(int key) {
         super("Gui", Category.client, key);
@@ -73,6 +94,90 @@ public class GuiModule extends Module {
         resetPositions = (ButtonSetting) ModuleManager.setting(this, "Reset positions");
         saveCategoryPositions = (ButtonSetting) ModuleManager.setting(this, "Save category positions");
         saveCategoryPositions.notSaved();
+        waifu = (SliderSetting) ModuleManager.setting(this, "Waifu");
+        clock = (ButtonSetting) ModuleManager.setting(this, "Clock");
+        date = (ButtonSetting) ModuleManager.setting(this, "Date");
+        sounds = (ButtonSetting) ModuleManager.setting(this, "Sounds");
+        soundVolume = (SliderSetting) ModuleManager.setting(this, "Sound volume");
+        soundPitch = (SliderSetting) ModuleManager.setting(this, "Sound pitch");
+        soundMode = (SliderSetting) ModuleManager.setting(this, "Sound mode");
+        haruColorMode = (SliderSetting) ModuleManager.setting(this, "Haru color");
+        haruHue = (SliderSetting) ModuleManager.setting(this, "Haru hue");
+        haruSaturation = (SliderSetting) ModuleManager.setting(this, "Haru saturation");
+        haruBrightness = (SliderSetting) ModuleManager.setting(this, "Haru brightness");
+        customFont = (ButtonSetting) ModuleManager.setting(this, "Custom font");
+        nplusTheme = (SliderSetting) ModuleManager.setting(this, "N+ theme");
+        nplusLogo = (ButtonSetting) ModuleManager.setting(this, "N+ logo");
+        commandPrompt = (ButtonSetting) ModuleManager.setting(this, "Command prompt");
+        clean = (ButtonSetting) ModuleManager.setting(this, "Clean");
+        categoryOffset = (SliderSetting) ModuleManager.setting(this, "Category BG offset");
+        lowercase = (ButtonSetting) ModuleManager.setting(this, "Lowercase");
+        underline = (ButtonSetting) ModuleManager.setting(this, "Underline");
+        underlineExpand = (SliderSetting) ModuleManager.setting(this, "Underline expand");
+        sliderStyle = (SliderSetting) ModuleManager.setting(this, "Slider style");
+        sliderRound = (SliderSetting) ModuleManager.setting(this, "Slider round range");
+    }
+
+    public static Style style() {
+        return Style.values()[(int) style.getInput()];
+    }
+
+    public static SliderStyle sliderStyle() {
+        return SliderStyle.values()[(int) sliderStyle.getInput()];
+    }
+
+    // nplus font
+    public static boolean font() {
+        return customFont.isToggled();
+    }
+
+    // category sound
+    // TODO: add sigma remap sounds optionally
+    public static void playCategorySound(boolean opened) {
+        if (sounds == null || !sounds.isToggled() || !Chat.inWorld()) {
+            return;
+        }
+        int mode = (int) soundMode.getInput();
+        String s = mode == 3 && !opened ? "random.chestclosed" : SOUNDS[mode];
+        openraven.ravenxd.client.Sounds.play(s, (float) soundVolume.getInput(), (float) soundPitch.getInput());
+    }
+
+    // haru colors
+    public static int haruRgb() {
+        switch ((int) haruColorMode.getInput()) {
+            case 0: return gradient(new java.awt.Color(255, 190, 190), new java.awt.Color(255, 190, 255), 2, false);
+            case 2: return java.awt.Color.getHSBColor((float) (System.currentTimeMillis() % 5000L) / 5000.0f, 1.0f, 1.0f).getRGB();
+            case 3: return gradient3(new java.awt.Color(255, 0, 255), new java.awt.Color(255, 255, 0), new java.awt.Color(255, 0, 158), 2);
+            case 4: return gradient3(new java.awt.Color(76, 56, 108), new java.awt.Color(255, 51, 51), new java.awt.Color(76, 56, 108), 5);
+            case 5: return gradient(new java.awt.Color(255, 0, 0), new java.awt.Color(0, 0, 255), 7, true);
+            default: return java.awt.Color.getHSBColor((float) (haruHue.getInput() % 360.0) / 360.0f, (float) haruSaturation.getInput(), (float) haruBrightness.getInput()).getRGB();
+        }
+    }
+
+    // haru skid helpers
+    private static int gradient(java.awt.Color a, java.awt.Color b, int y, boolean cosine) {
+        double t = System.currentTimeMillis() / 600.0 - y * 0.06;
+        double p = cosine ? Math.cos(t) * 0.5 + 0.5 : Math.sin(t) * 0.5 + 0.5;
+        int green = cosine ? (int) (b.getGreen() + (a.getGreen() - b.getGreen()) * p) : (int) (a.getGreen() + (b.getGreen() - a.getGreen()) * p);
+        return new java.awt.Color((int) (a.getRed() + (b.getRed() - a.getRed()) * p), green, (int) (a.getBlue() + (b.getBlue() - a.getBlue()) * p)).getRGB();
+    }
+    private static int gradient3(java.awt.Color a, java.awt.Color b, java.awt.Color c, int y) {
+        double p = Math.sin(System.currentTimeMillis() / 600.0 - y * 0.06) * 0.5 + 0.5;
+        return new java.awt.Color((int) (a.getRed() + (b.getRed() - a.getRed()) * p), (int) (a.getGreen() + (b.getGreen() - a.getGreen()) * p), c.getBlue()).getRGB();
+    }
+    public static void applyStyleColors() {
+        if (style() == Style.Haru) {
+            haruColor.set(haruRgb());
+            outlineLeft = outlineRight = closedOutlineLeft = closedOutlineRight = haruColor;
+            categoryNameColor = enabledColor = haruColor;
+            return;
+        }
+        outlineLeft = rainbowOutlines.isToggled() ? rainbowLeft : whiteOutline;
+        outlineRight = rainbowOutlines.isToggled() ? rainbowRight : whiteOutline;
+        closedOutlineLeft = DEFAULT_CLOSED_LEFT;
+        closedOutlineRight = DEFAULT_CLOSED_RIGHT;
+        categoryNameColor = DEFAULT_NAME;
+        enabledColor = DEFAULT_ENABLED;
     }
 
     @Override
@@ -90,6 +195,12 @@ public class GuiModule extends Module {
             resetPositions();
         } else if (b == saveCategoryPositions) {
             openraven.ravenxd.client.ClientConfig.save();
+        } else if (b == clean && NPlusGui.instance != null) {
+            int l = 50, j = l / 2;
+            for (openraven.ravenxd.gui.nplus.NPlusCategory c : NPlusGui.instance.categories) {
+                c.setX(c.getX() / l * l + (c.getX() % l > j ? l : 0));
+                c.setY(c.getY() / l * l + (c.getY() % l > j ? l : 0));
+            }
         }
     }
 
@@ -198,7 +309,7 @@ public class GuiModule extends Module {
                 MoveUtils.resetTimer();
             }
             applyScale();
-            if (style.getInput() == 1.0) {
+            if (style() == Style.NPlus) {
                 mc.displayGuiScreen(NPlusGui.instance);
                 NPlusGui.instance.initMain();
             } else {

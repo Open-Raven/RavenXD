@@ -5,12 +5,14 @@ import openraven.ravenxd.client.Chat;
 import openraven.ravenxd.client.Profiles;
 import openraven.ravenxd.client.Sounds;
 import openraven.ravenxd.gui.BindComponent;
+import openraven.ravenxd.gui.Waifu;
+import openraven.ravenxd.gui.ClickGui;
 import openraven.ravenxd.module.Category;
 import openraven.ravenxd.module.GuiModule;
 import openraven.ravenxd.module.HudModule;
 import openraven.ravenxd.module.Module;
 import openraven.ravenxd.module.ModuleManager;
-import openraven.ravenxd.module.NPlusThemeModule;
+import openraven.ravenxd.module.GuiModule;
 import openraven.ravenxd.util.Animation;
 import openraven.ravenxd.util.Blur;
 import openraven.ravenxd.util.RenderUtils;
@@ -69,6 +71,7 @@ public class NPlusGui extends GuiScreen {
     }
 
     public void initMain() {
+        ClickGui.openedAt = System.currentTimeMillis();
         (this.backgroundAnimation = new Animation(500.0f)).start();
         for (NPlusCategory c : this.categories) {
             c.rebuild();
@@ -81,41 +84,46 @@ public class NPlusGui extends GuiScreen {
             HudModule.render();
         }
         float fade = this.backgroundAnimation.getValue(0.0f, 0.7f, 2);
-        if (NPlusThemeModule.blur.isToggled()) {
+        if (GuiModule.backgroundBlur.getInput() > 0.0) {
             Blur.get().startStencil();
             Gui.drawRect(0, 0, RenderUtils.scaledWidth, RenderUtils.scaledHeight, -1);
-            Blur.get().render(2, 1.7f * fade / 0.7f);
+            Blur.get().render(2, GuiModule.blurStrength * fade / 0.7f);
         }
-        if (NPlusThemeModule.background.isToggled()) {
+        if (GuiModule.darkBackground.isToggled()) {
             drawRect(0, 0, this.width, this.height, (int) (fade * 255.0f) << 24);
         }
         String info = "[ " + Account.NAME + (Profiles.current != null ? " | Profile: " + Profiles.current.name : "") + " ]";
-        NPlusRender.text(info, 4, this.height - 3 - this.fontRendererObj.FONT_HEIGHT, NPlusRender.astolfo(10, 14, 4890.0f), !NPlusThemeModule.font());
+        NPlusRender.text(info, 4, this.height - 3 - this.fontRendererObj.FONT_HEIGHT, NPlusRender.astolfo(10, 14, 4890.0f), !GuiModule.font());
         int rainbow = NPlusRender.rainbow(2L, 1350L);
-        if (NPlusThemeModule.logo.isToggled()) {
+        if (GuiModule.nplusLogo.isToggled()) {
             int sw = this.width / 2, sh = this.height / 4;
             NPlusRender.icon("logo", sw - 95, sh + 35, 200, 60, Color.white.darker());
             NPlusRender.icon("feather", sw + 80, sh + 70, 35, 35, new Color(rainbow).darker());
+        }
+        // The Raven XD title, like the default style's watermark.
+        if (!GuiModule.hideWatermark.isToggled() && !GuiModule.nplusLogo.isToggled()) {
+            ClickGui.instance.drawTitle(this.fontRendererObj, this.width / 2.0f, this.height / 4.0f);
         }
         for (NPlusCategory c : this.categories) {
             c.draw();
             c.update(x, y);
         }
+        Waifu.render(x, y, this.width, this.height);
         String time = time();
-        if (NPlusThemeModule.clock.isToggled()) {
+        if (GuiModule.clock.isToggled()) {
             NPlusRender.text(time, 8, 5, rainbow, true);
         }
-        if (NPlusThemeModule.date.isToggled()) {
-            boolean clock = NPlusThemeModule.clock.isToggled();
+        if (GuiModule.date.isToggled()) {
+            boolean clock = GuiModule.clock.isToggled();
             String date = (clock ? " | " : "") + DATE.format(LocalDateTime.now());
             NPlusRender.text(date, clock ? 8 + NPlusRender.width(time) : 5, 5, rainbow, true);
         }
         RenderUtils.resetColor();
-        if (NPlusThemeModule.player.isToggled() && this.mc.thePlayer != null) {
+        if (!GuiModule.hidePlayerModel.isToggled() && this.mc.thePlayer != null) {
             GuiInventory.drawEntityOnScreen(this.width + 15 - this.backgroundAnimation.getValueInt(0, 40, 2), this.height - 19 - this.fontRendererObj.FONT_HEIGHT, 40,
                     (float) (this.width - 25 - x), (float) (this.height - 50 - y), this.mc.thePlayer);
         }
-        if (NPlusThemeModule.commandPrompt.isToggled()) {
+        if (GuiModule.commandPrompt.isToggled()) {
             this.console.update(x, y);
             this.console.draw();
         }
@@ -126,21 +134,12 @@ public class NPlusGui extends GuiScreen {
         return c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE) + ":" + c.get(Calendar.SECOND);
     }
 
-    private static void playSound(boolean opened) {
-        if (!NPlusThemeModule.sounds.isToggled() || !Chat.inWorld()) {
-            return;
-        }
-        int mode = (int) NPlusThemeModule.soundMode.getInput();
-        String s = NPlusThemeModule.SOUNDS[mode];
-        if (mode == 3 && !opened) {
-            s = "random.chestclosed";
-        }
-        Sounds.play(s, (float) NPlusThemeModule.soundVolume.getInput(), (float) NPlusThemeModule.soundPitch.getInput());
-    }
-
     @Override
     public void mouseClicked(int x, int y, int b) throws IOException {
-        if (NPlusThemeModule.commandPrompt.isToggled()) {
+        if (Waifu.mouseClicked(x, y, b, this.width, this.height)) {
+            return;
+        }
+        if (GuiModule.commandPrompt.isToggled()) {
             this.console.mouseDown(x, y, b);
             if (this.console.over(x, y)) {
                 return;
@@ -150,7 +149,7 @@ public class NPlusGui extends GuiScreen {
             if (b == 0) {
                 if (c.overArrow(x, y)) {
                     c.setOpened(!c.isOpened());
-                    playSound(c.isOpened());
+                    GuiModule.playCategorySound(c.isOpened());
                     return;
                 }
                 if (c.overPin(x, y)) {
@@ -173,6 +172,7 @@ public class NPlusGui extends GuiScreen {
 
     @Override
     public void mouseReleased(int x, int y, int b) {
+        Waifu.mouseReleased();
         this.console.mouseReleased();
         if (b != 0) {
             return;
@@ -192,7 +192,7 @@ public class NPlusGui extends GuiScreen {
             this.mc.displayGuiScreen(null);
             return;
         }
-        if (NPlusThemeModule.commandPrompt.isToggled() && this.console.keyTyped(t, k)) {
+        if (GuiModule.commandPrompt.isToggled() && this.console.keyTyped(t, k)) {
             return;
         }
         if (k == ModuleManager.gui.getKeycode() && !BindComponent.binding) {

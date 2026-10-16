@@ -1,6 +1,6 @@
 package openraven.ravenxd.gui.nplus;
 
-import openraven.ravenxd.module.NPlusThemeModule;
+import openraven.ravenxd.module.GuiModule;
 import openraven.ravenxd.module.setting.SliderSetting;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.opengl.GL11;
@@ -29,8 +29,8 @@ public class NPlusSlider extends NPlusComp {
         int y = this.top() + 11;
         int xEnd = x + this.module.category.getWidth() - 8;
         int r = x + (int) this.w;
-        NPlusThemeModule.SliderStyle style = NPlusThemeModule.sliderStyle();
-        float round = (float) NPlusThemeModule.sliderRound.getInput();
+        GuiModule.SliderStyle style = GuiModule.sliderStyle();
+        float round = (float) GuiModule.sliderRound.getInput();
         switch (style) {
             case Normal:
                 Gui.drawRect(x, y, xEnd, y + 4, dark);
