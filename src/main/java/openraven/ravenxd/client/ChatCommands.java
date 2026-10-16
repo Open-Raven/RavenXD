@@ -9,6 +9,9 @@ import openraven.ravenxd.module.Module;
 import openraven.ravenxd.module.ModuleManager;
 import openraven.ravenxd.module.setting.ButtonSetting;
 import openraven.ravenxd.module.setting.SliderSetting;
+import openraven.ravenxd.script.ScriptCrypto;
+import openraven.ravenxd.script.ScriptEvent;
+import openraven.ravenxd.script.ScriptManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
@@ -21,6 +24,10 @@ import org.lwjgl.input.Keyboard;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -164,6 +171,10 @@ public final class ChatCommands {
             }
             case "track": {
                 track(cmd, args);
+                break;
+            }
+            case "decrypt": {
+                decrypt(cmd, args);
                 break;
             }
             case "rotate": {
@@ -432,6 +443,56 @@ public final class ChatCommands {
         String s = "&b" + (name.length() > 1 ? name.charAt(0) + "&b" + name.substring(1) : name);
         text.appendSibling(new ChatComponentText(Chat.color(s)).setChatStyle(style));
         mc.thePlayer.addChatMessage((IChatComponent) text);
+    }
+
+    // script decrypter cuz the file/folder layout of the repo is fucked
+    private static void decrypt(String cmd, String[] args) {
+        if (args.length != 2) {
+            reply(cmd, "&7Enter script name.");
+            return;
+        }
+        String name = args[1].endsWith(ScriptManager.EXTENSION) ? args[1].substring(0, args[1].length() - ScriptManager.EXTENSION.length()) : args[1];
+        if (!name.matches("[A-Za-z0-9_-]+")) {
+            reply(cmd, "&cInvalid script name.");
+            return;
+        }
+        File dir = new File(ClientConfig.DIR, "scripts");
+        File in = new File(dir, name + ScriptManager.EXTENSION);
+        if (!in.isFile()) {
+            reply(cmd, "&cScript &b" + name + "&c not found.");
+            return;
+        }
+        String payload = null;
+        try {
+            for (String line : Files.readAllLines(in.toPath(), StandardCharsets.UTF_8)) {
+                if (line.contains("decrypt - \"") && (payload = ScriptCrypto.decryptLine(line)) != null) {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            reply(cmd, "&cCouldn't read script.");
+            return;
+        }
+        String trailer = payload == null ? null : ScriptCrypto.trailer(payload);
+        String source = payload == null ? null : ScriptCrypto.source(payload);
+        if (source == null) {
+            reply(cmd, "&cScript &b" + name + "&c isn't encrypted.");
+            return;
+        }
+        for (ScriptEvent event : ScriptEvent.values()) {
+            String derived = event.deriveEncryptedName(trailer);
+            if (derived != null) {
+                source = source.replace(derived, event.getNormalName());
+            }
+        }
+        File out = new File(dir, name + "-decrypted" + ScriptManager.EXTENSION);
+        try {
+            Files.write(out.toPath(), source.getBytes(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            reply(cmd, "&cCouldn't write &b" + out.getName() + "&c.");
+            return;
+        }
+        reply(cmd, "&7Decrypted to &b" + out.getName() + "&7.");
     }
 
     private static void track(String cmd, String[] args) {
@@ -800,6 +861,7 @@ public final class ChatCommands {
         line(" &b.stats &7View your " + Account.NAME + " stats.");
         line(" &b.time [time] &7Set world time.");
         line(" &b.track [name] &7Highlight a player.");
+        line(" &b.decrypt [script] &7Decrypt a script to [script]-decrypted.");
         line(" &b.rotate [yaw] [pitch] &7Set rotations.");
         reply(cmd, "&7Commands - &dModules");
         line(" &b.cname [name] &7Set name hider name.");

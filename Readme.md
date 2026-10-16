@@ -21,19 +21,14 @@ cd RavenXD
 .\gradlew.bat build
 ```
 
-The installable mod is `RavenXD/build/libs/RavenXD-3.1.jar`. Place it in your
+The installable mod is `build/libs/RavenXD-3.1.jar`. Place it in your
 Minecraft Forge 1.8.9 `mods` directory. Open the GUI with Right Shift.
 
 ## Decrypting Scripts - u20
 
-Raven's protected scripts carry two recovered layers:
-
-1. **AES-128/ECB** — key `K8ai@rUb^mj7X91P`, applied to the Base64 in a `decrypt - "<base64>"` line.
-2. **Hex/XOR chain** — a 16-byte key table and a shift constant of `73`. The first two hex digits
-   seed the chain and the rest are the data bytes.
-
-The plaintext keeps a 32-character trailer, and the client stamps the formula it contains with the
-user's UID: `size * 0.05506` becomes `size * 0.05` + the UID.
+To decrypt a script, place it in your scripts folder.
+Then, in-game, use the .decrypt command with your script's name to decrypt it.
+After that, check the scripts folder and you will see a decrypted version of your script.
 
 ## Credits
 - [Haru](https://github.com/Coccocoahelper/Haru): most waifus + haru theme 
