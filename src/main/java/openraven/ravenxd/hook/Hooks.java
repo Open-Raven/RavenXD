@@ -273,8 +273,9 @@ public final class Hooks {
         Module m;
         if ((m = any("Scaffold")) != null) m.onPostPlayerInputAlways();
         if ((m = any("Tower")) != null) m.onPostPlayerInputAlways();
+        if ((m = any("Stasis")) != null) m.onPostPlayerInputAlways();
         String[] order = {"Freecam", "KillAura", "Bhop", "NoSlow", "SafeWalk", "Long Jump", "Dolphin", "AntiAFK", "InvMove",
-                "TargetStrafe", "Stasis", "Velocity"};
+                "TargetStrafe", "Velocity"};
         for (String name : order) {
             if ((m = on(name)) != null) m.onPostPlayerInput();
         }
@@ -325,6 +326,18 @@ public final class Hooks {
         mc.thePlayer.isAirBorne = true;
         ForgeHooks.onLivingJump(mc.thePlayer);
         return true;
+    }
+
+    public static void onPostUpdate() {
+        Module m;
+        if ((m = on("Stasis")) != null) {
+            ((openraven.ravenxd.module.movement.StasisModule) m).postUpdate();
+        }
+    }
+
+    public static boolean onRightClick() {
+        Module m = on("Stasis");
+        return m != null && ((openraven.ravenxd.module.movement.StasisModule) m).rightClick();
     }
 
     public static void onStep(Entity entity) {
@@ -695,6 +708,9 @@ public final class Hooks {
         PacketUtils.trackReceived(packet);
         Module m;
         if ((m = any("Latency Alerts")) != null) m.onPacketReceivedAlways();
+        if ((m = on("Stasis")) != null && !m.onReceivePacket(packet, handler)) {
+            return;
+        }
         if (ScriptManager.events != null && !ScriptEvents.packetReceived(packet)) {
             return;
         }
@@ -735,7 +751,6 @@ public final class Hooks {
         } else if (packet instanceof S12PacketEntityVelocity) {
             S12PacketEntityVelocity p = (S12PacketEntityVelocity) packet;
             if (mc.thePlayer != null && p.getEntityID() == mc.thePlayer.getEntityId()) {
-                if ((m = any("Stasis")) != null) m.onVelocityAlways();
                 if (cancelsKnockback()) {
                     return;
                 }

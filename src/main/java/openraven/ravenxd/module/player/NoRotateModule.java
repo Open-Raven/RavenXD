@@ -29,9 +29,6 @@ public class NoRotateModule extends Module {
 
     private static void onS08(S08PacketPlayerPosLook p) {
         lastS08 = System.currentTimeMillis();
-        if (openraven.ravenxd.module.movement.StasisModule.frozen) {
-            openraven.ravenxd.module.movement.StasisModule.onS08();
-        }
         if (openraven.ravenxd.module.movement.TimerModule.instance != null) {
             openraven.ravenxd.module.movement.TimerModule.onS08();
         }

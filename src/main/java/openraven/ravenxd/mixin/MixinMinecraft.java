@@ -23,6 +23,13 @@ public class MixinMinecraft {
         this.clickgui$lastFrame = now;
     }
 
+    @Inject(method = "rightClickMouse", at = @At("HEAD"), cancellable = true)
+    private void clickgui$rightClick(CallbackInfo ci) {
+        if (Hooks.onRightClick()) {
+            ci.cancel();
+        }
+    }
+
     @Redirect(method = "runTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/EntityRenderer;getMouseOver(F)V"))
     private void clickgui$getMouseOver(EntityRenderer renderer, float partialTicks) {
         Hooks.getMouseOver();

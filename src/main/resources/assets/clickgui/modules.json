@@ -2686,18 +2686,14 @@
     "name": "Hangs the player midair."
    },
    {
-    "t": "slider",
-    "name": "Pulse",
-    "prefix": "",
-    "suffix": " ticks",
-    "value": 65.0,
-    "min": 2.0,
-    "max": 85.0,
-    "step": 1.0,
-    "options": null,
-    "labels": {
-     "2.0": "§cDisabled"
-    }
+    "t": "toggle",
+    "name": "Hypixel Mode",
+    "value": false
+   },
+   {
+    "t": "toggle",
+    "name": "Shift place through walls",
+    "value": false
    }
   ]
  },

@@ -5,10 +5,6 @@
 Raven XD 3.1 is a Minecraft Forge 1.8.9 client, maintained at
 [Raven XD 3.1](https://github.com/Open-Raven/RavenXD).
 
-## Changes
-
-- Removed all API calls and backend references
-- Spoof UID #1
 
 ## Building
 
@@ -30,13 +26,16 @@ To decrypt a script, place it in your scripts folder.
 Then, in-game, use the .decrypt command with your script's name to decrypt it.
 After that, check the scripts folder and you will see a decrypted version of your script.
 
+
+
 ## Credits
 - [Haru](https://github.com/Coccocoahelper/Haru): most waifus + haru theme 
 - [Fae](https://github.com/Targink321/fae-client): some waifus
 - [image](https://www.vhv.rs/viewpic/hbiTRoo_doki-doki-natsuki-by-hatokame-kun-natsuki-ddlc/): natsuki.png
 - [SRT Client](https://github.com/egor14m11/Minecraft-Cheat-Sources/tree/a1a69f9955705dcea793b7159c7638a34fa6aae1/SRT): some speed modes
 - [MiauMinus](https://github.com/SPEEDBOY19/OpenMiau-Minus): most velocity modes
-- [OpenRise](https://github.com/fmcpe/OpenRise): most disablers
+- [OpenRise](whttps://github.com/fmcpe/OpenRise): most disablers
+- [Jade](https://github.com/Tewxx/OpenJade): stasis
 - [Rise-6.9.5](https://github.com/AnShanArchive/Rise-6.9.5): fixing openrise skids
 - [Kayasaka](https://github.com/a1pl/kayasaka): Rots + raycast (wrappers around miauminus+openrise)
 - [Raven N+](https://docs.google.com/spreadsheets/d/1IulXTiz9TCiMn15w_uphqjQjGO6feudirLzRJTQV-To/edit?gid=1390828944#gid=1390828944): relevant clickgui theme

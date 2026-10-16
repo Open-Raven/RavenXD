@@ -1,108 +1,114 @@
 package openraven.ravenxd.module.movement;
 
-import openraven.ravenxd.util.PacketUtils;
-import openraven.ravenxd.client.Hypixel;
+import openraven.ravenxd.jade.Stasis;
+import openraven.ravenxd.jade.compat.BooleanSetting;
+import openraven.ravenxd.jade.compat.EventBus;
+import openraven.ravenxd.jade.compat.LoadWorldEvent;
+import openraven.ravenxd.jade.compat.MoveInputEvent;
+import openraven.ravenxd.jade.compat.PacketReceiveEvent;
+import openraven.ravenxd.jade.compat.PacketSendEvent;
+import openraven.ravenxd.jade.compat.PostUpdateEvent;
+import openraven.ravenxd.jade.compat.PreUpdateEvent;
+import openraven.ravenxd.jade.compat.RightClickEvent;
+import openraven.ravenxd.jade.compat.TickStartEvent;
+import openraven.ravenxd.jade.compat.VelocityEvent;
 import openraven.ravenxd.module.Category;
 import openraven.ravenxd.module.Module;
 import openraven.ravenxd.module.ModuleManager;
-import openraven.ravenxd.module.setting.SliderSetting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.play.client.C03PacketPlayer;
+import openraven.ravenxd.module.setting.ButtonSetting;
+import net.minecraft.network.INetHandler;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S12PacketEntityVelocity;
+import net.minecraft.util.MovementInput;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+//wrapper around jade stasis
 public class StasisModule extends Module {
     public static StasisModule instance;
-    public static SliderSetting pulse;
-    public static boolean frozen;
-    private static double savedX, savedY, savedZ;
-    private static int frozenAt;
-    private static int delay;
+    private final Stasis stasis = new Stasis();
 
     public StasisModule(int key) {
         super("Stasis", Category.movement, key);
         instance = this;
+        EventBus.register(this.stasis);
     }
 
     public void link() {
-        pulse = (SliderSetting) ModuleManager.setting(this, "Pulse");
-    }
-
-    @Override
-    public void onPreUpdate() {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (delay > 0 && --delay == 0) {
-            freeze(true);
-        }
-        if (frozen) {
-            mc.thePlayer.motionX = 0.0;
-            mc.thePlayer.motionY = 0.0;
-            mc.thePlayer.motionZ = 0.0;
-            if (!pulse.isAtMin() && mc.thePlayer.ticksExisted - frozenAt >= (int) pulse.getInput()) {
-                freeze(false);
-                delay = 1;
-            }
-        }
-    }
-
-    public static void freeze(boolean b) {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (b) {
-            savedX = mc.thePlayer.motionX;
-            savedY = mc.thePlayer.motionY;
-            savedZ = mc.thePlayer.motionZ;
-            frozenAt = mc.thePlayer.ticksExisted;
-        } else {
-            mc.thePlayer.motionX = savedX;
-            mc.thePlayer.motionY = savedY;
-            mc.thePlayer.motionZ = savedZ;
-        }
-        frozen = b;
-    }
-
-    @Override
-    public boolean onSendPacketAlways(net.minecraft.network.Packet<?> packet) {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (!frozen) {
-            return true;
-        }
-        C03PacketPlayer p = (C03PacketPlayer) packet;
-        if (Hypixel.onHypixel() && !(p instanceof C03PacketPlayer.C05PacketPlayerLook)) {
-            PacketUtils.send(new C03PacketPlayer.C05PacketPlayerLook(mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch, mc.thePlayer.onGround));
-            return false;
-        }
-        return true;
-    }
-
-    public static void onS08() {
-        freeze(false);
-        delay = 3;
-    }
-
-    @Override
-    public void onVelocityAlways() {
-        if (!frozen) {
-            return;
-        }
-        freeze(false);
-        delay = 4;
-    }
-
-    @Override
-    public void onDisable() {
-        freeze(false);
-        delay = 0;
-    }
-
-    @Override
-    public void onPostPlayerInput() {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (frozen || delay == 1) {
-            mc.thePlayer.movementInput.moveForward = 0.0f;
-            mc.thePlayer.movementInput.moveStrafe = 0.0f;
+        for (BooleanSetting s : this.stasis.settings) {
+            s.bind((ButtonSetting) ModuleManager.setting(this, s.name));
         }
     }
 
     @Override
     public void onEnable() {
-        delay = 2;
+        this.stasis.enabled = true;
+        this.stasis.onEnable();
+    }
+
+    @Override
+    public void onDisable() {
+        this.stasis.onDisable();
+        this.stasis.enabled = false;
+    }
+
+    @Override
+    public void guiUpdate() {
+        this.stasis.guiUpdate();
+    }
+
+    @Override
+    public void onPreUpdate() {
+        EventBus.post(new PreUpdateEvent());
+    }
+
+    public void postUpdate() {
+        EventBus.post(new PostUpdateEvent());
+    }
+
+    @SubscribeEvent
+    public void onTick(TickEvent.ClientTickEvent e) {
+        if (e.phase == TickEvent.Phase.START) {
+            EventBus.post(new TickStartEvent());
+        }
+    }
+
+    @SubscribeEvent
+    public void onJoin(EntityJoinWorldEvent e) {
+        if (e.entity == mc.thePlayer) {
+            EventBus.post(new LoadWorldEvent());
+        }
+    }
+
+    // input lock no matter what state
+    @Override
+    public void onPostPlayerInputAlways() {
+        MovementInput input = mc.thePlayer.movementInput;
+        MoveInputEvent e = EventBus.post(new MoveInputEvent(input.moveForward, input.moveStrafe, input.jump, input.sneak));
+        input.moveForward = e.getMoveForward();
+        input.moveStrafe = e.getMoveStrafe();
+        input.jump = e.isJumping();
+        input.sneak = e.isSneaking();
+    }
+
+    public boolean rightClick() {
+        return EventBus.post(new RightClickEvent()).isCanceled();
+    }
+
+    @Override
+    public boolean onReceivePacket(Packet packet, INetHandler handler) {
+        if (EventBus.post(new PacketReceiveEvent(packet)).isCanceled()) {
+            return false;
+        }
+        if (packet instanceof S12PacketEntityVelocity) {
+            EventBus.post(new VelocityEvent((S12PacketEntityVelocity) packet));
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onSendPacketAlways(Packet<?> packet) {
+        return !EventBus.post(new PacketSendEvent(packet)).isCanceled();
     }
 }
