@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 
 public final class Waifu implements IMinecraft {
-    private static final String[] NAMES = {null, "astolfo", "kurumi", "uzaki", "megumin", "mai", "magic", "kiwi", "utena"};
+    private static final String[] NAMES = {null, "astolfo", "kurumi", "uzaki", "megumin", "mai", "magic", "kiwi", "utena", "natsuki"};
     private static final ResourceLocation[] IMAGES = new ResourceLocation[NAMES.length];
 
     public static int x = 340, y = 135;

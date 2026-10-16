@@ -38,6 +38,7 @@ user's UID: `size * 0.05506` becomes `size * 0.05` + the UID.
 ## Credits
 - [Haru](https://github.com/Coccocoahelper/Haru): most waifus + haru theme 
 - [Fae](https://github.com/Targink321/fae-client): some waifus
+- [image](https://www.vhv.rs/viewpic/hbiTRoo_doki-doki-natsuki-by-hatokame-kun-natsuki-ddlc/): natsuki.png
 - [SRT Client](https://github.com/egor14m11/Minecraft-Cheat-Sources/tree/a1a69f9955705dcea793b7159c7638a34fa6aae1/SRT): some speed modes
 - [MiauMinus](https://github.com/SPEEDBOY19/OpenMiau-Minus): most velocity modes
 - [OpenRise](https://github.com/fmcpe/OpenRise): most disablers
