@@ -8,6 +8,7 @@
     "IEntityPlayerSP",
     "IMinecraft",
     "IPlayerControllerMP",
+    "IC03PacketPlayer",
     "MixinNetworkManager",
     "MixinEntityPlayerSP",
     "MixinRendererLivingEntity",

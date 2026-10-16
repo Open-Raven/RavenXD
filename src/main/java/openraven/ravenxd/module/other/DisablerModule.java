@@ -28,7 +28,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-// skidded from rise + sum liquidbounce script
+// skidded from rise + sum liquidbounce script + sum vibe client on github
 public class DisablerModule extends Module {
     public enum Mode {
         Verus, Vulcan, OldMatrix
@@ -144,7 +144,7 @@ public class DisablerModule extends Module {
             }
             if (verusDamage.isToggled()) {
                 if (p.ticksExisted % 200 == 0 && this.lastHurtTime >= 100) {
-                    damage(p, 3.42);
+                    PlayerUtils.damagePlayerVerus(3.42, 1, false, false);
                 }
                 if (this.lastHurtTime > 101) {
                     Chat.print("&7[Disabler] Verus movement: you must get damaged now.");
@@ -162,15 +162,6 @@ public class DisablerModule extends Module {
             PacketUtils.sendNoEvent(new C0BPacketEntityAction(p, p.ticksExisted % 2 == 0
                     ? C0BPacketEntityAction.Action.STOP_SPRINTING : C0BPacketEntityAction.Action.START_SPRINTING));
         }
-    }
-
-    private static void damage(EntityPlayerSP p, double fall) {
-        int steps = (int) Math.ceil(fall / 0.0625);
-        for (int i = 0; i < steps; ++i) {
-            PacketUtils.sendNoEvent(new C03PacketPlayer.C04PacketPlayerPosition(p.posX, p.posY + 0.0625, p.posZ, false));
-            PacketUtils.sendNoEvent(new C03PacketPlayer.C04PacketPlayerPosition(p.posX, p.posY, p.posZ, false));
-        }
-        PacketUtils.sendNoEvent(new C03PacketPlayer.C04PacketPlayerPosition(p.posX, p.posY, p.posZ, true));
     }
 
     private void vulcan(EntityPlayerSP p) {

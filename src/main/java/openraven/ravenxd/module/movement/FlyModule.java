@@ -1,5 +1,6 @@
 package openraven.ravenxd.module.movement;
 
+import openraven.ravenxd.event.MotionEvent;
 import openraven.ravenxd.util.MoveUtils;
 import openraven.ravenxd.util.PlayerUtils;
 import openraven.ravenxd.client.Overlay;
@@ -32,13 +33,14 @@ public class FlyModule extends Module {
     public static ButtonSetting yBob;
 
     public enum Mode {
-        VANILLA, FAST, MOTION, MATRIX_JUMP, MATRIX_GLIDE, MATRIX_UP, AAC, NCP
+        VANILLA, FAST, MOTION, MATRIX_JUMP, MATRIX_GLIDE, MATRIX_UP, AAC, NCP, VERUS
     }
 
     public static Mode current = Mode.VANILLA;
     private boolean wasFlying;
     private final float baseSpeed = 0.05f;
     private boolean enableGround;
+    private int verusTicks, verusOffGround;
 
     public FlyModule(int key) {
         super("Fly", Category.movement, key);
@@ -62,6 +64,9 @@ public class FlyModule extends Module {
         mc.thePlayer.capabilities.isFlying = mc.thePlayer.capabilities.allowFlying ? this.wasFlying : false;
         this.wasFlying = false;
         mc.thePlayer.jumpMovementFactor = 0.02f;
+        if (current == Mode.VERUS) {
+            MoveUtils.resetTimer();
+        }
         if (current == Mode.VANILLA) {
             mc.thePlayer.capabilities.setFlySpeed(this.baseSpeed);
         }
@@ -109,6 +114,8 @@ public class FlyModule extends Module {
             return;
         }
         this.wasFlying = Minecraft.getMinecraft().thePlayer.capabilities.isFlying;
+        this.verusTicks = 0;
+        this.verusOffGround = 0;
     }
 
     @Override
@@ -227,12 +234,58 @@ public class FlyModule extends Module {
         }
     }
 
+    // liquidware verus fly
+    @Override
+    public void onPreMotion(MotionEvent e) {
+        if (current != Mode.VERUS || openraven.ravenxd.module.player.FreecamModule.camera != null) {
+            return;
+        }
+        EntityPlayerSP p = Minecraft.getMinecraft().thePlayer;
+        ++this.verusTicks;
+        this.verusOffGround = p.onGround ? 0 : this.verusOffGround + 1;
+        if (this.verusTicks == 1 && !p.onGround) {
+            this.disable();
+            return;
+        }
+        if (this.verusOffGround >= 2 && !sneakKey()) {
+            if (jumpKey()) {
+                if (p.ticksExisted % 2 == 0) {
+                    p.motionY = 0.42f;
+                }
+            } else {
+                if (p.onGround) {
+                    p.jump();
+                }
+                if (p.fallDistance > 1.0f) {
+                    p.motionY = -(p.posY - Math.floor(p.posY));
+                }
+                if (p.motionY == 0.0) {
+                    p.jump();
+                    p.onGround = true;
+                    e.onGround = true;
+                    p.fallDistance = 0.0f;
+                }
+            }
+        }
+        if (PlayerUtils.isMoving()) {
+            MoveUtils.strafe(1.0);
+        }
+        if (this.verusTicks == 1) {
+            MoveUtils.setTimer(0.15f);
+            PlayerUtils.damagePlayerVerus(3.42, 1, true, false);
+            p.jump();
+            p.onGround = true;
+            e.onGround = true;
+        } else {
+            MoveUtils.setTimer(1.0f);
+        }
+    }
+
     private static boolean solid(Minecraft mc, BlockPos pos) {
         Block b = mc.theWorld.getBlockState(pos).getBlock();
         return b.getMaterial().isSolid() && b.isFullCube();
     }
 
-    // MatrixJump turns itself off when the server sets the player back.
     @Override
     public boolean onReceivePacket(Packet packet, INetHandler handler) {
         if (current == Mode.MATRIX_JUMP && packet instanceof S08PacketPlayerPosLook) {

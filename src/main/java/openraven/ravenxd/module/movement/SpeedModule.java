@@ -17,6 +17,7 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.init.Blocks;
@@ -28,7 +29,7 @@ public class SpeedModule extends Module {
     public static ButtonSetting disableInInventory, onlyForward, onlyStrafe, setbackRecovery;
 
     public enum Mode {
-        VANILLA, FLOAT, HOP, VERUS, MATRIX, AGC, VERUS_FLAG
+        VANILLA, FLOAT, HOP, VERUS, MATRIX, AGC, VERUS_FLAG, VERUS2, VERUS_LOW
     }
 
     public static Mode current = Mode.VANILLA;
@@ -153,6 +154,8 @@ public class SpeedModule extends Module {
                 case MATRIX: matrix(); break;
                 case AGC: agc(); break;
                 case VERUS_FLAG: verusFlag(e); break;
+                case VERUS2: verus2(); break;
+                case VERUS_LOW: verusLow(e); break;
             }
         }
     }
@@ -217,6 +220,60 @@ public class SpeedModule extends Module {
             mc.thePlayer.jump();
         }
         MoveUtils.strafe(MoveUtils.speed());
+    }
+
+    // azura verus 2 verus low
+    private static double baseSpeed() {
+        double s = 0.2873;
+        int level = PlayerUtils.speedLevel();
+        return level > 0 ? s * (1.0 + 0.2 * level) : s;
+    }
+
+    private static void verus2() {
+        EntityPlayerSP p = Minecraft.getMinecraft().thePlayer;
+        if (!PlayerUtils.isMoving()) {
+            MoveUtils.strafe(0.0);
+        } else if (p.onGround) {
+            p.motionY = 0.42f;
+            MoveUtils.strafe(baseSpeed() + 0.17);
+        } else {
+            MoveUtils.strafe(baseSpeed() + 0.02 * 0.991);
+        }
+    }
+
+    // lowhop
+    private static void verusLow(MotionEvent e) {
+        Minecraft mc = Minecraft.getMinecraft();
+        EntityPlayerSP p = mc.thePlayer;
+        if (!PlayerUtils.isMoving()) {
+            MoveUtils.strafe(0.0);
+        } else if (p.onGround) {
+            p.motionY = 0.42f;
+            MoveUtils.strafe(baseSpeed() + 0.1);
+        } else {
+            MoveUtils.strafe(baseSpeed() + 0.02 * 0.991);
+        }
+        double dir = Math.toRadians(MoveUtils.moveYaw(p.rotationYaw));
+        boolean scaffold = ModuleManager.enabled("Scaffold") != null;
+        boolean blocked = false;
+        for (double d = -0.5; d < 2.0; d += 0.1) {
+            double x = -Math.sin(dir) * d;
+            double z = Math.cos(dir) * d;
+            for (int i = 0; i >= -100 && !scaffold; --i) {
+                blocked = true;
+                if (!mc.theWorld.isAirBlock(new BlockPos(p.posX + x, p.posY + i, p.posZ + z))) {
+                    blocked = false;
+                    break;
+                }
+            }
+            if (!mc.theWorld.getCollidingBoundingBoxes(p, p.getEntityBoundingBox().offset(x, 0.0, z)).isEmpty()) {
+                blocked = true;
+            }
+        }
+        if (p.motionY > 0.0 && p.motionY < 0.4 && !GameSettings.isKeyDown(mc.gameSettings.keyBindJump) && !blocked) {
+            e.onGround = true;
+            p.motionY = 0.0;
+        }
     }
 
     private static void verusFlag(MotionEvent e) {

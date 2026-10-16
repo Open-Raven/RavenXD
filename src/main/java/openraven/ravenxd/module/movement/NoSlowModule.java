@@ -43,7 +43,7 @@ public class NoSlowModule extends Module {
     public static ButtonSetting disableSprint, bow, edibles, potions, sword;
 
     public enum Mode {
-        VANILLA, BLINK, GROUND, JUMP, FLOAT, INTERACT, INVALID, SNEAK;
+        VANILLA, BLINK, GROUND, JUMP, FLOAT, INTERACT, INVALID, SNEAK, NCP;
         public int state;
     }
 
@@ -61,6 +61,7 @@ public class NoSlowModule extends Module {
     private static boolean jumped;
     public static boolean sneaking;
     public static int lastSlowTick = -1;
+    private static long lastRelease;
 
     public NoSlowModule(int key) {
         super("NoSlow", Category.movement, key);
@@ -81,10 +82,36 @@ public class NoSlowModule extends Module {
         sword = (ButtonSetting) ModuleManager.setting(this, "Sword");
     }
 
+    // ncp
+    private static boolean ncpUsing() {
+        Minecraft mc = mc();
+        ItemStack held = mc.thePlayer.getHeldItem();
+        return PlayerUtils.isMoving() && mc.thePlayer.isUsingItem() && held != null
+                && (held.getItem() instanceof ItemSword ? sword.enabled : affects(held));
+    }
+
+    private static void ncpRelease() {
+        PacketUtils.sendSkipScripts(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, net.minecraft.util.EnumFacing.DOWN));
+    }
+
+    // release
+    private static void ncpTimedRelease() {
+        long now = System.currentTimeMillis();
+        if (now - lastRelease >= 50L) {
+            lastRelease = now;
+            ncpRelease();
+        }
+    }
+
     @Override
     public void onPostMotion() {
         if (current == Mode.INTERACT && placedOnBlock) {
             placedOnBlock = false;
+        }
+        if (current == Mode.NCP && ncpUsing()) {
+            ncpTimedRelease();
+            ItemStack none = null;
+            PacketUtils.sendSkipScripts(new C08PacketPlayerBlockPlacement(new BlockPos(-1, -1, -1), 255, none, 0.0f, 0.0f, 0.0f));
         }
     }
 
@@ -115,6 +142,12 @@ public class NoSlowModule extends Module {
                 current.state = 0;
                 break;
             }
+            case NCP:
+                if (ncpUsing()) {
+                    ncpTimedRelease();
+                    ncpRelease();
+                }
+                break;
             case SNEAK: {
                 if (using) {
                     sneaking = true;

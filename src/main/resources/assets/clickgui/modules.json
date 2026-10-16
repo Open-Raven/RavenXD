@@ -570,6 +570,54 @@
   ]
  },
  {
+  "cls": "Criticals",
+  "name": "Criticals",
+  "category": "combat",
+  "enabled": false,
+  "noToggle": false,
+  "hidden": false,
+  "key": 0,
+  "lite": false,
+  "failed": null,
+  "settings": [
+   {
+    "t": "mode",
+    "name": "Mode",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 2.0,
+    "step": 1.0,
+    "options": [
+     "Verus",
+     "Vulcan",
+     "Packet"
+    ],
+    "labels": null
+   },
+   {
+    "t": "mode",
+    "name": "Vulcan mode",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 1.0,
+    "options": [
+     "New",
+     "Old"
+    ],
+    "labels": null
+   },
+   {
+    "t": "desc",
+    "name": "Active while attacking."
+   }
+  ]
+ },
+ {
   "cls": "R462",
   "name": "Displace",
   "category": "combat",
@@ -2033,7 +2081,7 @@
     "suffix": "",
     "value": 0.0,
     "min": 0.0,
-    "max": 7.0,
+    "max": 8.0,
     "step": 1.0,
     "options": [
      "Vanilla",
@@ -2043,7 +2091,8 @@
      "MatrixGlide",
      "MatrixUp",
      "AAC",
-     "NCP"
+     "NCP",
+     "Verus"
     ],
     "labels": null
    },
@@ -2272,6 +2321,55 @@
   ]
  },
  {
+  "cls": "HighJump",
+  "name": "High Jump",
+  "category": "movement",
+  "enabled": false,
+  "noToggle": false,
+  "hidden": false,
+  "key": 0,
+  "lite": false,
+  "failed": null,
+  "settings": [
+   {
+    "t": "mode",
+    "name": "Mode",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 1.0,
+    "options": [
+     "Vanilla",
+     "Verus"
+    ],
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Height",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": 0.1,
+    "max": 5.0,
+    "step": 0.05,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "toggle",
+    "name": "Only on jump",
+    "value": true
+   },
+   {
+    "t": "desc",
+    "name": "Verus: start on the ground."
+   }
+  ]
+ },
+ {
   "cls": "R090",
   "name": "Long Jump",
   "category": "movement",
@@ -2386,7 +2484,7 @@
     "suffix": "",
     "value": 0.0,
     "min": 0.0,
-    "max": 7.0,
+    "max": 8.0,
     "step": 1.0,
     "options": [
      "Vanilla",
@@ -2396,7 +2494,8 @@
      "Float",
      "Interact",
      "Invalid",
-     "Sneak"
+     "Sneak",
+     "NCP"
     ],
     "labels": null
    },
@@ -2461,7 +2560,7 @@
     "suffix": "",
     "value": 0.0,
     "min": 0.0,
-    "max": 6.0,
+    "max": 8.0,
     "step": 1.0,
     "options": [
      "Vanilla",
@@ -2470,7 +2569,9 @@
      "Verus",
      "Matrix",
      "AGC",
-     "Verus Flag"
+     "Verus Flag",
+     "Verus 2",
+     "Verus Low"
     ],
     "labels": null
    },
@@ -2601,6 +2702,101 @@
   ]
  },
  {
+  "cls": "Step",
+  "name": "Step",
+  "category": "movement",
+  "enabled": false,
+  "noToggle": false,
+  "hidden": false,
+  "key": 0,
+  "lite": false,
+  "failed": null,
+  "settings": [
+   {
+    "t": "mode",
+    "name": "Mode",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 3.0,
+    "step": 1.0,
+    "options": [
+     "Vanilla",
+     "Verus",
+     "Vulcan",
+     "NCP"
+    ],
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Step height",
+    "prefix": "",
+    "suffix": "",
+    "value": 1.0,
+    "min": 0.6,
+    "max": 2.0,
+    "step": 0.1,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Step timer",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.5,
+    "min": 0.1,
+    "max": 1.0,
+    "step": 0.05,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "toggle",
+    "name": "Different timers",
+    "value": false
+   },
+   {
+    "t": "slider",
+    "name": "Timer 1.0",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.5,
+    "min": 0.1,
+    "max": 1.0,
+    "step": 0.05,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Timer 1.5",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.35,
+    "min": 0.1,
+    "max": 1.0,
+    "step": 0.05,
+    "options": null,
+    "labels": null
+   },
+   {
+    "t": "slider",
+    "name": "Timer 2.0",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.2,
+    "min": 0.1,
+    "max": 1.0,
+    "step": 0.05,
+    "options": null,
+    "labels": null
+   }
+  ]
+ },
+ {
   "cls": "R207",
   "name": "Stop Motion",
   "category": "movement",
@@ -2697,6 +2893,21 @@
   "lite": false,
   "failed": null,
   "settings": [
+   {
+    "t": "mode",
+    "name": "Mode",
+    "prefix": "",
+    "suffix": "",
+    "value": 0.0,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 1.0,
+    "options": [
+     "Default",
+     "Verus"
+    ],
+    "labels": null
+   },
    {
     "t": "toggle",
     "name": "Right click teleport",
@@ -4076,7 +4287,7 @@
     "suffix": "",
     "value": 0.0,
     "min": 0.0,
-    "max": 6.0,
+    "max": 11.0,
     "step": 1.0,
     "options": [
      "Spoof",
@@ -4085,7 +4296,12 @@
      "NoGround A",
      "NoGround B",
      "Precision",
-     "Position"
+     "Position",
+     "OnGround1",
+     "Vulcan",
+     "Matrix",
+     "Glitch",
+     "Chunk Load"
     ],
     "labels": null
    },

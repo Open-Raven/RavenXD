@@ -186,6 +186,20 @@ public final class PlayerUtils implements openraven.ravenxd.util.IMinecraft {
         return false;
     }
 
+    // self damage (works on verus)
+
+    public static void damagePlayerVerus(double value, int packets, boolean groundCheck, boolean hurtTimeCheck) {
+        if (groundCheck && !mc.thePlayer.onGround || hurtTimeCheck && mc.thePlayer.hurtTime != 0) {
+            return;
+        }
+        double x = mc.thePlayer.posX, y = mc.thePlayer.posY, z = mc.thePlayer.posZ;
+        for (int i = 0; i < packets; ++i) {
+            PacketUtils.sendNoEvent(new net.minecraft.network.play.client.C03PacketPlayer.C04PacketPlayerPosition(x, y + value, z, false));
+            PacketUtils.sendNoEvent(new net.minecraft.network.play.client.C03PacketPlayer.C04PacketPlayerPosition(x, y, z, false));
+        }
+        PacketUtils.sendNoEvent(new net.minecraft.network.play.client.C03PacketPlayer(true));
+    }
+
     public static boolean inLiquid() {
         return mc.thePlayer.isInWater() || mc.thePlayer.isInLava();
     }

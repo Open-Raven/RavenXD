@@ -162,6 +162,9 @@ public final class ModuleManager {
             case "Hitbox": return new openraven.ravenxd.module.combat.HitboxModule(key);
             case "SafeWalk": return new openraven.ravenxd.module.player.SafeWalkModule(key);
             case "Teleport": return new openraven.ravenxd.module.movement.TeleportModule(key);
+            case "Step": return new openraven.ravenxd.module.movement.StepModule(key);
+            case "High Jump": return new openraven.ravenxd.module.movement.HighJumpModule(key);
+            case "Criticals": return new openraven.ravenxd.module.combat.CriticalsModule(key);
             case "45 Jump": return new openraven.ravenxd.module.movement.Jump45Module(key);
             case "Dolphin": return new openraven.ravenxd.module.movement.DolphinModule(key);
             case "Hit Particles": return new openraven.ravenxd.module.other.HitParticlesModule(key);

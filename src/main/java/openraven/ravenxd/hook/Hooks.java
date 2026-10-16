@@ -233,7 +233,7 @@ public final class Hooks {
         if ((m = on("WTap")) != null) m.onPreMotion(e);
         if ((m = on("BedAura")) != null) m.onPreMotion(e);
         if ((m = any("Tower")) != null) m.onPreMotionAlways(e);
-        String[] order = {"Scaffold", "NoSlow", "InvMove", "Bhop", "Long Jump", "Speed", "AutoPlace", "Freecam", "NoFall", "Disabler",
+        String[] order = {"Scaffold", "NoSlow", "InvMove", "Bhop", "Long Jump", "Speed", "Fly", "Teleport", "Step", "Criticals", "High Jump", "AutoPlace", "Freecam", "NoFall", "Disabler",
                 "Speed Builders", "Bed Wars", "AntiCheat", "Duels Stats"};
         for (String name : order) {
             if ((m = on(name)) != null) m.onPreMotion(e);
@@ -312,6 +312,10 @@ public final class Hooks {
         if (mc.thePlayer.isPotionActive(Potion.jump)) {
             mc.thePlayer.motionY += (double) ((float) (mc.thePlayer.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1f);
         }
+        double highJump = openraven.ravenxd.module.movement.HighJumpModule.jumpMotion();
+        if (highJump > 0.0) {
+            mc.thePlayer.motionY = highJump;
+        }
         if (mc.thePlayer.isSprinting()) {
             float f = RotationManager.movementYaw() * ((float) Math.PI / 180);
             float f2 = 0.2f;
@@ -321,6 +325,13 @@ public final class Hooks {
         mc.thePlayer.isAirBorne = true;
         ForgeHooks.onLivingJump(mc.thePlayer);
         return true;
+    }
+
+    public static void onStep(Entity entity) {
+        Module m;
+        if (entity == mc.thePlayer && entity != null && (m = on("Step")) != null) {
+            ((openraven.ravenxd.module.movement.StepModule) m).beforeMove();
+        }
     }
 
     public static boolean stopOnEdge(Entity entity) {
@@ -560,6 +571,12 @@ public final class Hooks {
         if ((m = on("Disabler")) != null && !m.onSendPacket(packet)) {
             return false;
         }
+        if ((m = on("NoFall")) != null && !m.onSendPacket(packet)) {
+            return false;
+        }
+        if ((m = on("Teleport")) != null && !m.onSendPacket(packet)) {
+            return false;
+        }
         if ((m = on("Velocity")) != null && !m.onSendPacket(packet)) {
             return false;
         }
@@ -695,6 +712,12 @@ public final class Hooks {
         }
         if (packet instanceof S08PacketPlayerPosLook && (m = on("Disabler")) != null && !m.onReceivePacket(packet, handler)) {
             return;
+        }
+        if (packet instanceof S08PacketPlayerPosLook && (m = on("Teleport")) != null && !m.onReceivePacket(packet, handler)) {
+            return;
+        }
+        if (packet instanceof S08PacketPlayerPosLook && (m = on("NoFall")) != null) {
+            m.onReceivePacket(packet, handler);
         }
         if (packet instanceof S08PacketPlayerPosLook && (m = on("Fly")) != null) {
             m.onReceivePacket(packet, handler);
