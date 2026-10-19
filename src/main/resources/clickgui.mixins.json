@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "package": "openraven.ravenxd.mixin",
+  "refmap": "clickgui.refmap.json",
+  "minVersion": "0.6",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "IEntityPlayerSP",
+    "IMinecraft",
+    "IPlayerControllerMP",
+    "IC03PacketPlayer",
+    "MixinNetworkManager",
+    "MixinEntityPlayerSP",
+    "MixinRendererLivingEntity",
+    "MixinEntityRenderer",
+    "MixinFontRenderer",
+    "MixinMovementInputFromOptions",
+    "MixinEntityLivingBase",
+    "MixinEntity",
+    "MixinEntityPlayer",
+    "MixinMinecraft",
+    "MixinItemRenderer",
+    "MixinRenderPlayer"
+  ]
+}
