@@ -54,27 +54,44 @@ public final class PacketUtils implements IMinecraft {
     }
 
     public static void send(Packet<?> packet) {
+        if (mc == null || mc.getNetHandler() == null) {
+            return;
+        }
         sending = packet;
-        mc.getNetHandler().addToSendQueue(sending);
-        sending = null;
+        try {
+            mc.getNetHandler().addToSendQueue(sending);
+        } finally {
+            // Clear even if addToSendQueue throws -- a stuck non-null
+            // flag would misclassify every later packet in Hooks.onSend.
+            sending = null;
+        }
     }
 
     public static void sendNoEvent(Packet<?> packet) {
         sendingNoEvent = packet;
-        send(sendingNoEvent);
-        sendingNoEvent = null;
+        try {
+            send(sendingNoEvent);
+        } finally {
+            sendingNoEvent = null;
+        }
     }
 
     public static void sendQueued(Packet<?> packet) {
         sendingQueued = packet;
-        sendNoEvent(sendingQueued);
-        sendingQueued = null;
+        try {
+            sendNoEvent(sendingQueued);
+        } finally {
+            sendingQueued = null;
+        }
     }
 
     public static void sendSkipScripts(Packet<?> packet) {
         sendingSkipScripts = packet;
-        send(sendingSkipScripts);
-        sendingSkipScripts = null;
+        try {
+            send(sendingSkipScripts);
+        } finally {
+            sendingSkipScripts = null;
+        }
     }
 
     public static void sendThroughLag(Packet<?> packet) {
@@ -85,7 +102,15 @@ public final class PacketUtils implements IMinecraft {
     }
 
     public static void receive(Packet<?> packet) {
-        Hooks.onReceive(packet, mc.getNetHandler().getNetworkManager().getNetHandler());
+        if (packet == null || mc == null || mc.getNetHandler() == null
+                || mc.getNetHandler().getNetworkManager() == null) {
+            return;
+        }
+        net.minecraft.network.INetHandler handler = mc.getNetHandler().getNetworkManager().getNetHandler();
+        if (handler == null) {
+            return;
+        }
+        Hooks.onReceive(packet, handler);
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -176,7 +201,7 @@ public final class PacketUtils implements IMinecraft {
             serverSlot = ((S09PacketHeldItemChange) packet).getHeldItemHotbarIndex();
         } else if (packet instanceof S27PacketExplosion) {
             S27PacketExplosion p = (S27PacketExplosion) packet;
-            if (mc.thePlayer.getDistanceSq(p.getX(), p.getY(), p.getZ()) <= 25.0) {
+            if (mc != null && mc.thePlayer != null && mc.thePlayer.getDistanceSq(p.getX(), p.getY(), p.getZ()) <= 25.0) {
                 lastExplosion = System.currentTimeMillis();
             }
         }

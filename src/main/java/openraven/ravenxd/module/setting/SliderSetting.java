@@ -27,6 +27,11 @@ public class SliderSetting extends Setting {
         this.interval = interval;
         this.options = options;
         this.labels = labels;
+        // Same sanitization for the initial value (modules.json /
+        // script defaults are untrusted input too). No-op for the
+        // shipped modules.json, which is fully in range.
+        this.value = this.input = sanitized(this.value);
+        this.defaultValue = this.input;
     }
 
     @Override
@@ -67,13 +72,38 @@ public class SliderSetting extends Setting {
     }
 
     public void setValue(double d) {
-        d = Math.max(this.min, Math.min(this.max, d));
-        d = (double) Math.round(d * (1.0 / this.interval)) / (1.0 / this.interval);
+        d = sanitized(d);
         if (this.value != d) {
             this.value = d;
             openraven.ravenxd.client.Profiles.markModified();
         }
         this.setVisualInput(d);
+    }
+
+    /**
+     * Clamp to [min, max] and snap to the step, rejecting non-finite input.
+     * NaN previously propagated straight into `value` (Math.min/max return
+     * NaN for NaN input), and a zero `interval` made the rounding maths
+     * collapse every value to 0. Non-finite input falls back to `min`
+     * (not `defaultValue`: at construction time the default may itself
+     * be the non-finite value being sanitized).
+     * Callers reach this with untrusted numbers (profile JSON via
+     * setValueRaw, Console `.setting` commands via Double.parseDouble,
+     * which accepts "NaN"/"Infinity" literals), so this must be total.
+     */
+    private double sanitized(double d) {
+        if (Double.isNaN(d)) {
+            d = this.min;
+        } else if (Double.isInfinite(d)) {
+            d = d > 0 ? this.max : this.min;
+        }
+        d = Math.max(this.min, Math.min(this.max, d));
+        if (this.interval != 0.0 && !Double.isNaN(this.interval) && !Double.isInfinite(this.interval)) {
+            d = (double) Math.round(d * (1.0 / this.interval)) / (1.0 / this.interval);
+            // Rounding can land a hair outside the range via float error.
+            d = Math.max(this.min, Math.min(this.max, d));
+        }
+        return d;
     }
 
     public static void order(SliderSetting min, SliderSetting max) {
@@ -85,6 +115,14 @@ public class SliderSetting extends Setting {
     }
 
     public void setValueRaw(double d) {
+        // Previously this bypassed clamping/rounding entirely, so a
+        // corrupt profile or a Console ".setting ... NaN" command could
+        // store NaN/Infinity/out-of-range values that later crash
+        // getDisplay() (mode index) or poison module maths. Raw now
+        // means "skip the modified-flag / change check", not "skip
+        // validation" -- sanitized() is idempotent for valid values,
+        // which are already clamped and snapped when first set.
+        d = sanitized(d);
         this.value = d;
         this.setVisualInput(d);
         openraven.ravenxd.client.Profiles.markModified();
@@ -93,13 +131,23 @@ public class SliderSetting extends Setting {
     public String getDisplay(boolean colored) {
         String s;
         if (this.isMode()) {
+            // Clamp the index: `value` can be set directly (public
+            // field) or from an older profile, and an out-of-range
+            // index used to throw ArrayIndexOutOfBoundsException here,
+            // in the HUD render path.
+            int index = (int) this.value;
+            if (index < 0) {
+                index = 0;
+            } else if (index >= this.options.length) {
+                index = this.options.length - 1;
+            }
             if (colored) {
                 if (this.labels != null && (s = this.labels.get(this.value)) != null) {
                     return s;
                 }
-                return "§e" + this.options[(int) this.value];
+                return "§e" + this.options[index];
             }
-            return this.options[(int) this.value];
+            return this.options[index];
         }
         if (this.labels != null && (s = this.labels.get(this.value)) != null) {
             return s;

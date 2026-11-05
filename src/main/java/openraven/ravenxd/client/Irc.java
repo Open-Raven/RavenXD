@@ -27,8 +27,23 @@ public final class Irc {
     public static void countFrame() {
         ++frames;
         long now = System.currentTimeMillis();
-        if (fpsWindow == 0L || now - fpsWindow >= 1000L) {
-            fps = frames;
+        if (fpsWindow == 0L) {
+            // First frame only starts the window; reporting fps=1 here
+            // (the old behaviour) also discarded the count on every
+            // reset and let the window drift by up to a frame each cycle.
+            fpsWindow = now;
+            return;
+        }
+        long elapsed = now - fpsWindow;
+        if (elapsed < 0L) {
+            // Clock moved backwards: restart the window at the current
+            // frame instead of waiting for the clock to catch up.
+            fpsWindow = now;
+            frames = 1;
+            return;
+        }
+        if (elapsed >= 1000L) {
+            fps = (int) (frames * 1000L / elapsed);
             frames = 0;
             fpsWindow = now;
         }
@@ -39,7 +54,11 @@ public final class Irc {
             return;
         }
         int n = fps;
-        if (lastFps > 0 && lastFps != n && n - lastFps < 3000 && n > highestFps) {
+        // The old condition also required lastFps > 0 and a <3000 delta,
+        // so the first-ever sample could never become the high (a
+        // monotonically decreasing FPS session reported highest = 0)
+        // and a genuine large jump was never recorded. Highest is a max.
+        if (n > highestFps) {
             highestFps = n;
         }
         lastFps = n;

@@ -17,8 +17,11 @@ public final class Chat {
     }
 
     public static String color(String s) {
-        if (s.isEmpty()) {
-            return s;
+        // Match strip(): null is treated as "" instead of NPE. Callers
+        // such as InfoHud.Line.set pass through whatever a module gave
+        // them, which is not guaranteed non-null.
+        if (s == null || s.isEmpty()) {
+            return "";
         }
         return s.replace("&", "§");
     }

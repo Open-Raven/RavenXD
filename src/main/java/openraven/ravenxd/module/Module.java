@@ -241,7 +241,12 @@ public class Module {
     }
 
     public void setBind(int n) {
-        if (n >= 256) {
+        // Valid codes are keyboard 0..255 (rejected above 255 already)
+        // and mouse -100..-1 (button index + 100, see pollBind). A
+        // corrupt profile value below -100 became a negative mouse
+        // button index in Mouse.isButtonDown(key + 100). Reject it
+        // instead of storing a bind that can never legitimately fire.
+        if (n >= 256 || n < -100) {
             return;
         }
         if (this.keycode == n) {

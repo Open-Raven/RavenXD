@@ -133,9 +133,13 @@ public final class Hooks {
             return null;
         }
         Module nameHider = any("Name Hider");
-        if (mc.thePlayer != null && nameHider != null && nameHider.isEnabled()) {
+        if (mc != null && mc.thePlayer != null && nameHider != null && nameHider.isEnabled()) {
             String name = Console.nick.isEmpty() ? mc.thePlayer.getName() : Console.nick;
-            if (s.length() >= name.length()) {
+            // Guard both failure modes of the replace below: an empty
+            // `name` would insert the replacement between every character
+            // (String.replace("", x) never returns the input), and a null
+            // replacement throws NPE.
+            if (!name.isEmpty() && ChatCommands.nameHider != null && s.length() >= name.length()) {
                 s = s.replace(name, ChatCommands.nameHider);
             }
         }
@@ -610,7 +614,16 @@ public final class Hooks {
     }
 
     private static boolean toggled(Module m, String setting) {
-        return ((openraven.ravenxd.module.setting.ButtonSetting) ModuleManager.setting(m, setting)).isToggled();
+        // ModuleManager.setting throws IllegalStateException for a missing
+        // setting and the cast throws ClassCastException if modules.json
+        // retypes it -- this is called from packet/movement paths, where
+        // "setting renamed in modules.json" must not crash the tick.
+        // Treat a missing/wrong-type setting as simply off.
+        try {
+            return ((openraven.ravenxd.module.setting.ButtonSetting) ModuleManager.setting(m, setting)).isToggled();
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 
     public static float setAnimationProgress(float f) {
