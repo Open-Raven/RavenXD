@@ -65,8 +65,56 @@ import net.minecraft.network.play.server.S30PacketWindowItems;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.ForgeHooks;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class Hooks {
+    private static final Logger LOGGER = LogManager.getLogger("RavenXD-Hooks");
+
+    /** Null-safe packet name for error logging (the guard must never throw). */
+    private static String packetName(Packet<?> packet) {
+        return packet == null ? "null" : packet.getClass().getName();
+    }
+
+    /**
+     * Error logging for the fail-safe guards below, throttled per call site
+     * (at most once per 5s). Without throttling, one broken module that
+     * throws on every packet/tick (C03 packets and ticks run at ~20/s)
+     * would flood the log and tank FPS -- the cure would be worse than
+     * the original silent failure. Keys are a fixed set, so the map is
+     * bounded. Logging itself is wrapped so it can never break the game.
+     */
+    private static final java.util.concurrent.ConcurrentHashMap<String, Long> LOGGED_AT =
+            new java.util.concurrent.ConcurrentHashMap<String, Long>();
+
+    private static void logErrorThrottled(String key, String message, Throwable t) {
+        try {
+            long now = System.currentTimeMillis();
+            Long last = LOGGED_AT.get(key);
+            if (last != null && now - last.longValue() < 5000L) {
+                return;
+            }
+            LOGGED_AT.put(key, now);
+            LOGGER.error(message, t);
+        } catch (Throwable loggingFailure) {
+            // Intentionally ignored: logging must never break the client.
+        }
+    }
+
+    private static void logErrorThrottled(String key, String message) {
+        try {
+            long now = System.currentTimeMillis();
+            Long last = LOGGED_AT.get(key);
+            if (last != null && now - last.longValue() < 5000L) {
+                return;
+            }
+            LOGGED_AT.put(key, now);
+            LOGGER.error(message);
+        } catch (Throwable loggingFailure) {
+            // Intentionally ignored: logging must never break the client.
+        }
+    }
+
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     private Hooks() {
@@ -99,13 +147,27 @@ public final class Hooks {
     }
 
     public static void onUpdate() {
-        preUpdate();
-        float[] rotations = RotationManager.request(RotationManager.lastYaw, RotationManager.lastPitch);
-        if (rotations == null) {
-            RotationManager.rotating = false;
-        } else {
-            RotationManager.set(rotations);
-            RotationManager.rotating = true;
+        try {
+            preUpdate();
+            float[] rotations = RotationManager.request(RotationManager.lastYaw, RotationManager.lastPitch);
+            if (rotations == null) {
+                RotationManager.rotating = false;
+            } else if (rotations.length < 2
+                    || Float.isNaN(rotations[0]) || Float.isInfinite(rotations[0])
+                    || Float.isNaN(rotations[1]) || Float.isInfinite(rotations[1])) {
+                // RotationManager.set would throw (or propagate NaN into
+                // packets) on a short/NaN array from a buggy module/script.
+                logErrorThrottled("onUpdate:invalidRotations",
+                        "RavenXD: ignoring invalid rotations from a module (length=" + rotations.length + ")");
+                RotationManager.rotating = false;
+            } else {
+                RotationManager.set(rotations);
+                RotationManager.rotating = true;
+            }
+        } catch (Throwable t) {
+            // A failing module must not abort the rest of EntityPlayerSP.onUpdate
+            // (this hook is injected mid-method in MixinEntityPlayerSP).
+            logErrorThrottled("onUpdate", "RavenXD: Hooks.onUpdate failed; continuing with vanilla update", t);
         }
     }
 
@@ -132,10 +194,21 @@ public final class Hooks {
         }
     }
 
-    public static void onUpdateWalkingPlayer() {
-        EntityPlayerSP p = mc.thePlayer;
-        IEntityPlayerSP acc = (IEntityPlayerSP) p;
+    /**
+     * @return true if the vanilla onUpdateWalkingPlayer must be cancelled
+     *         (this reimplementation ran to completion); false if the caller
+     *         should let vanilla run (no player yet, or this method failed).
+     */
+    public static boolean onUpdateWalkingPlayer() {
         try {
+            // Inside the try on purpose: even this guard (or a null mc)
+            // must never escape to the mixin, which would break the
+            // vanilla movement update entirely.
+            if (mc == null || mc.thePlayer == null || mc.getNetHandler() == null) {
+                return false;
+            }
+            EntityPlayerSP p = mc.thePlayer;
+            IEntityPlayerSP acc = (IEntityPlayerSP) p;
             float yaw;
             float pitch;
             if (RotationManager.rotating) {
@@ -221,8 +294,15 @@ public final class Hooks {
                 }
                 postMotion();
             }
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
+            // Previously this was an empty catch: a failure here silently
+            // froze the player (no position packets) for the rest of the
+            // session. Log it and let the caller fall back to vanilla.
+            logErrorThrottled("onUpdateWalkingPlayer",
+                    "RavenXD: Hooks.onUpdateWalkingPlayer failed; falling back to vanilla movement update", exception);
+            return false;
         }
+        return true;
     }
 
     private static void preMotion(MotionEvent e) {
@@ -254,17 +334,30 @@ public final class Hooks {
     }
 
     public static void onPlayerSlowdown() {
-        Module noSlow = any("NoSlow");
-        if (noSlow != null && noSlow.onPlayerSlowdown()) {
+        if (mc == null || mc.thePlayer == null || mc.thePlayer.movementInput == null) {
             return;
+        }
+        try {
+            Module noSlow = any("NoSlow");
+            if (noSlow != null && noSlow.onPlayerSlowdown()) {
+                return;
+            }
+        } catch (Throwable t) {
+            // Fall through to the vanilla slowdown below instead of
+            // aborting onLivingUpdate (this is called from a @Redirect).
+            logErrorThrottled("onPlayerSlowdown", "RavenXD: Hooks.onPlayerSlowdown failed; applying vanilla slowdown", t);
         }
         mc.thePlayer.movementInput.moveStrafe *= 0.2f;
         mc.thePlayer.movementInput.moveForward *= 0.2f;
     }
 
     public static void onUpdateEntityActionState() {
-        Module m;
-        if ((m = on("Jump Reset")) != null) m.onUpdateEntityActionState();
+        try {
+            Module m;
+            if ((m = on("Jump Reset")) != null) m.onUpdateEntityActionState();
+        } catch (Throwable t) {
+            logErrorThrottled("onUpdateEntityActionState", "RavenXD: Hooks.onUpdateEntityActionState failed; continuing", t);
+        }
     }
 
     public static void postPlayerInput() {
@@ -327,9 +420,13 @@ public final class Hooks {
     }
 
     public static void onPostUpdate() {
-        Module m;
-        if ((m = on("Stasis")) != null) {
-            ((openraven.ravenxd.module.movement.StasisModule) m).postUpdate();
+        try {
+            Module m;
+            if ((m = on("Stasis")) != null) {
+                ((openraven.ravenxd.module.movement.StasisModule) m).postUpdate();
+            }
+        } catch (Throwable t) {
+            logErrorThrottled("onPostUpdate", "RavenXD: Hooks.onPostUpdate failed; continuing", t);
         }
     }
 
@@ -530,7 +627,22 @@ public final class Hooks {
         }
     }
 
+    /**
+     * Outbound packet gate. Fail-open: if any module throws while deciding,
+     * the packet is sent (a module failing to *cancel* a packet is far safer
+     * than silently dropping the player's own movement/chat packets, which
+     * is what happened before when the exception aborted sendPacket).
+     */
     public static boolean onSend(Packet<?> packet) {
+        try {
+            return onSendInternal(packet);
+        } catch (Throwable t) {
+            logErrorThrottled("onSend", "RavenXD: Hooks.onSend failed for " + packetName(packet) + "; sending packet anyway", t);
+            return true;
+        }
+    }
+
+    private static boolean onSendInternal(Packet<?> packet) {
         boolean viewSent = ModuleManager.enabled("View Packets") != null && ViewPacketsModule.sent.isToggled();
         if (packet == PacketUtils.sendingNoEvent) {
             if (packet == PacketUtils.sendingQueued) {
@@ -669,6 +781,15 @@ public final class Hooks {
     }
 
     public static boolean finalSendCheck(Packet<?> packet, boolean show) {
+        try {
+            return finalSendCheckInternal(packet, show);
+        } catch (Throwable t) {
+            logErrorThrottled("finalSendCheck", "RavenXD: Hooks.finalSendCheck failed for " + packetName(packet) + "; sending packet anyway", t);
+            return true;
+        }
+    }
+
+    private static boolean finalSendCheckInternal(Packet<?> packet, boolean show) {
         PacketUtils.trackPost(packet);
         boolean send = true;
         Module killAura;
@@ -685,6 +806,15 @@ public final class Hooks {
     }
 
     public static boolean lagPassesOutbound(Packet<?> packet) {
+        try {
+            return lagPassesOutboundInternal(packet);
+        } catch (Throwable t) {
+            logErrorThrottled("lagPassesOutbound", "RavenXD: Hooks.lagPassesOutbound failed for " + packetName(packet) + "; sending packet anyway", t);
+            return true;
+        }
+    }
+
+    private static boolean lagPassesOutboundInternal(Packet<?> packet) {
         Module m;
         if ((m = on("Lag Range")) != null && !m.onSendPacket(packet)) {
             return false;
@@ -698,8 +828,32 @@ public final class Hooks {
         return true;
     }
 
+    /**
+     * Inbound packet gate. If a module throws before the packet is
+     * processed, fall back to processing it exactly once ourselves instead
+     * of dropping it (which previously desynced the client / could
+     * disconnect it via the Netty handler). Failures *inside*
+     * processPacket are contained by onReceiveInternal and never rethrown,
+     * so the fallback here cannot double-process a packet.
+     */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static void onReceive(Packet packet, INetHandler handler) {
+        try {
+            onReceiveInternal(packet, handler);
+        } catch (Throwable t) {
+            logErrorThrottled("onReceive", "RavenXD: Hooks.onReceive failed for " + packetName(packet) + "; processing packet anyway", t);
+            try {
+                packet.processPacket(handler);
+            } catch (ThreadQuickExitException threadQuickExitException) {
+                // Vanilla behaviour: EQP packets are handled by a re-queue.
+            } catch (Throwable t2) {
+                logErrorThrottled("onReceive:fallback", "RavenXD: fallback processing of " + packetName(packet) + " failed", t2);
+            }
+        }
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private static void onReceiveInternal(Packet packet, INetHandler handler) {
         if (ModuleManager.enabled("View Packets") != null && ViewPacketsModule.received.isToggled()) {
             ViewPacketsModule.onReceived(packet);
         }
@@ -813,6 +967,12 @@ public final class Hooks {
         try {
             packet.processPacket(handler);
         } catch (ThreadQuickExitException threadQuickExitException) {
+            // Vanilla behaviour: EQP packets are handled by a re-queue.
+        } catch (Throwable t) {
+            // Contained here so the onReceive wrapper's fallback (which
+            // re-runs processPacket) is only used for module failures
+            // *before* processing, never double-processing a packet.
+            logErrorThrottled("onReceive:processPacket", "RavenXD: error processing " + packetName(packet), t);
         }
     }
 
