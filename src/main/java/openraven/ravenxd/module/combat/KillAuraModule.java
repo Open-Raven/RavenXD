@@ -122,7 +122,11 @@ public class KillAuraModule extends Module {
         }
 
         public boolean exists() {
-            return this.entity != null && Minecraft.getMinecraft().theWorld.getEntityByID(this.entity.getEntityId()) != null;
+            if (this.entity == null) {
+                return false;
+            }
+            Minecraft minecraft = Minecraft.getMinecraft();
+            return minecraft != null && minecraft.theWorld != null && minecraft.theWorld.getEntityByID(this.entity.getEntityId()) != null;
         }
     }
 

@@ -163,10 +163,14 @@ public final class Profiles {
     }
 
     public static void load(File file) {
-        if (file.getName().startsWith("_") || !file.getName().endsWith(EXT)) {
+        String fileName = file.getName();
+        if (fileName.startsWith("_") || !fileName.endsWith(EXT)) {
             return;
         }
-        String name = file.getName().replace(EXT, "");
+        // Strip only the suffix: replace(EXT, "") also removed ".json"
+        // occurring in the middle of the name ("a.json.json" became
+        // "a" instead of "a.json").
+        String name = fileName.substring(0, fileName.length() - EXT.length());
         if (name.length() > 14) {
             name = name.substring(0, 14);
         }

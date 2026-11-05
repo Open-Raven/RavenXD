@@ -9,8 +9,12 @@ import net.minecraft.client.Minecraft;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 public final class ClientConfig {
     public static final String DIR = Minecraft.getMinecraft().mcDataDir + File.separator + "keystrokes";
@@ -19,30 +23,35 @@ public final class ClientConfig {
     private ClientConfig() {
     }
 
-    private static void write(FileWriter w, String key, Object value) throws Exception {
+    private static void write(Writer w, String key, Object value) throws Exception {
         w.write(key + ": " + value + "\n");
     }
 
     public static void save() {
+        // Explicit UTF-8, writer always closed (try-with-resources):
+        // previously a FileWriter in the platform default charset that
+        // was only closed on the success path -- an exception mid-save
+        // leaked the handle and could leave a truncated config behind.
+        // The parent directory MUST be created before opening the stream.
         try {
             File file = new File(DIR, "config.txt");
-            if (!file.exists()) {
-                file.getParentFile().mkdirs();
-                file.createNewFile();
+            File parent = file.getParentFile();
+            if (parent != null && !parent.exists()) {
+                parent.mkdirs();
             }
-            FileWriter w = new FileWriter(file, false);
-            write(w, "default_profile", defaultProfile == null ? "" : defaultProfile);
-            write(w, "save_categories", GuiModule.saveCategoryPositions.isToggled());
-            for (CategoryComponent c : ClickGui.categories) {
-                write(w, "category-" + c.categoryName.name(), c.getX() + "," + c.getY());
+            try (Writer w = new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8)) {
+                write(w, "default_profile", defaultProfile == null ? "" : defaultProfile);
+                write(w, "save_categories", GuiModule.saveCategoryPositions.isToggled());
+                for (CategoryComponent c : ClickGui.categories) {
+                    write(w, "category-" + c.categoryName.name(), c.getX() + "," + c.getY());
+                }
+                for (NPlusCategory c : NPlusGui.instance.categories) {
+                    write(w, "nplus-" + c.category.name(), c.getX() + "," + c.rawY() + "," + c.isPinned() + "," + c.isOpened());
+                }
+                write(w, "waifu", openraven.ravenxd.gui.Waifu.x + "," + openraven.ravenxd.gui.Waifu.y);
+                write(w, "friends", String.join(",", Friends.friends));
+                write(w, "enemies", String.join(",", Friends.enemies));
             }
-            for (NPlusCategory c : NPlusGui.instance.categories) {
-                write(w, "nplus-" + c.category.name(), c.getX() + "," + c.rawY() + "," + c.isPinned() + "," + c.isOpened());
-            }
-            write(w, "waifu", openraven.ravenxd.gui.Waifu.x + "," + openraven.ravenxd.gui.Waifu.y);
-            write(w, "friends", String.join(",", Friends.friends));
-            write(w, "enemies", String.join(",", Friends.enemies));
-            w.close();
         } catch (Exception ignored) {
         }
     }
@@ -53,14 +62,16 @@ public final class ClientConfig {
         File file = new File(DIR, "config.txt");
         boolean loaded = false;
         if (file.exists()) {
-            try {
-                BufferedReader r = new BufferedReader(new FileReader(file));
+            try (BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
                 String line;
                 while ((line = r.readLine()) != null) {
-                    if (!line.contains(": ")) continue;
-                    String[] kv = line.split(": ");
-                    if (kv.length <= 1) continue;
-                    String key = kv[0], value = kv[1];
+                    // Split on the FIRST ": " only: split(": ") dropped
+                    // everything after a second separator in the value
+                    // (e.g. a profile name or friend entry containing
+                    // ": " was silently truncated on load).
+                    int sep = line.indexOf(": ");
+                    if (sep < 0) continue;
+                    String key = line.substring(0, sep), value = line.substring(sep + 2);
                     if (key.equals("default_profile")) {
                         defaultProfile = value;
                     } else if (key.equals("save_categories")) {
@@ -103,17 +114,16 @@ public final class ClientConfig {
                             } catch (NumberFormatException ignored) {
                             }
                         }
-                    } else if (key.startsWith("friends")) {
+                    } else if (key.equals("friends")) {
                         for (String s : value.split(",")) {
                             if (!s.isEmpty()) Friends.friends.add(s);
                         }
-                    } else if (key.startsWith("enemies")) {
+                    } else if (key.equals("enemies")) {
                         for (String s : value.split(",")) {
                             if (!s.isEmpty()) Friends.enemies.add(s);
                         }
                     }
                 }
-                r.close();
                 loaded = true;
             } catch (Exception ignored) {
             }
